@@ -39,8 +39,8 @@ import { deleteComment, saveComment, voteOnComment } from "./commentSlice";
 import useCollapseRootComment from "./useCollapseRootComment";
 
 const StyledIonIcon = styled(IonIcon)`
-  padding: 8px 12px;
-  margin: -8px -12px;
+  padding: 8px 12px 8px 6px;
+  margin: -8px -12px -8px -6px;
 
   font-size: 1.2em;
 `;

@@ -24,6 +24,10 @@ ion-tab-button {
   ) {
   justify-content: flex-start;
 }
+.mod .action-sheet-button,
+.mod .action-sheet-button:hover {
+  color: var(--ion-color-success-shade);
+}
 
 ion-modal.small {
   --height: 50%;
