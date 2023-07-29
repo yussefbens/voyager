@@ -231,10 +231,7 @@ export default function TabbedRoutes() {
       <IonTabs key={iss ?? getDefaultServer()}>
         <IonRouterOutlet ref={pageRef}>
           <Route exact path="/">
-            <Redirect
-              to={`/posts/${iss ?? getDefaultServer()}/${iss ? "home" : "all"}`}
-              push={false}
-            />
+            <Redirect to={`/posts/${iss ?? getDefaultServer()}`} push={false} />
           </Route>
           <Route exact path="/posts/:actor/home">
             <ActorRedirect>
