@@ -19,7 +19,7 @@ import ItemReplyingTo from "./ItemReplyingTo";
 import useClient from "../../../../helpers/useClient";
 import { useAppDispatch, useAppSelector } from "../../../../store";
 import { Centered, Spinner } from "../../../auth/Login";
-import { handleSelector, jwtSelector } from "../../../auth/authSlice";
+import { handleSelector } from "../../../auth/authSlice";
 import { receivedComments } from "../../commentSlice";
 import CommentContent from "../shared";
 import useTextRecovery, {
@@ -60,14 +60,11 @@ export default function CommentReply({
   const dispatch = useAppDispatch();
   const [replyContent, setReplyContent] = useState("");
   const client = useClient();
-  const jwt = useAppSelector(jwtSelector);
   const [present] = useIonToast();
   const [loading, setLoading] = useState(false);
   const userHandle = useAppSelector(handleSelector);
 
   async function submit() {
-    if (!jwt) return;
-
     setLoading(true);
 
     let reply;
@@ -77,7 +74,6 @@ export default function CommentReply({
         content: replyContent,
         parent_id: comment?.id,
         post_id: item.post.id,
-        auth: jwt,
       });
     } catch (error) {
       const errorDescription =

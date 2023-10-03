@@ -13,7 +13,6 @@ import { LIMIT } from "../../services/lemmy";
 import PostCommentFeed, {
   PostCommentItem,
 } from "../../features/feed/PostCommentFeed";
-import { jwtSelector } from "../../features/auth/authSlice";
 import TitleSearch from "../../features/community/titleSearch/TitleSearch";
 import TitleSearchResults from "../../features/community/titleSearch/TitleSearchResults";
 import { TitleSearchProvider } from "../../features/community/titleSearch/TitleSearchProvider";
@@ -37,7 +36,6 @@ export default function CommunityPage() {
 
   const client = useClient();
   const sort = useAppSelector((state) => state.post.sort);
-  const jwt = useAppSelector(jwtSelector);
 
   const markReadOnScroll = useAppSelector(markReadOnScrollSelector);
 
@@ -48,11 +46,10 @@ export default function CommunityPage() {
         page,
         community_name: community,
         sort,
-        auth: jwt,
       });
       return response.posts;
     },
-    [client, community, sort, jwt],
+    [client, community, sort],
   );
 
   useEffect(() => {

@@ -23,7 +23,7 @@ import { useEffect, useState } from "react";
 import useClient from "../../../helpers/useClient";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { Centered, Spinner } from "../../auth/Login";
-import { jwtSelector, urlSelector } from "../../auth/authSlice";
+import { urlSelector } from "../../auth/authSlice";
 import { startCase } from "lodash";
 import { css } from "@emotion/react";
 import { getHandle, getRemoteHandle, isUrlImage } from "../../../helpers/lemmy";
@@ -32,8 +32,8 @@ import { PostEditorProps } from "./PostEditor";
 import NewPostText from "./NewPostText";
 import { useBuildGeneralBrowseLink } from "../../../helpers/routes";
 import PhotoPreview from "./PhotoPreview";
-import { uploadImage } from "../../../services/lemmy";
 import { receivedPosts } from "../postSlice";
+import { reduceFileSize } from "../../../helpers/imageCompress";
 
 const Container = styled.div`
   position: absolute;
@@ -118,7 +118,6 @@ export default function PostEditorRoot({
 
   const [postType, setPostType] = useState<PostType>(initialPostType);
   const client = useClient();
-  const jwt = useAppSelector(jwtSelector);
   const [present] = useIonToast();
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState(initialTitle);
@@ -185,7 +184,7 @@ export default function PostEditorRoot({
   }
 
   async function submit() {
-    if (!jwt || !community) return;
+    if (!community) return;
 
     // super hacky, I know... but current value submitted
     // from child is needed for submit
@@ -242,8 +241,6 @@ export default function PostEditorRoot({
       url: postUrl,
       body: text || undefined,
       nsfw: showNsfwToggle && nsfw,
-
-      auth: jwt,
     };
 
     try {
@@ -297,15 +294,26 @@ export default function PostEditorRoot({
   }
 
   async function receivedImage(image: File) {
-    if (!jwt) return;
-
     setPhotoPreviewURL(URL.createObjectURL(image));
     setPhotoUploading(true);
+
+    const compressedImageIfNeeded = await reduceFileSize(
+      image,
+      990_000, // 990 kB - Lemmy's default limit is 1MB
+      1500,
+      1500,
+      0.85,
+    );
 
     let imageUrl;
 
     try {
-      imageUrl = await uploadImage(instanceUrl, jwt, image);
+      const result = await client.uploadImage({
+        image: compressedImageIfNeeded,
+      });
+
+      imageUrl = result.files?.[0]?.file;
+      if (!imageUrl) throw new Error("image url not found");
     } catch (error) {
       present({
         message: "Problem uploading image. Please try again.",

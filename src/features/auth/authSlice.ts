@@ -1,5 +1,5 @@
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
-import { GetSiteResponse, LemmyHttp } from "lemmy-js-client";
+import { GetSiteResponse } from "lemmy-js-client";
 import { AppDispatch, RootState } from "../../store";
 import Cookies from "js-cookie";
 import { LemmyJWT, getRemoteHandle } from "../../helpers/lemmy";
@@ -173,7 +173,7 @@ export const usernameSelector = createSelector([handleSelector], (handle) => {
 });
 
 export const isAdminSelector = (state: RootState) =>
-  state.auth.site?.my_user?.local_user_view.person.admin;
+  state.auth.site?.my_user?.local_user_view.local_user.admin;
 
 export const isDownvoteEnabledSelector = (state: RootState) =>
   state.auth.site?.site_view.local_site.enable_downvotes !== false;
@@ -182,8 +182,10 @@ export const localUserSelector = (state: RootState) =>
   state.auth.site?.my_user?.local_user_view.local_user;
 
 export const login =
-  (client: LemmyHttp, username: string, password: string, totp?: string) =>
+  (baseUrl: string, username: string, password: string, totp?: string) =>
   async (dispatch: AppDispatch) => {
+    const client = getClient(baseUrl);
+
     const res = await client.login({
       username_or_email: username,
       password,
@@ -195,7 +197,9 @@ export const login =
       throw new Error("broke");
     }
 
-    const site = await client.getSite({ auth: res.jwt });
+    const authenticatedClient = getClient(baseUrl, res.jwt);
+
+    const site = await authenticatedClient.getSite();
     const myUser = site.my_user?.local_user_view?.person;
 
     if (!myUser) throw new Error("broke");
@@ -224,9 +228,10 @@ export const getSite =
     const jwtPayload = jwtPayloadSelector(getState());
     const instance = jwtPayload?.iss ?? getState().auth.connectedInstance;
 
-    const details = await getClient(instance).getSite({
-      auth: jwtSelector(getState()),
-    });
+    const details = await getClient(
+      instance,
+      jwtSelector(getState()),
+    ).getSite();
 
     dispatch(updateUserDetails(details));
   };
@@ -284,10 +289,13 @@ export const urlSelector = createSelector(
   },
 );
 
-export const clientSelector = createSelector([urlSelector], (url) => {
-  // never leak the jwt to the incorrect server
-  return getClient(url);
-});
+export const clientSelector = createSelector(
+  [urlSelector, jwtSelector],
+  (url, jwt) => {
+    // never leak the jwt to the incorrect server
+    return getClient(url, jwt);
+  },
+);
 
 function updateCredentialsStorage(
   accounts: CredentialStoragePayload | undefined,
@@ -313,19 +321,15 @@ function getCredentialsFromStorage(): CredentialStoragePayload | undefined {
 export const showNsfw =
   (show: boolean) =>
   async (dispatch: AppDispatch, getState: () => RootState) => {
-    const jwt = jwtSelector(getState());
-
     // https://github.com/LemmyNet/lemmy/issues/3565
     const person = getState().auth.site?.my_user?.local_user_view.person;
 
-    if (!jwt) throw new Error("Not authorized");
     if (!person || handleSelector(getState()) !== getRemoteHandle(person))
       throw new Error("user mismatch");
 
     await clientSelector(getState())?.saveUserSettings({
       avatar: person?.avatar || "",
       show_nsfw: show,
-      auth: jwt,
     });
 
     await dispatch(getSite());

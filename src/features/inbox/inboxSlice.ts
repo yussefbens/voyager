@@ -117,9 +117,7 @@ export const getInboxCounts =
     const initialHandle = handleSelector(getState());
 
     try {
-      result = await clientSelector(getState()).getUnreadCount({
-        auth: jwt,
-      });
+      result = await clientSelector(getState()).getUnreadCount();
     } catch (error) {
       // Get inbox counts is a good place to check if token is valid,
       // because it runs quite often (when returning from background,
@@ -168,7 +166,6 @@ export const syncMessages =
           try {
             const results = await clientSelector(getState()).getPrivateMessages(
               {
-                auth: jwt,
                 limit: syncState === "init" ? 50 : page === 1 ? 1 : 20,
                 page,
               },
@@ -204,7 +201,7 @@ export const markAllRead =
 
     if (!jwt) return;
 
-    await clientSelector(getState()).markAllAsRead({ auth: jwt });
+    await clientSelector(getState()).markAllAsRead();
 
     dispatch(getInboxCounts());
   };
@@ -263,19 +260,16 @@ export const markRead =
         await client.markPersonMentionAsRead({
           read,
           person_mention_id: item.person_mention.id,
-          auth: jwt,
         });
       } else if ("comment_reply" in item) {
         await client.markCommentReplyAsRead({
           read,
           comment_reply_id: item.comment_reply.id,
-          auth: jwt,
         });
       } else if ("private_message" in item) {
         await client.markPrivateMessageAsRead({
           read,
           private_message_id: item.private_message.id,
-          auth: jwt,
         });
       }
     } catch (error) {

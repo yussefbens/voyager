@@ -27,12 +27,10 @@ import {
   useState,
 } from "react";
 import { css } from "@emotion/react";
-import { uploadImage } from "../../../../services/lemmy";
-import { useAppSelector } from "../../../../store";
-import { jwtSelector, urlSelector } from "../../../auth/authSlice";
 import { insert } from "../../../../helpers/string";
 import useKeyboardOpen from "../../../../helpers/useKeyboardOpen";
 import textFaces from "./textFaces.txt?raw";
+import useClient from "../../../../helpers/useClient";
 
 export const TOOLBAR_TARGET_ID = "toolbar-target";
 export const TOOLBAR_HEIGHT = "50px";
@@ -113,9 +111,8 @@ export default function MarkdownToolbar({
   const [presentAlert] = useIonToast();
   const keyboardOpen = useKeyboardOpen();
   const [imageUploading, setImageUploading] = useState(false);
-  const jwt = useAppSelector(jwtSelector);
-  const instanceUrl = useAppSelector(urlSelector);
   const toolbarRef = useRef<HTMLDivElement>(null);
+  const client = useClient();
 
   const [presentPreview, onDismissPreview] = useIonModal(PreviewModal, {
     onDismiss: (data: string, role: string) => onDismissPreview(data, role),
@@ -161,14 +158,12 @@ export default function MarkdownToolbar({
   }
 
   async function receivedImage(image: File) {
-    if (!jwt) return;
-
     setImageUploading(true);
 
     let imageUrl: string;
 
     try {
-      imageUrl = await uploadImage(instanceUrl, jwt, image);
+      imageUrl = await client.uploadImage(image);
     } catch (error) {
       presentAlert({
         message: "Problem uploading image. Please try again.",

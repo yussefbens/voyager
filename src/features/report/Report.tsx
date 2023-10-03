@@ -43,19 +43,16 @@ export const Report = forwardRef<ReportHandle>(function Report(_, ref) {
         await client.createCommentReport({
           reason,
           comment_id: item.comment.id,
-          auth: jwt,
         });
       } else if ("post" in item) {
         await client.createPostReport({
           reason,
           post_id: item.post.id,
-          auth: jwt,
         });
       } else if ("private_message" in item) {
         await client.createPrivateMessageReport({
           reason,
           private_message_id: item.private_message.id,
-          auth: jwt,
         });
       }
     } catch (error) {
