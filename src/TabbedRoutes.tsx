@@ -12,10 +12,10 @@ import {
 import { App } from "@capacitor/app";
 import {
   personCircleOutline,
-  cog,
-  search,
+  earth,
   fileTray,
-  telescope,
+  add,
+  home
 } from "ionicons/icons";
 import PostDetail from "./pages/posts/PostPage";
 import CommunitiesPage from "./pages/posts/CommunitiesPage";
@@ -437,9 +437,19 @@ export default function TabbedRoutes() {
               tab="posts"
               href={`/posts/${connectedInstance}`}
             >
-              <IonIcon aria-hidden="true" icon={telescope} />
-              <IonLabel>Posts</IonLabel>
+              <IonIcon aria-hidden="true" icon={home} style={{ fontSize: "28px", marginBottom: "2px" }} />
               <Interceptor onClick={onPostsClick} />
+            </IonTabButton>
+            <IonTabButton
+              disabled={isSearchButtonDisabled}
+              tab="search"
+              href="/search"
+            >
+              <IonIcon aria-hidden="true" icon={earth} />
+              <Interceptor onClick={onSearchClick} />
+            </IonTabButton>
+            <IonTabButton tab="settings" href="/settings">
+              <IonIcon aria-hidden="true" icon={add} style={{ border: "1px solid", borderRadius: "7px" }} />
             </IonTabButton>
             <IonTabButton
               disabled={isInboxButtonDisabled}
@@ -447,7 +457,6 @@ export default function TabbedRoutes() {
               href="/inbox"
             >
               <IonIcon aria-hidden="true" icon={fileTray} />
-              <IonLabel>Inbox</IonLabel>
               {totalUnread ? (
                 <IonBadge color="danger">{totalUnread}</IonBadge>
               ) : undefined}
@@ -459,24 +468,7 @@ export default function TabbedRoutes() {
               href="/profile"
             >
               <IonIcon aria-hidden="true" icon={personCircleOutline} />
-              <ProfileLabel>{profileTabLabel}</ProfileLabel>
               <Interceptor onClick={onProfileClick} />
-            </IonTabButton>
-            <IonTabButton
-              disabled={isSearchButtonDisabled}
-              tab="search"
-              href="/search"
-            >
-              <IonIcon aria-hidden="true" icon={search} />
-              <IonLabel>Search</IonLabel>
-              <Interceptor onClick={onSearchClick} />
-            </IonTabButton>
-            <IonTabButton tab="settings" href="/settings">
-              <IonIcon aria-hidden="true" icon={cog} />
-              <IonLabel>Settings</IonLabel>
-              {settingsNotificationCount ? (
-                <IonBadge color="danger">{settingsNotificationCount}</IonBadge>
-              ) : undefined}
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
