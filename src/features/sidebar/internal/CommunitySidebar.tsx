@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { CommunityView } from "lemmy-js-client";
 import { useAppSelector } from "../../../store";
 import { getHandle } from "../../../helpers/lemmy";
@@ -12,12 +13,14 @@ export default function CommunitySidebar({ community }: CommunitySidebarProps) {
     (state) => state.community.modsByHandle[getHandle(community.community)],
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <GenericSidebar
       type="community"
       sidebar={
         community.community.description ??
-        "**No community description available**"
+        t('no-community-description-available')
       }
       people={mods?.map((m) => m.moderator) ?? []}
       counts={community.counts}

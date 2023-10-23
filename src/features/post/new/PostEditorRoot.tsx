@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import {
   IonButtons,
@@ -210,15 +211,15 @@ export default function PostEditorRoot({
     let errorMessage: string | undefined;
 
     if (!title) {
-      errorMessage = "Please add a title to your post.";
+      errorMessage = t('pleaseAddTitle');
     } else if (postType === "link" && (!url || !validUrl(url))) {
       errorMessage =
-        "Please add a valid URL to your post (start with https://).";
+        t('pleaseAddUrl');
     } else if (postType === "photo" && !photoUrl) {
-      errorMessage = "Please add a photo to your post.";
+      errorMessage = t('PleaseAddPhoto');
     } else if (!canSubmit()) {
       errorMessage =
-        "It looks like you're missing some information to submit this post. Please double check.";
+        t('doubleCheck');
     }
 
     if (errorMessage) {
@@ -258,7 +259,7 @@ export default function PostEditorRoot({
       }
     } catch (error) {
       presentToast({
-        message: "Problem submitting your post. Please try again.",
+        message: t('problemSubmitting'),
         color: "danger",
         fullscreen: true,
       });
@@ -271,7 +272,7 @@ export default function PostEditorRoot({
     dispatch(receivedPosts([postResponse.post_view]));
 
     presentToast({
-      message: existingPost ? "Post edited!" : "Post created!",
+      message: existingPost ? t('postEdited') : t('postCreated'),
       color: "success",
       fullscreen: true,
     });
@@ -304,7 +305,7 @@ export default function PostEditorRoot({
       imageUrl = await uploadImage(instanceUrl, jwt, image);
     } catch (error) {
       presentToast({
-        message: "Problem uploading image. Please try again.",
+        message: t('problemUploading'),
         color: "danger",
         fullscreen: true,
       });
@@ -323,19 +324,21 @@ export default function PostEditorRoot({
     setPhotoPreviewURL(undefined);
   }
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton color="medium" onClick={() => dismiss()}>
-              Cancel
+              {t('cancel')}
             </IonButton>
           </IonButtons>
           <IonTitle>
             <Centered>
               <IonText>
-                {existingPost ? "Edit Post" : <>{startCase(postType)} Post</>}
+                {existingPost ? t('editPost') : <>{startCase(postType)} {t("post")}</>}
               </IonText>
               {loading && <Spinner color="dark" />}
             </Centered>
@@ -347,7 +350,7 @@ export default function PostEditorRoot({
               disabled={loading || !canSubmit()}
               onClick={submit}
             >
-              Post
+              {t('post')}
             </IonButton>
           </IonButtons>
         </IonToolbar>
@@ -359,9 +362,9 @@ export default function PostEditorRoot({
             value={postType}
             onIonChange={(e) => setPostType(e.target.value as PostType)}
           >
-            <IonSegmentButton value="photo">Photo</IonSegmentButton>
-            <IonSegmentButton value="link">Link</IonSegmentButton>
-            <IonSegmentButton value="text">Text</IonSegmentButton>
+            <IonSegmentButton value="photo">{t('photo')}</IonSegmentButton>
+            <IonSegmentButton value="link">{t('link')}</IonSegmentButton>
+            <IonSegmentButton value="text">{t('text')}</IonSegmentButton>
           </IonSegment>
         </IonToolbar>
       </IonHeader>
@@ -372,7 +375,7 @@ export default function PostEditorRoot({
               <IonInputTitle
                 value={title}
                 onIonInput={(e) => setTitle(e.detail.value ?? "")}
-                placeholder="Title"
+                placeholder={t('title')}
                 counter
                 maxlength={200}
                 counterFormatter={(inputLength, maxLength) =>
@@ -385,7 +388,7 @@ export default function PostEditorRoot({
                 <label htmlFor="photo-upload">
                   <IonItem>
                     <IonLabel color="primary">
-                      <CameraIcon icon={cameraOutline} /> Choose Photo
+                      <CameraIcon icon={cameraOutline} /> {t('choosePhoto')}
                     </IonLabel>
 
                     <HiddenInput
@@ -423,7 +426,7 @@ export default function PostEditorRoot({
             )}
             {showNsfwToggle && (
               <IonItem>
-                <IonText color="medium">NSFW</IonText>{" "}
+                <IonText color="medium">{t('nsfw')}</IonText>{" "}
                 <IonToggle
                   slot="end"
                   checked={nsfw}
@@ -444,13 +447,13 @@ export default function PostEditorRoot({
             >
               <IonItem detail>
                 <IonLabel color={!text ? "medium" : undefined}>
-                  {!text ? "Text (optional)" : text}
+                  {!text ? t('textOptional') : text}
                 </IonLabel>
               </IonItem>
             </IonNavLink>
           </IonList>
 
-          <PostingIn>Posting in {getRemoteHandle(community)}</PostingIn>
+          <PostingIn>{t('postingIn')} {getRemoteHandle(community)}</PostingIn>
         </Container>
       </IonContent>
     </>

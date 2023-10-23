@@ -33,6 +33,7 @@ import { getInboxItemId, markRead } from "../../inbox/inboxSlice";
 import { CommentsContext } from "../../comment/CommentsContext";
 import styled from "@emotion/styled";
 import useAppToast from "../../../helpers/useAppToast";
+import { useTranslation } from "react-i18next";
 
 const StyledItemContainer = styled.div`
   --ion-item-border-color: transparent;
@@ -92,6 +93,7 @@ function BaseSlidingVoteInternal({
 }: BaseSlidingVoteProps) {
   const { presentLoginIfNeeded, presentCommentReply } = useContext(PageContext);
   const { prependComments } = useContext(CommentsContext);
+  const { t,i18n } = useTranslation();
 
   const presentToast = useAppToast();
   const dispatch = useAppDispatch();
@@ -166,7 +168,7 @@ function BaseSlidingVoteInternal({
       await dispatch((isPost ? savePost : saveComment)(id, !isSaved));
     } catch (error) {
       presentToast({
-        message: "Failed to mark item as saved",
+        message: t('failed-to-mark-item-as-saved'),
         color: "danger",
       });
       throw error;
@@ -220,7 +222,7 @@ function BaseSlidingVoteInternal({
       await dispatch(markRead(item, !isRead));
     } catch (error) {
       presentToast({
-        message: "Failed to mark item as unread",
+        message: t('failed-to-mark-item-as-unread'),
         color: "danger",
       });
       throw error;

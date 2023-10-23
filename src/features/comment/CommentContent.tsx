@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Comment, Post } from "lemmy-js-client";
 import { useMemo } from "react";
 import CommentMarkdown from "./CommentMarkdown";

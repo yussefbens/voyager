@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonItemOption,
   IonItemOptions,
@@ -31,10 +32,12 @@ export default function BlockedCommunities() {
     }
   }
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <ListHeader>
-        <IonLabel>Blocked Communities</IonLabel>
+        <IonLabel>{t('blocked-communities')}</IonLabel>
       </ListHeader>
       <IonList inset>
         {communities?.length ? (
@@ -46,7 +49,7 @@ export default function BlockedCommunities() {
                   expandable
                   onClick={() => remove(community)}
                 >
-                  Unblock
+                  {t('unblock')}
                 </IonItemOption>
               </IonItemOptions>
               <InsetIonItem>
@@ -56,7 +59,7 @@ export default function BlockedCommunities() {
           ))
         ) : (
           <InsetIonItem>
-            <IonLabel color="medium">No blocked communities</IonLabel>
+            <IonLabel color="medium">{t('no-blocked-communities')}</IonLabel>
           </InsetIonItem>
         )}
       </IonList>

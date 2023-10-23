@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButton,
@@ -48,7 +49,7 @@ const AppContainer = styled.div`
 
 export default function InstallAppPage() {
   const beforeInstallPrompt = useContext(BeforeInstallPromptContext);
-
+  const { t,i18n } = useTranslation();
   function renderGuidance() {
     const why = (
       <>

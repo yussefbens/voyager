@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import { IonItem } from "@ionic/react";
 import { CommunityView } from "lemmy-js-client";
@@ -41,6 +42,8 @@ interface CommunitySummaryProps {
 
 export default function CommunitySummary({ community }: CommunitySummaryProps) {
   const buildGeneralBrowseLink = useBuildGeneralBrowseLink();
+
+  const { t,i18n } = useTranslation();
 
   return (
     <Container

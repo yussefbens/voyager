@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonButtons,
   IonButton,
@@ -46,7 +47,7 @@ export default function CommentEdit({
       await dispatch(editComment(item.id, replyContent));
     } catch (error) {
       presentToast({
-        message: "Problem saving your changes. Please try again.",
+        message: t("problemSaving"),
         color: "danger",
         fullscreen: true,
       });
@@ -57,7 +58,7 @@ export default function CommentEdit({
     }
 
     presentToast({
-      message: "Comment edited!",
+      message: t("commentEdited"),
       color: "success",
     });
 
@@ -66,18 +67,20 @@ export default function CommentEdit({
     dismiss();
   }
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton color="medium" onClick={() => dismiss()}>
-              Cancel
+              {t('cancel')}
             </IonButton>
           </IonButtons>
           <IonTitle>
             <Centered>
-              Edit Comment
+              {t('editComment')}
               {loading && <Spinner color="dark" />}
             </Centered>
           </IonTitle>
@@ -88,7 +91,7 @@ export default function CommentEdit({
               disabled={isSubmitDisabled}
               onClick={submit}
             >
-              Save
+              {t('save')}
             </IonButton>
           </IonButtons>
         </IonToolbar>

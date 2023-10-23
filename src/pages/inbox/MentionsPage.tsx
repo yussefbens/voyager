@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -42,15 +43,17 @@ export default function MentionsPage() {
     [client, jwt, dispatch],
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/inbox" text="Boxes" />
+            <IonBackButton defaultHref="/inbox" text={t('boxes')} />
           </IonButtons>
 
-          <IonTitle>Mentions</IonTitle>
+          <IonTitle>{t('mentions')}</IonTitle>
 
           <IonButtons slot="end">
             <MarkAllAsReadButton />

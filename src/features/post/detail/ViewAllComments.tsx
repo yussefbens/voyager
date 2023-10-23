@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import { IonIcon, useIonViewDidEnter } from "@ionic/react";
 import { chevronForward } from "ionicons/icons";
@@ -63,6 +64,8 @@ export default function ViewAllComments({ onHeight }: ViewAllCommentsProps) {
     onHeight?.(ref.current.getBoundingClientRect().height);
   }, [onHeight]);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <ContainerLink
       ref={ref}
@@ -70,8 +73,8 @@ export default function ViewAllComments({ onHeight }: ViewAllCommentsProps) {
       to={buildGeneralBrowseLink(`/c/${community}/comments/${id}`)}
     >
       <Text>
-        <div>View All Comments</div>
-        <aside>This is a single comment thread from the post.</aside>
+        <div>{t("viewAllComments")}</div>
+        <aside>{t("singleComment")}</aside>
       </Text>
       <Chevron icon={chevronForward} />
     </ContainerLink>

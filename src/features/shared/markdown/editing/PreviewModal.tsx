@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonButton,
   IonButtons,
@@ -30,16 +31,18 @@ export default function PreviewModal({
     }
   })();
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="end">
             <IonButton color="primary" strong onClick={() => onDismiss()}>
-              Done
+              {t('done')}
             </IonButton>
           </IonButtons>
-          <IonTitle>Preview</IonTitle>
+          <IonTitle>{t('preview')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">{content}</IonContent>

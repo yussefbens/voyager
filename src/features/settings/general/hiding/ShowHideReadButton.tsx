@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonLabel, IonToggle } from "@ionic/react";
 import { InsetIonItem } from "../../../../pages/profile/ProfileFeedItemsPage";
 import { useAppDispatch, useAppSelector } from "../../../../store";
@@ -9,9 +10,11 @@ export default function ShowHideReadButton() {
     (state) => state.settings.general.posts,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <InsetIonItem>
-      <IonLabel>Show Hide Read Button</IonLabel>
+      <IonLabel>{t('show-hide-read-button')}</IonLabel>
       <IonToggle
         checked={showHideReadButton}
         onIonChange={(e) => dispatch(setShowHideReadButton(e.detail.checked))}

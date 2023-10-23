@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonLabel,
   IonList,
@@ -25,6 +26,7 @@ export default function AppTheme() {
   const dispatch = useAppDispatch();
   const [presentAlert] = useIonAlert();
   const userTheme = useTheme();
+  const { t,i18n } = useTranslation();
 
   function onChangeTheme(themeName: AppThemeType) {
     dispatch(setTheme(themeName));
@@ -33,11 +35,11 @@ export default function AppTheme() {
 
     if (theme.dark.background && !theme.light.background && !userTheme.dark) {
       presentAlert({
-        header: `${capitalize(themeName)} Looks Best Dark`,
-        message: `Just as a heads up, you're in the light theme currently but ${capitalize(
+        header: `${capitalize(themeName)} ${t('looks-best-dark')}`,
+        message: `${t('just-as-a-heads-up')} ${capitalize(
           themeName,
-        )} looks best with a darker theme. You might want to change it to get the full effect, or you do you!`,
-        buttons: ["OK"],
+        )} ${t('looks-best')}`,
+        buttons: [t('ok')],
       });
     }
   }
@@ -45,7 +47,7 @@ export default function AppTheme() {
   return (
     <>
       <ListHeader>
-        <IonLabel>App Theme</IonLabel>
+        <IonLabel>{t('appTheme')}</IonLabel>
       </ListHeader>
       <IonRadioGroup
         value={theme}

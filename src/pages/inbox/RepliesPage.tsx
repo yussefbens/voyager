@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -51,15 +52,17 @@ export default function RepliesPage({ type }: RepliesPageProps) {
     [client, jwt, dispatch, type],
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/inbox" text="Boxes" />
+            <IonBackButton defaultHref="/inbox" text={t('boxes')} />
           </IonButtons>
 
-          <IonTitle>{type} Replies</IonTitle>
+          <IonTitle>{t('replies-only')}</IonTitle>
 
           <IonButtons slot="end">
             <MarkAllAsReadButton />

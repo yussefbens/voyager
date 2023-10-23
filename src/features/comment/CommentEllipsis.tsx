@@ -32,6 +32,7 @@ import { CommentsContext } from "./CommentsContext";
 import { deleteComment, saveComment, voteOnComment } from "./commentSlice";
 import useCollapseRootComment from "./useCollapseRootComment";
 import useAppToast from "../../helpers/useAppToast";
+import { useTranslation } from "react-i18next";
 
 const StyledIonIcon = styled(IonIcon)`
   padding: 8px 12px;
@@ -57,6 +58,7 @@ export default function MoreActions({
   const [presentActionSheet] = useIonActionSheet();
   const [presentSecondaryActionSheet] = useIonActionSheet();
   const collapseRootComment = useCollapseRootComment(commentView, rootIndex);
+  const { t,i18n } = useTranslation();
 
   const commentById = useAppSelector((state) => state.comment.commentById);
 
@@ -92,7 +94,7 @@ export default function MoreActions({
       cssClass: "left-align-buttons",
       buttons: [
         {
-          text: myVote !== 1 ? "Upvote" : "Undo Upvote",
+          text: myVote !== 1 ? t('upvote') : t('undoUpvote'),
           icon: arrowUpOutline,
           handler: () => {
             (async () => {
@@ -108,7 +110,7 @@ export default function MoreActions({
         },
         downvoteAllowed
           ? {
-              text: myVote !== -1 ? "Downvote" : "Undo Downvote",
+              text: myVote !== -1 ? t('downvote') : t('undo-downvote'),
               icon: arrowDownOutline,
               handler: () => {
                 (async () => {
@@ -126,7 +128,7 @@ export default function MoreActions({
             }
           : undefined,
         {
-          text: !mySaved ? "Save" : "Unsave",
+          text: !mySaved ? t('save') : t('unsave'),
           icon: bookmarkOutline,
           handler: () => {
             (async () => {
@@ -142,7 +144,7 @@ export default function MoreActions({
         },
         isMyComment && isCommentMutable(comment)
           ? {
-              text: "Edit",
+              text: t('edit'),
               icon: pencilOutline,
               handler: () => {
                 presentCommentEdit(comment);
@@ -151,13 +153,13 @@ export default function MoreActions({
           : undefined,
         isMyComment && isCommentMutable(comment)
           ? {
-              text: "Delete",
+              text: t('delete'),
               icon: trashOutline,
               handler: () => {
                 presentSecondaryActionSheet({
                   buttons: [
                     {
-                      text: "Delete Comment",
+                      text: t('delete-comment'),
                       role: "destructive",
                       handler: () => {
                         (async () => {
@@ -166,7 +168,7 @@ export default function MoreActions({
                           } catch (error) {
                             presentToast({
                               message:
-                                "Problem deleting comment. Please try again.",
+                                t('problem-deleting-comment-please-try-again'),
                               color: "danger",
                             });
 
@@ -174,14 +176,14 @@ export default function MoreActions({
                           }
 
                           presentToast({
-                            message: "Comment deleted!",
+                            message: t('comment-deleted'),
                             color: "primary",
                           });
                         })();
                       },
                     },
                     {
-                      text: "Cancel",
+                      text: t('cancel'),
                       role: "cancel",
                     },
                   ],
@@ -190,7 +192,7 @@ export default function MoreActions({
             }
           : undefined,
         {
-          text: "Reply",
+          text: t('reply'),
           icon: arrowUndoOutline,
           handler: () => {
             (async () => {
@@ -204,7 +206,7 @@ export default function MoreActions({
         },
         commentExists && comment.content
           ? {
-              text: "Select Text",
+              text: t('selectText'),
               icon: textOutline,
               handler: () => {
                 presentSelectText(comment.content);
@@ -221,7 +223,7 @@ export default function MoreActions({
           },
         },
         {
-          text: "Share",
+          text: t('share'),
           icon: shareOutline,
           handler: () => {
             share(comment);
@@ -229,7 +231,7 @@ export default function MoreActions({
         },
         rootIndex !== undefined
           ? {
-              text: "Collapse to Top",
+              text: t('collapse'),
               icon: chevronCollapseOutline,
               handler: () => {
                 collapseRootComment();
@@ -237,7 +239,7 @@ export default function MoreActions({
             }
           : undefined,
         {
-          text: "Report",
+          text: t('report'),
           role: "report",
           icon: flagOutline,
           handler: () => {
@@ -245,7 +247,7 @@ export default function MoreActions({
           },
         },
         {
-          text: "Cancel",
+          text: t('cancel'),
           role: "cancel",
         },
       ].filter(notEmpty),

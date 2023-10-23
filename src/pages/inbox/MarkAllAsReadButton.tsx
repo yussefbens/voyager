@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonActionSheet, IonButton, IonIcon } from "@ionic/react";
 import { useAppDispatch } from "../../store";
 import { checkmarkDone } from "ionicons/icons";
@@ -7,6 +8,8 @@ import { markAllRead } from "../../features/inbox/inboxSlice";
 export default function MarkAllAsReadButton() {
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
+
+  const { t,i18n } = useTranslation();
 
   return (
     <>
@@ -18,11 +21,11 @@ export default function MarkAllAsReadButton() {
         isOpen={open}
         buttons={[
           {
-            text: "Mark All Read",
+            text: t('mark-all-read'),
             role: "read",
           },
           {
-            text: "Cancel",
+            text: t('cancel'),
             role: "cancel",
           },
         ]}

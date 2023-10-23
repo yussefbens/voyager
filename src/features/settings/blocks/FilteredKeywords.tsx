@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonItemOption,
   IonItemOptions,
@@ -49,6 +50,8 @@ export default function FilteredKeywords() {
       ],
     });
   }
+
+  const { t,i18n } = useTranslation();
 
   return (
     <>

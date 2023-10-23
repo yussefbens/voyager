@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonActionSheet, IonAlert } from "@ionic/react";
 import { CommentView, PostView, PrivateMessageView } from "lemmy-js-client";
 import { forwardRef, useImperativeHandle, useState } from "react";
@@ -20,13 +21,14 @@ export const Report = forwardRef<ReportHandle>(function Report(_, ref) {
   const [reportOptionsOpen, setReportOptionsOpen] = useState(false);
   const [customOpen, setCustomOpen] = useState(false);
   const client = useClient();
+  const { t,i18n } = useTranslation();
 
   const type = (() => {
     if (!item) return;
 
-    if ("comment" in item) return "Comment";
-    if ("post" in item) return "Post";
-    if ("private_message" in item) return "Private message";
+    if ("comment" in item) return t('comment');
+    if ("post" in item) return t('post');
+    if ("private_message" in item) return t('privateMessage');
   })();
 
   useImperativeHandle(ref, () => ({
@@ -60,14 +62,14 @@ export const Report = forwardRef<ReportHandle>(function Report(_, ref) {
         });
       }
     } catch (error) {
-      let errorDetail = "Please try again.";
+      let errorDetail = t('tryAgain');
 
       if (error === "couldnt_create_report") {
-        errorDetail = "You may have already reported this.";
+        errorDetail = t('alreadyReported');
       }
 
       presentToast({
-        message: `Failed to report ${type?.toLowerCase()}. ${errorDetail}`,
+        message: `${t('failedToReport')} ${type?.toLowerCase()}. ${errorDetail}`,
         color: "danger",
       });
 
@@ -108,33 +110,33 @@ export const Report = forwardRef<ReportHandle>(function Report(_, ref) {
           await submitReport(e.detail.data);
           setReportOptionsOpen(false);
         }}
-        header={`Report ${type}`}
+        header={`${t('report')} ${type}`}
         buttons={[
           {
-            text: "Spam or Abuse",
+            text: t('spamOr'),
             data: "Spam or Abuse",
           },
           {
-            text: "Custom Response",
+            text: t('customResponse'),
             data: "other",
           },
           {
-            text: "Cancel",
+            text: t('cancel'),
             role: "cancel",
           },
         ]}
       />
       <IonAlert
         isOpen={customOpen}
-        header="Custom report reason"
+        header={t('customReportReason')}
         onDidDismiss={submitCustomReason}
         inputs={[
           {
             name: "reason",
-            placeholder: "Custom report details",
+            placeholder: t('customReportDetails'),
           },
         ]}
-        buttons={[{ text: "OK" }, { text: "Cancel", role: "cancel" }]}
+        buttons={[{ text: t('ok') }, { text: t('cancel'), role: "cancel" }]}
       />
     </>
   );

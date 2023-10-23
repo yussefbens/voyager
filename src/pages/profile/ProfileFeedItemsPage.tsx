@@ -22,6 +22,7 @@ import PostCommentFeed, {
 } from "../../features/feed/PostCommentFeed";
 import { jwtSelector } from "../../features/auth/authSlice";
 import FeedContent from "../shared/FeedContent";
+import { useTranslation } from "react-i18next";
 
 export const InsetIonItem = styled(IonItem)`
   --background: var(--ion-tab-bar-background, var(--ion-color-step-50, #fff));
@@ -49,6 +50,7 @@ export default function ProfileFeedItemsPage({
   const { handle } = useParams<{ handle: string }>();
   const jwt = useAppSelector(jwtSelector);
   const client = useClient();
+  const { t,i18n } = useTranslation();
 
   const fetchFn: FetchFn<PostCommentItem> = useCallback(
     async (page) => {
@@ -76,7 +78,7 @@ export default function ProfileFeedItemsPage({
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>{type}</IonTitle>
+          <IonTitle>{t(type.toLowerCase())}</IonTitle>
           <IonButtons slot="start">
             <IonBackButton
               text={handle}

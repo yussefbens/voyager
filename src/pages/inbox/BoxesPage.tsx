@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonHeader,
   IonIcon,
@@ -35,31 +36,33 @@ export default function BoxesPage() {
     if (presentLoginIfNeeded()) e.preventDefault();
   }
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage className="grey-bg">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Boxes</IonTitle>
+          <IonTitle>{t('boxes')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <AppContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Boxes</IonTitle>
+            <IonTitle size="large">{t('boxes')}</IonTitle>
           </IonToolbar>
         </IonHeader>
 
         <IonList inset color="primary">
           <InsetIonItem routerLink="/inbox/all" onClick={interceptIfLoggedOut}>
             <IonIcon icon={fileTray} color="primary" />
-            <SettingLabel>Inbox (All)</SettingLabel>
+            <SettingLabel>{t('inbox')}</SettingLabel>
           </InsetIonItem>
           <InsetIonItem
             routerLink="/inbox/unread"
             onClick={interceptIfLoggedOut}
           >
             <IonIcon icon={ellipseOutline} color="primary" />
-            <SettingLabel>Unread</SettingLabel>
+            <SettingLabel>{t('unread')}</SettingLabel>
           </InsetIonItem>
         </IonList>
 
@@ -69,21 +72,21 @@ export default function BoxesPage() {
             onClick={interceptIfLoggedOut}
           >
             <IonIcon icon={albumsOutline} color="primary" />
-            <SettingLabel>Post Replies</SettingLabel>
+            <SettingLabel>{t('postReplies')}</SettingLabel>
           </InsetIonItem>
           <InsetIonItem
             routerLink="/inbox/comment-replies"
             onClick={interceptIfLoggedOut}
           >
             <IonIcon icon={chatbubbleOutline} color="primary" />
-            <SettingLabel>Comment Replies</SettingLabel>
+            <SettingLabel>{t('commentReplies')}</SettingLabel>
           </InsetIonItem>
           <InsetIonItem
             routerLink="/inbox/mentions"
             onClick={interceptIfLoggedOut}
           >
             <IonIcon icon={personCircleOutline} color="primary" />
-            <SettingLabel>Mentions</SettingLabel>
+            <SettingLabel>{t('mentions')}</SettingLabel>
           </InsetIonItem>
         </IonList>
 
@@ -93,7 +96,7 @@ export default function BoxesPage() {
             onClick={interceptIfLoggedOut}
           >
             <IonIcon icon={mail} color="primary" />
-            <SettingLabel>Messages</SettingLabel>
+            <SettingLabel>{t('messages')}</SettingLabel>
           </InsetIonItem>
         </IonList>
       </AppContent>

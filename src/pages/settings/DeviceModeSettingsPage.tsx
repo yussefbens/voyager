@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -10,6 +11,7 @@ import AppContent from "../../features/shared/AppContent";
 import SelectDeviceMode from "../../features/settings/appearance/themes/system/SelectDeviceMode";
 
 export default function DeviceModeSettingsPage() {
+  const { t,i18n } = useTranslation();
   return (
     <IonPage className="grey-bg">
       <IonHeader>
@@ -21,7 +23,7 @@ export default function DeviceModeSettingsPage() {
             />
           </IonButtons>
 
-          <IonTitle>Device Mode</IonTitle>
+          <IonTitle>{t('device-mode')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <AppContent scrollY>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonButton,
   IonButtons,
@@ -46,6 +47,8 @@ export default function AccountSwitcher({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accounts]);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage>
       <IonHeader>
@@ -60,15 +63,15 @@ export default function AccountSwitcher({
                 <IonIcon icon={add} />
               </IonButton>
             ) : (
-              <IonButton onClick={() => onDismiss()}>Cancel</IonButton>
+              <IonButton onClick={() => onDismiss()}>{t('cancel')}</IonButton>
             )}
           </IonButtons>
-          <IonTitle>Accounts</IonTitle>
+          <IonTitle>{t('accounts')}</IonTitle>
           <IonButtons slot="end">
             {editing ? (
-              <IonButton onClick={() => setEditing(false)}>Done</IonButton>
+              <IonButton onClick={() => setEditing(false)}>{t('done')}</IonButton>
             ) : (
-              <IonButton onClick={() => setEditing(true)}>Edit</IonButton>
+              <IonButton onClick={() => setEditing(true)}>{t('edit')}</IonButton>
             )}
           </IonButtons>
         </IonToolbar>

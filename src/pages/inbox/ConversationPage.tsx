@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -140,6 +141,7 @@ export default function ConversationPage() {
 
   const contentRef = useRef<IonContentCustomEvent<never>["target"]>(null);
   const buildGeneralBrowseLink = useBuildGeneralBrowseLink();
+  const { t,i18n } = useTranslation();
 
   useIonViewWillEnter(() => {
     contentRef.current?.scrollToBottom();
@@ -194,7 +196,7 @@ export default function ConversationPage() {
       });
     } catch (error) {
       presentToast({
-        message: `Message failed to send. Please try again`,
+        message: t('message-failed'),
         color: "danger",
       });
       setLoading(false);
@@ -221,7 +223,7 @@ export default function ConversationPage() {
           <IonButtons slot="start">
             <IonBackButton
               defaultHref="/inbox/messages"
-              text={tab === "inbox" ? "Messages" : "Back"}
+              text={tab === "inbox" ? t('messages') : t('back')}
             />
           </IonButtons>
 
@@ -263,7 +265,7 @@ export default function ConversationPage() {
             <InputContainer>
               <Input
                 disabled={loading}
-                placeholder="Message"
+                placeholder={t('message')}
                 onChange={(e) => setValue(e.target.value)}
                 value={value}
                 rows={1}

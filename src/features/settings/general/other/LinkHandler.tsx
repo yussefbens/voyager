@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { openOutline, readerOutline } from "ionicons/icons";
 import { OLinkHandlerType } from "../../../../services/db";
 import { useAppSelector } from "../../../../store";
@@ -12,9 +13,11 @@ export default function LinkHandler() {
 
   if (!isNative()) return;
 
+  const { t,i18n } = useTranslation();
+
   return (
     <SettingSelector
-      title="Open links in"
+      title={t('open-links-in')}
       selected={linkHandler}
       setSelected={setLinkHandler}
       options={OLinkHandlerType}

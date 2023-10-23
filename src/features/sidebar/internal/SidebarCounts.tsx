@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonBadge } from "@ionic/react";
 import { CommunityAggregates, SiteAggregates } from "lemmy-js-client";
 import { formatNumber } from "../../../helpers/number";
@@ -7,29 +8,31 @@ interface SidebarCountsProps {
 }
 
 export default function SidebarCounts({ counts }: SidebarCountsProps) {
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       {"subscribers" in counts ? (
         <>
-          <IonBadge>{formatNumber(counts.subscribers)} subscribers</IonBadge>{" "}
+          <IonBadge>{formatNumber(counts.subscribers)} {t('subscribers')}</IonBadge>{" "}
         </>
       ) : (
         <>
-          <IonBadge>{formatNumber(counts.communities)} communities</IonBadge>{" "}
+          <IonBadge>{formatNumber(counts.communities)} {t('communities-only')}</IonBadge>{" "}
         </>
       )}
-      <IonBadge color="danger">{formatNumber(counts.posts)} posts</IonBadge>{" "}
+      <IonBadge color="danger">{formatNumber(counts.posts)} {t('posts-only')}</IonBadge>{" "}
       <IonBadge color="warning">
-        {formatNumber(counts.comments)} comments
+        {formatNumber(counts.comments)} {t('comments-only')}
       </IonBadge>{" "}
       <IonBadge color="success">
-        {formatNumber(counts.users_active_month)} users per month
+        {formatNumber(counts.users_active_month)} {t('users-per-month')}
       </IonBadge>{" "}
       <IonBadge color="tertiary">
-        {formatNumber(counts.users_active_week)} per week
+        {formatNumber(counts.users_active_week)} {t('per-week')}
       </IonBadge>{" "}
       <IonBadge color="light">
-        {formatNumber(counts.users_active_day)} per day
+        {formatNumber(counts.users_active_day)} {t('per-day')}
       </IonBadge>
     </>
   );

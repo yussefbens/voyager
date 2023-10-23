@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -10,6 +11,7 @@ import AppContent from "../../features/shared/AppContent";
 import GeneralSettings from "../../features/settings/general/GeneralSettings";
 
 export default function GeneralPage() {
+  const { t,i18n } = useTranslation();
   return (
     <IonPage className="grey-bg">
       <IonHeader>
@@ -18,7 +20,7 @@ export default function GeneralPage() {
             <IonBackButton defaultHref="/settings" text="Settings" />
           </IonButtons>
 
-          <IonTitle>General</IonTitle>
+          <IonTitle>{t('general')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <AppContent scrollY>

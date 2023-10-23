@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonLabel, IonList } from "@ionic/react";
 import CollapsedByDefault from "../../general/comments/CollapsedByDefault";
 import DefaultSort from "./DefaultSort";
@@ -7,10 +8,13 @@ import JumpButtonPosition from "./JumpButtonPosition";
 import HighlightNewAccount from "./HighlightNewAccount";
 
 export default function Comments() {
+
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <ListHeader>
-        <IonLabel>Comments</IonLabel>
+        <IonLabel>{t('comments')}</IonLabel>
       </ListHeader>
       <IonList inset>
         <CollapsedByDefault />

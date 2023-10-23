@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { isNative } from "../../../helpers/device";
 
 export default function Terms() {

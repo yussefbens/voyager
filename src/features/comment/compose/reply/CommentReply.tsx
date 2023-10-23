@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import {
   IonButtons,
@@ -65,6 +66,7 @@ export default function CommentReply({
   const [loading, setLoading] = useState(false);
   const userHandle = useAppSelector(handleSelector);
   const isSubmitDisabled = !replyContent.trim() || loading;
+  const { t,i18n } = useTranslation();
 
   async function submit() {
     if (isSubmitDisabled) return;
@@ -84,11 +86,11 @@ export default function CommentReply({
     } catch (error) {
       const errorDescription =
         error === "language_not_allowed"
-          ? "Please select a language in your lemmy profile settings."
-          : "Please try again.";
+          ? t("selectLanguageProfile")
+          : t("tryAgain");
 
       presentToast({
-        message: `Problem posting your comment. ${errorDescription}`,
+        message: `${t("problemPostingComment")} ${errorDescription}`,
         color: "danger",
         fullscreen: true,
       });
@@ -99,7 +101,7 @@ export default function CommentReply({
     }
 
     presentToast({
-      message: "Comment posted!",
+      message: t("commentPosted"),
       color: "success",
     });
 
@@ -123,13 +125,13 @@ export default function CommentReply({
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton color="medium" onClick={() => dismiss()}>
-              Cancel
+              {t('cancel')}
             </IonButton>
           </IonButtons>
           <IonTitle>
             <Centered>
               <TitleContainer>
-                <IonText>New Comment</IonText>
+                <IonText>{t('newComment')}</IonText>
                 <div>
                   <UsernameIonText color="medium">{userHandle}</UsernameIonText>
                 </div>
@@ -144,7 +146,7 @@ export default function CommentReply({
               disabled={isSubmitDisabled}
               onClick={submit}
             >
-              Post
+              {t('post')}
             </IonButton>
           </IonButtons>
         </IonToolbar>

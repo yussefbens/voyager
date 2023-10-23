@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -28,6 +29,8 @@ export default function BlocksSettingsPage() {
   const userHandle = useAppSelector(handleSelector);
   const localUser = useAppSelector(localUserSelector);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage className="grey-bg">
       <IonHeader>
@@ -38,7 +41,7 @@ export default function BlocksSettingsPage() {
 
           <IonTitle>
             <TitleContainer>
-              <IonText>Filters & Blocks</IonText>
+              <IonText>{t('filters-and-blocks')}</IonText>
               <div>
                 <UsernameIonText color="medium">{userHandle}</UsernameIonText>
               </div>

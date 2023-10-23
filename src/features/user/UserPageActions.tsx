@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonActionSheet, IonButton, IonIcon, useIonRouter } from "@ionic/react";
 import {
   ellipsisHorizontal,
@@ -19,6 +20,8 @@ export default function UserPageActions({ handle }: UserPageActionsProps) {
   const router = useIonRouter();
   const buildGeneralBrowseLink = useBuildGeneralBrowseLink();
   const { isBlocked, blockOrUnblock } = useUserDetails(handle);
+
+  const { t,i18n } = useTranslation();
 
   return (
     <>

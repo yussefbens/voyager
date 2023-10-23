@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   CommentReplyView,
   PersonMentionView,
@@ -135,10 +136,13 @@ export default function InboxItem({ item }: InboxItemProps) {
       : undefined;
 
   function renderHeader() {
+    
+    const { t,i18n } = useTranslation();
+
     if ("person_mention" in item) {
       return (
         <>
-          <strong>{item.creator.name}</strong> mentioned you on the post{" "}
+          <strong>{item.creator.name}</strong> {t("mentionYou")}{" "}
           <strong>{item.post.name}</strong>
         </>
       );
@@ -147,14 +151,14 @@ export default function InboxItem({ item }: InboxItemProps) {
       if (isPostReply(item)) {
         return (
           <>
-            <strong>{item.creator.name}</strong> replied to your post{" "}
+            <strong>{item.creator.name}</strong> {t("repliedYou")}{" "}
             <strong>{item.post.name}</strong>
           </>
         );
       } else {
         return (
           <>
-            <strong>{item.creator.name}</strong> replied to your comment in{" "}
+            <strong>{item.creator.name}</strong> {t("mentionYourComment")}{" "}
             <strong>{item.post.name}</strong>
           </>
         );
@@ -163,7 +167,7 @@ export default function InboxItem({ item }: InboxItemProps) {
     if ("private_message" in item) {
       return (
         <>
-          <strong>{getHandle(item.creator)}</strong> sent you a private message
+          <strong>{getHandle(item.creator)}</strong> {t("sentYou")}
         </>
       );
     }
@@ -177,11 +181,11 @@ export default function InboxItem({ item }: InboxItemProps) {
     return item.private_message.content;
   }
 
-  function renderFooterDetails() {
+  function renderFooterDetails(t: any) {
     if ("comment" in item) {
       return (
         <>
-          <strong>{item.creator.name}</strong> in{" "}
+          <strong>{item.creator.name}</strong> {t("in")}{" "}
           <strong>{item.community.name}</strong>
         </>
       );
@@ -215,12 +219,12 @@ export default function InboxItem({ item }: InboxItemProps) {
     if ("private_message" in item) return mail;
   }
 
-  async function markRead() {
+  async function markRead(t: any) {
     try {
       await dispatch(markReadAction(item, true));
     } catch (error) {
       presentToast({
-        message: "Failed to mark item as read",
+        message: t("failedToMark"),
         color: "danger",
       });
 
@@ -228,12 +232,14 @@ export default function InboxItem({ item }: InboxItemProps) {
     }
   }
 
+  const { t,i18n } = useTranslation();
+
   const contents = (
     <StyledIonItem
       routerLink={getLink()}
       href={undefined}
       detail={false}
-      onClick={markRead}
+      onClick={() => markRead(t)}
       read={!!readByInboxItemId[getInboxItemId(item)]}
     >
       <Container>
@@ -247,7 +253,7 @@ export default function InboxItem({ item }: InboxItemProps) {
             <CommentMarkdown>{renderContents()}</CommentMarkdown>
           </Body>
           <Footer>
-            <div>{renderFooterDetails()}</div>
+            <div>{renderFooterDetails(t)}</div>
             <aside>
               <EllipsisIcon icon={ellipsisHorizontal} />{" "}
               <Ago date={getDate()} />

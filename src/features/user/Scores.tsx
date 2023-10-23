@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import { PersonAggregates } from "lemmy-js-client";
 import { formatNumber } from "../../helpers/number";
@@ -34,6 +35,7 @@ interface ScoreProps {
 
 export default function Scores({ aggregates, accountCreated }: ScoreProps) {
   const [present] = useIonAlert();
+  const { t,i18n } = useTranslation();
 
   const relativeDate = formatDistanceToNowStrict(
     new Date(fixLemmyDateString(accountCreated)),
@@ -48,10 +50,10 @@ export default function Scores({ aggregates, accountCreated }: ScoreProps) {
   const totalScore = postScore + commentScore;
 
   const showScoreAlert = async (focus: "post" | "comment") => {
-    const postPointsLine = `${postScore.toLocaleString()} Post Points`;
-    const commentPointsLine = `${commentScore.toLocaleString()} Comment Points`;
+    const postPointsLine = `${postScore.toLocaleString()} ${t('post-points')}`;
+    const commentPointsLine = `${commentScore.toLocaleString()} ${t('comment-points')}`;
 
-    const totalScoreLine = `${totalScore.toLocaleString()} Total Points`;
+    const totalScoreLine = `${totalScore.toLocaleString()} ${t('total-points')}`;
 
     const header = focus === "post" ? postPointsLine : commentPointsLine;
 
@@ -64,7 +66,7 @@ export default function Scores({ aggregates, accountCreated }: ScoreProps) {
       header,
       cssClass: "preserve-newlines",
       message: message.join("\n"),
-      buttons: [{ text: "OK" }],
+      buttons: [{ text: t('ok') }],
     });
   };
 
@@ -77,7 +79,7 @@ export default function Scores({ aggregates, accountCreated }: ScoreProps) {
           }}
         >
           {formatNumber(aggregates.comment_score)}
-          <aside>Comment score</aside>
+          <aside>{t('commentScore')}</aside>
         </Score>
         <Score
           onClick={() => {
@@ -85,19 +87,19 @@ export default function Scores({ aggregates, accountCreated }: ScoreProps) {
           }}
         >
           {formatNumber(aggregates.post_score)}
-          <aside>Post score</aside>
+          <aside>{t('postScore')}</aside>
         </Score>
         <Score
           onClick={() => {
             present({
-              header: `Account is ${relativeDate} old`,
-              message: `Created on ${creationDate.toDateString()} at ${creationDate.toLocaleTimeString()}`,
-              buttons: [{ text: "OK" }],
+              header: `${t('account-is')} ${relativeDate} ${t('old')}`,
+              message: `${t('created-on')} ${creationDate.toDateString()} ${t('at')} ${creationDate.toLocaleTimeString()}`,
+              buttons: [{ text: t('ok') }],
             });
           }}
         >
           <Ago date={accountCreated} />
-          <aside>Account age</aside>
+          <aside>{t('accountAge')}</aside>
         </Score>
       </Container>
     </>

@@ -42,6 +42,7 @@ import {
   isDownvoteEnabledSelector,
 } from "../../auth/authSlice";
 import useAppToast from "../../../helpers/useAppToast";
+import { useTranslation } from "react-i18next";
 
 interface MoreActionsProps {
   post: PostView;
@@ -80,13 +81,14 @@ export default function MoreActions({
 
   const isMyPost = getRemoteHandle(post.creator) === myHandle;
   const downvoteAllowed = useAppSelector(isDownvoteEnabledSelector);
+  const { t,i18n } = useTranslation();
 
   function onClick() {
     presentActionSheet({
       cssClass: "left-align-buttons",
       buttons: [
         {
-          text: myVote !== 1 ? "Upvote" : "Undo Upvote",
+          text: myVote !== 1 ? t('upvote') : t('undoUpvote'),
           icon: arrowUpOutline,
           handler: () => {
             (async () => {
@@ -104,7 +106,7 @@ export default function MoreActions({
         },
         downvoteAllowed
           ? {
-              text: myVote !== -1 ? "Downvote" : "Undo Downvote",
+              text: myVote !== -1 ? t('downvote') : t('undo-downvote'),
               icon: arrowDownOutline,
               handler: () => {
                 (async () => {
@@ -124,7 +126,7 @@ export default function MoreActions({
             }
           : undefined,
         {
-          text: !mySaved ? "Save" : "Unsave",
+          text: !mySaved ? t('save') : t('unsave'),
           icon: bookmarkOutline,
           handler: () => {
             (async () => {
@@ -142,27 +144,27 @@ export default function MoreActions({
         },
         isMyPost
           ? {
-              text: "Delete",
+              text: t('delete'),
               icon: trashOutline,
               handler: () => {
                 presentSecondaryActionSheet({
                   buttons: [
                     {
-                      text: "Delete Post",
+                      text: t('delete-post'),
                       role: "destructive",
                       handler: () => {
                         (async () => {
                           await dispatch(deletePost(post.post.id));
 
                           presentToast({
-                            message: "Post deleted",
+                            message: t('post-deleted'),
                             color: "success",
                           });
                         })();
                       },
                     },
                     {
-                      text: "Cancel",
+                      text: t('cancel'),
                       role: "cancel",
                     },
                   ],
@@ -172,7 +174,7 @@ export default function MoreActions({
           : undefined,
         isMyPost
           ? {
-              text: "Edit",
+              text: t('edit'),
               icon: pencilOutline,
               handler: () => {
                 presentPostEditor(post);
@@ -180,7 +182,7 @@ export default function MoreActions({
             }
           : undefined,
         {
-          text: "Reply",
+          text: t('reply'),
           icon: arrowUndoOutline,
           handler: () => {
             if (presentLoginIfNeeded()) return;
@@ -209,7 +211,7 @@ export default function MoreActions({
         },
         post.post.body
           ? {
-              text: "Select Text",
+              text: t('selectText'),
               icon: textOutline,
               handler: () => {
                 if (!post.post.body) return;
@@ -220,7 +222,7 @@ export default function MoreActions({
           : undefined,
         onFeed
           ? {
-              text: isHidden ? "Unhide" : "Hide",
+              text: isHidden ? t('unhide') : t('hide'),
               icon: isHidden ? eyeOutline : eyeOffOutline,
               handler: () => {
                 if (presentLoginIfNeeded()) return;
@@ -232,7 +234,7 @@ export default function MoreActions({
             }
           : undefined,
         {
-          text: "Share",
+          text: t('share'),
           data: "share",
           icon: shareOutline,
           handler: () => {
@@ -240,7 +242,7 @@ export default function MoreActions({
           },
         },
         {
-          text: "Report",
+          text: t('report'),
           data: "report",
           icon: flagOutline,
           handler: () => {
@@ -248,7 +250,7 @@ export default function MoreActions({
           },
         },
         {
-          text: "Cancel",
+          text: t('cancel'),
           role: "cancel",
         },
       ].filter(notEmpty),

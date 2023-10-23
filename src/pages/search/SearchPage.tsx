@@ -10,6 +10,7 @@ import { createRef, useState } from "react";
 import { css } from "@emotion/react";
 import TrendingCommunities from "../../features/search/TrendingCommunities";
 import SearchOptions from "../../features/search/SearchOptions";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line no-undef -- I can't work out where to import this type from
 const searchBarRef = createRef<HTMLIonSearchbarElement>();
@@ -22,6 +23,7 @@ export const focusSearchBar = () => searchBarRef.current?.setFocus();
 export default function SearchPage() {
   const [search, setSearch] = useState("");
   const router = useIonRouter();
+  const { t,i18n } = useTranslation();
 
   return (
     <IonPage className="grey-bg">
@@ -40,7 +42,7 @@ export default function SearchPage() {
           >
             <IonSearchbar
               ref={searchBarRef}
-              placeholder="Search posts, communities, users"
+              placeholder={t('search-posts-communities-users')}
               showCancelButton={search ? "always" : "focus"}
               showClearButton={search ? "always" : "never"}
               css={css`

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonLabel, IonToggle } from "@ionic/react";
 import { InsetIonItem } from "../../../../pages/profile/ProfileFeedItemsPage";
 import { useAppDispatch, useAppSelector } from "../../../../store";
@@ -9,9 +10,11 @@ export default function DisableMarkingRead() {
     (state) => state.settings.general.posts,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <InsetIonItem>
-      <IonLabel>Disable Marking Posts Read</IonLabel>
+      <IonLabel>{t('disable-marking-posts-read')}</IonLabel>
       <IonToggle
         checked={disableMarkingRead}
         onIonChange={(e) =>

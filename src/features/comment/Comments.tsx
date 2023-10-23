@@ -28,6 +28,7 @@ import { jwtSelector } from "../auth/authSlice";
 import { defaultCommentDepthSelector } from "../settings/settingsSlice";
 import { isSafariFeedHackEnabled } from "../../pages/shared/FeedContent";
 import useAppToast from "../../helpers/useAppToast";
+import { useTranslation } from "react-i18next";
 
 const centerCss = css`
   position: relative;
@@ -247,6 +248,8 @@ export default forwardRef<CommentsHandle, CommentsProps>(function Comments(
     }
   }
 
+  const { t,i18n } = useTranslation();
+
   const allComments = useMemo(() => {
     if (loading && !comments.length)
       return [<StyledIonSpinner key="spinner" />];
@@ -254,8 +257,8 @@ export default forwardRef<CommentsHandle, CommentsProps>(function Comments(
     if (!comments.length)
       return [
         <Empty key="empty">
-          <div>No Comments</div>
-          <aside>It&apos;s quiet... too quiet...</aside>
+          <div>{t('no-comments')}</div>
+          <aside>{t('quiet-too-quiet')}</aside>
         </Empty>,
       ];
 

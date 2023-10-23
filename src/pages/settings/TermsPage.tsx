@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -10,6 +11,7 @@ import AppContent from "../../features/shared/AppContent";
 import Terms from "../../features/settings/terms/Terms";
 
 export default function TermsPage() {
+  const { t,i18n } = useTranslation();
   return (
     <IonPage className="grey-bg">
       <IonHeader>
@@ -18,7 +20,7 @@ export default function TermsPage() {
             <IonBackButton defaultHref="/settings" text="Settings" />
           </IonButtons>
 
-          <IonTitle>Terms</IonTitle>
+          <IonTitle>{t('terms-only')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <AppContent scrollY>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { css } from "@emotion/react";
 import { useAppSelector } from "../../../store";
 import { CenteredSpinner } from "../../post/detail/PostDetail";
@@ -27,6 +28,8 @@ export default function InstanceSidebar() {
 
   const { site, counts } = siteView;
 
+  const { t,i18n } = useTranslation();
+
   return (
     <GenericSidebar
       type="instance"
@@ -35,7 +38,7 @@ export default function InstanceSidebar() {
       counts={counts}
       beforeMarkdown={
         site.banner ? (
-          <BannerImg src={site.banner} alt={`Banner for ${site.actor_id}`} />
+          <BannerImg src={site.banner} alt={`${t('banner-for')} ${site.actor_id}`} />
         ) : undefined
       }
     />

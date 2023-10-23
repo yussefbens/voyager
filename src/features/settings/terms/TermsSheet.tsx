@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonButton,
   IonButtons,
@@ -14,16 +15,17 @@ interface TermsSheetProps {
 }
 
 export default function TermsSheet({ onDismiss }: TermsSheetProps) {
+  const { t,i18n } = useTranslation();
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton color="medium" onClick={() => onDismiss()}>
-              Cancel
+              {t('cancel')}
             </IonButton>
           </IonButtons>
-          <IonTitle>Terms</IonTitle>
+          <IonTitle>{t('terms-only')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>

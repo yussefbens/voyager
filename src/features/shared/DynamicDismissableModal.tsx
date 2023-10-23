@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import React, {
   useCallback,
   useContext,
@@ -51,10 +52,12 @@ export function DynamicDismissableModal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageContext.pageRef, iss]);
 
+  const { t,i18n } = useTranslation();
+
   const onDismissAttemptCb = useCallback(async () => {
     await presentActionSheet([
       {
-        text: "Delete",
+        text: t('delete'),
         role: "destructive",
         handler: () => {
           clearRecoveredText();
@@ -63,7 +66,7 @@ export function DynamicDismissableModal({
         },
       },
       {
-        text: "Cancel",
+        text: t('cancel'),
         role: "cancel",
       },
     ]);
@@ -82,7 +85,7 @@ export function DynamicDismissableModal({
 
     e.preventDefault();
 
-    confirm("Are you sure you want to discard your work?");
+    confirm(t('are-you-sure-you-want-to-discard-your-work'));
   });
 
   // HTML5 route change, and Prompt already caught and user acknowledged
@@ -98,7 +101,7 @@ export function DynamicDismissableModal({
     <>
       <Prompt
         when={!canDismiss}
-        message="Are you sure you want to discard your work?"
+        message={t('are-you-sure-you-want-to-discard-your-work')}
       />
       <IonModalAutosizedForOnScreenKeyboard
         isOpen={isOpen}

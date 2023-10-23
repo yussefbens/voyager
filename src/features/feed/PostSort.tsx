@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import type { IonActionSheetCustomEvent } from "@ionic/core";
 import {
   ActionSheetButton,
@@ -63,20 +64,22 @@ const BUTTONS: ActionSheetButton<ExtendedSortType>[] = POST_SORTS.map(
   }),
 );
 
-const TOP_BUTTONS: ActionSheetButton<SortType>[] = TOP_POST_SORTS.map(
-  (sortType) => ({
-    text: formatTopLabel(sortType),
-    data: sortType,
-    icon: getSortIcon(sortType),
-  }),
-);
-
 export default function PostSort() {
   const dispatch = useAppDispatch();
   const sort = useAppSelector((state) => state.post.sort);
   const [open, setOpen] = useState(false);
   const [topOpen, setTopOpen] = useState(false);
   const { activePageRef } = useContext(AppContext);
+
+  const { t,i18n } = useTranslation();
+
+  const TOP_BUTTONS: ActionSheetButton<SortType>[] = TOP_POST_SORTS.map(
+    (sortType) => ({
+      text: formatTopLabel(sortType, t),
+      data: sortType,
+      icon: getSortIcon(sortType),
+    }),
+  );
 
   return (
     <>
@@ -101,14 +104,14 @@ export default function PostSort() {
             scrollUpIfNeeded(activePageRef?.current, 0, "auto");
           }
         }}
-        header="Sort by..."
+        header={t("sortBy")}
         buttons={BUTTONS.map((b) => ({
           ...b,
           cssClass: b.data === "Top" ? "detail" : undefined,
           text:
             isTopSort(sort) && b.data === "Top"
-              ? `${b.text} (${formatTopLabel(sort)})`
-              : b.text,
+              ? `${t(b.text ? b.text.toLowerCase().replace(/\s/g, '') : "test")} (${formatTopLabel(sort, t)})`
+              : t(b.text ? b.text.toLowerCase().replace(/\s/g, '') : "test"),
           role:
             sort === b.data || (sort.startsWith("Top") && b.data === "Top")
               ? "selected"
@@ -127,7 +130,7 @@ export default function PostSort() {
             scrollUpIfNeeded(activePageRef?.current, 0, "auto");
           }
         }}
-        header="Sort by Top for..."
+        header={t("sortByTop")}
         buttons={TOP_BUTTONS.map((b) => ({
           ...b,
           role: sort === b.data ? "selected" : undefined,
@@ -172,24 +175,24 @@ function getSortIcon(sort: ExtendedSortType): string {
   }
 }
 
-function formatTopLabel(sort: (typeof TOP_POST_SORTS)[number]): string {
+function formatTopLabel(sort: (typeof TOP_POST_SORTS)[number], t:any): string {
   switch (sort) {
     case "TopHour":
-      return "Hour";
+      return t("hour");
     case "TopSixHour":
-      return "6 Hours";
+      return t("sixHours");
     case "TopTwelveHour":
-      return "12 Hours";
+      return t("twelveHours");
     case "TopDay":
-      return "Day";
+      return t("day");
     case "TopMonth":
-      return "Month";
+      return t("month");
     case "TopWeek":
-      return "Week";
+      return t("week");
     case "TopYear":
-      return "Year";
+      return t("year");
     case "TopAll":
-      return "All Time";
+      return t("allTime");
   }
 }
 

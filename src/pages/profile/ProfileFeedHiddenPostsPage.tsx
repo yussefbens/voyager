@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useCallback, useRef } from "react";
 import {
   IonLabel,
@@ -89,11 +90,13 @@ export default function ProfileFeedHiddenPostsPage() {
     [client, handle, jwt, postHiddenById],
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Hidden Posts</IonTitle>
+          <IonTitle>{t('hidden-posts')}</IonTitle>
           <IonButtons slot="start">
             <IonBackButton
               text={handleWithoutServer}

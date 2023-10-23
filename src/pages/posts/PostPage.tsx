@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonButtons,
   IonHeader,
@@ -52,6 +53,7 @@ export default function PostPage() {
     (state) => state.settings.general.comments.sort,
   );
   const [sort, setSort] = useState<CommentSortType>(defaultSort);
+  const { t,i18n } = useTranslation();
 
   const postIfFound = typeof post === "object" ? post : undefined;
 
@@ -90,11 +92,11 @@ export default function PostPage() {
     if (!post) return <CenteredSpinner />;
     if (post === "not-found")
       return buildWithRefresher(
-        <div className="ion-padding">Post not found</div>,
+        <div className="ion-padding">{t('post-not-found')}</div>,
       );
     if (post.post.deleted)
       return buildWithRefresher(
-        <div className="ion-padding">Post deleted</div>,
+        <div className="ion-padding">{t('post-deleted')}</div>,
       );
 
     return <PostDetail post={post} commentPath={commentPath} sort={sort} />;
@@ -110,7 +112,7 @@ export default function PostPage() {
               defaultText={postIfFound?.community.name}
             />
           </IonButtons>
-          <IonTitle>{postIfFound?.counts.comments} Comments</IonTitle>
+          <IonTitle>{postIfFound?.counts.comments} {t('comments')}</IonTitle>
           <IonButtons slot="end">
             <CommentSort sort={sort} setSort={setSort} />
             {postIfFound && <MoreActions post={postIfFound} />}

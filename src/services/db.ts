@@ -72,6 +72,12 @@ export const OCommentDefaultSort: Record<string, CommentSortType> = {
   Old: "Old",
 } as const;
 
+export const AllLanguages = {
+  Arabic: "العربية",
+  French: "Francais",
+  English: "English"
+} as const;
+
 export type CommentDefaultSort = CommentSortType;
 
 export type PostBlurNsfwType =
@@ -198,6 +204,7 @@ export type SettingValueTypes = {
   blur_nsfw: PostBlurNsfwType;
   favorite_communities: string[];
   default_comment_sort: CommentDefaultSort;
+  default_language: string;
   disable_marking_posts_read: boolean;
   mark_read_on_scroll: boolean;
   show_hide_read_button: boolean;

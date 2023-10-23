@@ -19,6 +19,7 @@ import { Community } from "lemmy-js-client";
 import { home, library, people } from "ionicons/icons";
 import ItemIcon from "../../labels/img/ItemIcon";
 import CommunityListItem from "./CommunityListItem";
+import { useTranslation } from "react-i18next";
 
 const SubIcon = styled(IonIcon)<{ color: string }>`
   border-radius: 50%;
@@ -106,6 +107,8 @@ export default function CommunitiesList() {
     );
   }, [communities]);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonList>
       <IonItemGroup>
@@ -114,8 +117,8 @@ export default function CommunitiesList() {
             <Content>
               <SubIcon icon={home} color="red" />
               <div>
-                Home
-                <aside>Posts from subscriptions</aside>
+                {t("home")}
+                <aside>{t("postsFromSub")}</aside>
               </div>
             </Content>
           </IonItem>
@@ -124,24 +127,24 @@ export default function CommunitiesList() {
           <Content>
             <SubIcon icon={library} color="#009dff" />
             <div>
-              All<aside>Posts across all federated communities</aside>
+              {t("all")}<aside>{t("postsAcross")}</aside>
             </div>
           </Content>
         </IonItem>
-        <IonItem routerLink={buildGeneralBrowseLink(`/local`)} lines="none">
+        {/* <IonItem routerLink={buildGeneralBrowseLink(`/local`)} lines="none">
           <Content>
             <SubIcon icon={people} color="#00f100" />
             <div>
-              Local<aside>Posts from communities on {actor}</aside>
+              {t("local")}<aside>{t("postsFromCom")} {actor}</aside>
             </div>
           </Content>
-        </IonItem>
+        </IonItem> */}
       </IonItemGroup>
 
       {favoritesAsCommunitiesIfFound.length > 0 && (
         <IonItemGroup>
           <IonItemDivider sticky>
-            <IonLabel>Favorites</IonLabel>
+            <IonLabel>{t("favorites")}</IonLabel>
           </IonItemDivider>
 
           {favoritesAsCommunitiesIfFound.map((favorite) =>

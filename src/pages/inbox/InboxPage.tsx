@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -76,15 +77,17 @@ export default function InboxPage({ showRead }: InboxPageProps) {
     [client, dispatch, jwt, myUserId, showRead],
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/inbox" text="Boxes" />
+            <IonBackButton defaultHref="/inbox" text={t('boxes')} />
           </IonButtons>
 
-          <IonTitle>{showRead ? "Inbox" : "Unread"}</IonTitle>
+          <IonTitle>{showRead ? t('inbox-only') : t('unread')}</IonTitle>
 
           <IonButtons slot="end">
             <MarkAllAsReadButton />

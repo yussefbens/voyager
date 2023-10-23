@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonButton,
   IonIcon,
@@ -40,11 +41,13 @@ export default function Account({ editing, account }: AccountProps) {
     dispatch(logoutAccount(account.handle));
   }
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonItemSliding ref={slidingRef}>
       <IonItemOptions side="end" onIonSwipe={logout}>
         <IonItemOption color="danger" expandable onClick={logout}>
-          Log out
+          {t('logout')}
         </IonItemOption>
       </IonItemOptions>
       <IonItem>

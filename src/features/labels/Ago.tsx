@@ -1,5 +1,6 @@
 import { formatDistanceToNowStrict } from "date-fns";
 import { fixLemmyDateString } from "../../helpers/date";
+import { useTranslation } from "react-i18next";
 
 interface AgoProps {
   date: string;
@@ -7,10 +8,12 @@ interface AgoProps {
 }
 
 export default function Ago({ date, className }: AgoProps) {
-  return <span className={className}>{formatRelative(date)}</span>;
+  const { t,i18n } = useTranslation();
+  
+  return <span className={className}>{formatRelative(date, t)}</span>;
 }
 
-export function formatRelative(date: string): string {
+export function formatRelative(date: string, t: any): string {
   const relativeDate = formatDistanceToNowStrict(
     new Date(fixLemmyDateString(date)),
     {
@@ -18,31 +21,31 @@ export function formatRelative(date: string): string {
     },
   );
 
-  return getRelativeDateString(relativeDate);
+  return getRelativeDateString(relativeDate, t);
 }
 
-const getRelativeDateString = (relativeDate: string) => {
+const getRelativeDateString = (relativeDate: string, t: any) => {
   const [value, unit] = relativeDate.split(" ");
 
   switch (unit) {
     case "seconds":
     case "second":
-      return "<1m";
+      return t ? `<1${t("minute-short")}` : '';
     case "minutes":
     case "minute":
-      return `${value}m`;
+      return t ? `${value}${t("minute-short")}`: '';
     case "hours":
     case "hour":
-      return `${value}h`;
+      return t ? `${value}${t("hour-short")}`: '';
     case "days":
     case "day":
-      return `${value}d`;
+      return t ? `${value}${t("day-short")}`: '';
     case "months":
     case "month":
-      return `${value}mo`;
+      return t ? `${value}${t("month-short")}`: '';
     case "years":
     case "year":
-      return `${value}y`;
+      return t ? `${value}${t("year-short")}`: '';
     default:
       return relativeDate;
   }

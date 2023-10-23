@@ -21,6 +21,7 @@ import { receivedPosts } from "../../../features/post/postSlice";
 import { receivedComments } from "../../../features/comment/commentSlice";
 import { jwtSelector } from "../../../features/auth/authSlice";
 import FeedContent from "../../shared/FeedContent";
+import { useTranslation } from "react-i18next";
 
 interface SearchPostsResultsProps {
   type: "Posts" | "Comments";
@@ -33,6 +34,7 @@ export default function SearchPostsResults({ type }: SearchPostsResultsProps) {
   const buildGeneralBrowseLink = useBuildGeneralBrowseLink();
   const client = useClient();
   const sort = useAppSelector((state) => state.post.sort);
+  const { t,i18n } = useTranslation();
 
   const search = decodeURIComponent(_encodedSearch);
 
@@ -59,7 +61,7 @@ export default function SearchPostsResults({ type }: SearchPostsResultsProps) {
         <IonToolbar>
           <IonButtons slot="start">
             <IonBackButton
-              text="Search"
+              text={t('search')}
               defaultHref={buildGeneralBrowseLink("")}
             />
           </IonButtons>

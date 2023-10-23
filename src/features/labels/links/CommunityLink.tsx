@@ -25,6 +25,7 @@ import {
 import { useContext } from "react";
 import { PageContext } from "../../auth/PageContext";
 import useAppToast from "../../../helpers/useAppToast";
+import { useTranslation } from "react-i18next";
 
 interface CommunityLinkProps {
   community: Community;
@@ -44,6 +45,7 @@ export default function CommunityLink({
   const [present] = useIonActionSheet();
   const presentToast = useAppToast();
   const { presentLoginIfNeeded } = useContext(PageContext);
+  const { t,i18n } = useTranslation();
 
   const communityByHandle = useAppSelector(
     (state) => state.community.communityByHandle,
@@ -61,7 +63,7 @@ export default function CommunityLink({
         cssClass: "left-align-buttons",
         buttons: [
           {
-            text: "Block Community",
+            text: t('blockCommunity'),
             icon: removeCircleOutline,
             role: "destructive",
             handler: () => {
@@ -75,7 +77,7 @@ export default function CommunityLink({
             },
           },
           {
-            text: !isSubscribed ? "Subscribe" : "Unsubscribe",
+            text: !isSubscribed ? t('subscribe') : t('unsubscribe'),
             icon: !isSubscribed ? heartOutline : heartDislikeOutline,
             handler: () => {
               (async () => {
@@ -97,7 +99,7 @@ export default function CommunityLink({
             },
           },
           {
-            text: "Cancel",
+            text: t('cancel'),
             role: "cancel",
           },
         ],
@@ -120,6 +122,7 @@ export default function CommunityLink({
         size={24}
         css={css`
           margin-right: 0.4rem;
+          margin-left: 0.4rem;
           vertical-align: middle;
         `}
       />

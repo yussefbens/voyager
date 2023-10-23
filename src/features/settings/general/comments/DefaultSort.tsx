@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { ActionSheetButton, IonActionSheet, IonLabel } from "@ionic/react";
 import { startCase } from "lodash";
 import { InsetIonItem } from "../../../user/Profile";
@@ -29,10 +30,12 @@ export default function DefaultSort() {
     (state) => state.settings.general.comments.sort,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <InsetIonItem button onClick={() => setOpen(true)}>
-        <IonLabel>Default Sort</IonLabel>
+        <IonLabel>{t('default-sort')}</IonLabel>
         <IonLabel slot="end" color="medium">
           {startCase(postsAppearanceType)}
         </IonLabel>
@@ -49,7 +52,7 @@ export default function DefaultSort() {
               dispatch(setDefaultCommentSort(e.detail.data));
             }
           }}
-          header="Default Comments Sort..."
+          header={t('default-comments-sort')}
           buttons={BUTTONS.map((b) => ({
             ...b,
             role: postsAppearanceType === b.data ? "selected" : undefined,

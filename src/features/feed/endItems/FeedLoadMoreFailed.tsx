@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Container } from "./EndPost";
 
 interface FeedLoadMoreFailedProps {
@@ -9,9 +10,12 @@ export default function FeedLoadMoreFailed({
   fetchMore,
   loading,
 }: FeedLoadMoreFailedProps) {
+
+  const { t,i18n } = useTranslation();
+
   return (
     <Container onClick={fetchMore}>
-      Failed to load more posts. {loading ? "Loading..." : "Try again?"}
+      Failed to load more posts. {loading ? t("loading") : t("tryAgain")}
     </Container>
   );
 }

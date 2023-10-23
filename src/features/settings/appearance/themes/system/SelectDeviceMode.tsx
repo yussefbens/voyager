@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonLabel, IonList, IonRadio, IonRadioGroup } from "@ionic/react";
 import { InsetIonItem } from "../../../../user/Profile";
 import { getDeviceModeLabel } from "./DeviceMode";
@@ -18,6 +19,7 @@ export default function SelectDeviceMode() {
     dispatch(setDeviceMode(selectedDeviceMode));
     location.reload();
   }
+  const { t,i18n } = useTranslation();
   return (
     <>
       <IonRadioGroup
@@ -40,7 +42,7 @@ export default function SelectDeviceMode() {
       {selectedDeviceMode !== deviceMode && (
         <IonList inset>
           <InsetIonItem detail onClick={apply}>
-            <IonLabel>Tap to apply changes and reload app</IonLabel>
+            <IonLabel>{t('tap-to-apply-changes')}</IonLabel>
           </InsetIonItem>
         </IonList>
       )}

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { OJumpButtonPositionType } from "../../../../services/db";
 import { useAppSelector } from "../../../../store";
 import { setJumpButtonPosition } from "../../settingsSlice";
@@ -8,9 +9,11 @@ export default function JumpButtonPosition() {
     (state) => state.settings.general.comments,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <SettingSelector
-      title="Jump Button Position"
+      title={t('jump-button-position')}
       selected={jumpButtonPosition}
       setSelected={setJumpButtonPosition}
       options={OJumpButtonPositionType}

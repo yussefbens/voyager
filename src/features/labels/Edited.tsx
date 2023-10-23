@@ -5,6 +5,7 @@ import { MouseEvent, useMemo } from "react";
 import { formatRelative } from "./Ago";
 import styled from "@emotion/styled";
 import { fixLemmyDateString } from "../../helpers/date";
+import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ interface EditedProps {
 
 export default function Edited({ item, showDate, className }: EditedProps) {
   const [present] = useIonAlert();
+  const { t,i18n } = useTranslation();
 
   const edited = "comment" in item ? item.comment.updated : item.post.updated;
 
@@ -46,11 +48,11 @@ export default function Edited({ item, showDate, className }: EditedProps) {
     if (!edited) return;
 
     present({
-      header: `Edited ${formatRelative(edited)} Ago`,
-      message: `Last edited on ${new Date(
+      header: `${t('edited')} ${formatRelative(edited)} ${t('ago')}`,
+      message: `${t('lastEdited')} ${new Date(
         fixLemmyDateString(edited),
       ).toLocaleTimeString()}`,
-      buttons: ["OK"],
+      buttons: [t('ok')],
     });
   }
 

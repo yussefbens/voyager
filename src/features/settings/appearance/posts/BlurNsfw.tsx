@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../../../store";
 import { OPostBlurNsfw, PostBlurNsfwType } from "../../../../services/db";
 import { setBlurNsfwState } from "../../settingsSlice";
@@ -10,9 +11,11 @@ export default function BlurNsfw() {
 
   const BlurSelector = SettingSelector<PostBlurNsfwType>;
 
+  const { t,i18n } = useTranslation();
+
   return (
     <BlurSelector
-      title="Blur NSFW"
+      title={t('blurNsfw')}
       selected={nsfwBlurred}
       setSelected={setBlurNsfwState}
       options={OPostBlurNsfw}

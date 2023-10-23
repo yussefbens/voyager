@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonIcon, IonList, IonPicker, IonText } from "@ionic/react";
 import { css } from "@emotion/react";
 import { InsetIonItem, SettingLabel } from "./Profile";
@@ -25,6 +26,8 @@ export default function LoggedOut() {
   );
   const [pickerOpen, setPickerOpen] = useState(false);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <IonText color="medium">
@@ -34,9 +37,7 @@ export default function LoggedOut() {
             padding: 1rem;
           `}
         >
-          Change the instance you&apos;re currently connected to below.
-          Alternatively, click <strong>login</strong> to join your instance with
-          your account.
+          {t('change-the-instance')}
         </p>
       </IonText>
       <IonList inset>
@@ -48,8 +49,8 @@ export default function LoggedOut() {
         >
           <IonIcon icon={swapHorizontalOutline} color="primary" />
           <SettingLabel>
-            Connected to {connectedInstance}{" "}
-            <IonText color="medium">(as guest)</IonText>
+            {t('connectedTo')} {connectedInstance}{" "}
+            <IonText color="medium">{t('asGuest')}</IonText>
           </SettingLabel>
         </InsetIonItem>
       </IonList>
@@ -67,11 +68,11 @@ export default function LoggedOut() {
         ]}
         buttons={[
           {
-            text: "Cancel",
+            text: t('cancel'),
             role: "cancel",
           },
           {
-            text: "Confirm",
+            text: t('confirm'),
             handler: (value) => {
               dispatch(updateConnectedInstance(value.server.value));
             },

@@ -20,6 +20,7 @@ import GalleryMoreActions from "./GalleryMoreActions";
 import { StashMedia } from "capacitor-stash-media";
 import { Share } from "@capacitor/share";
 import useAppToast from "../../helpers/useAppToast";
+import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
   display: flex;
@@ -58,6 +59,7 @@ export default function GalleryPostActions({
   const location = useLocation();
   const presentToast = useAppToast();
   const { close } = useContext(GalleryContext);
+  const { t,i18n } = useTranslation();
 
   async function shareImage() {
     if (!isNative()) {
@@ -72,7 +74,7 @@ export default function GalleryPostActions({
       });
     } catch (error) {
       presentToast({
-        message: "Error sharing photo",
+        message: t('error-sharing-photo'),
         color: "danger",
         position: "top",
         fullscreen: true,

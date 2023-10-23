@@ -18,6 +18,7 @@ import { uniqBy } from "lodash";
 import { getHandle } from "../../../helpers/lemmy";
 import { useBuildGeneralBrowseLink } from "../../../helpers/routes";
 import { jwtSelector } from "../../auth/authSlice";
+import { useTranslation } from "react-i18next";
 
 const Backdrop = styled.div`
   position: absolute;
@@ -63,7 +64,7 @@ const Contents = styled.div`
   }
 `;
 
-const SPECIAL_FEEDS = [
+let SPECIAL_FEEDS = [
   {
     id: "home",
     type: "home",
@@ -74,12 +75,7 @@ const SPECIAL_FEEDS = [
     type: "all",
     label: "All",
   },
-  {
-    id: "local",
-    type: "local",
-    label: "Local",
-  },
-] as const;
+];
 
 type SpecialFeed = (typeof SPECIAL_FEEDS)[number];
 type Result = Community | SpecialFeed | string;
@@ -99,6 +95,7 @@ export default function TitleSearchResults() {
   );
   const contentRef = useRef<HTMLDivElement>(null);
   const favorites = useAppSelector((state) => state.community.favorites);
+  const { t,i18n } = useTranslation();
 
   const results: Result[] = useMemo(() => {
     const results = [
@@ -108,6 +105,9 @@ export default function TitleSearchResults() {
       ),
       ...searchPayload.map((p) => p.community),
     ];
+
+    SPECIAL_FEEDS[0].label = t('home')
+    SPECIAL_FEEDS[1].label = t('all')
 
     return uniqBy(
       [

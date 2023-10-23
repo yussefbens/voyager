@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import React, { useState, useRef, useEffect } from "react";
 import {
   IonButtons,
@@ -66,13 +67,14 @@ export default function Login({
   const pageRef = useRef();
   const [needsTotp, setNeedsTotp] = useState(false);
   const [totp, setTotp] = useState("");
+  const { t,i18n } = useTranslation();
 
   const [presentTerms, onDismissTerms] = useIonModal(TermsSheet, {
     onDismiss: (data: string, role: string) => onDismissTerms(data, role),
   });
 
   function presentNativeTerms() {
-    Browser.open({ url: "https://getvoyager.app/terms.html" });
+    Browser.open({ url: "https://statimes.app/terms.html" });
   }
 
   const customServerHostname = (() => {
@@ -105,7 +107,7 @@ export default function Login({
   async function submit() {
     if (!server && !customServer) {
       presentToast({
-        message: "Please enter your instance domain name",
+        message: t("enterInstance"),
         color: "danger",
         fullscreen: true,
       });
@@ -116,7 +118,7 @@ export default function Login({
       if (customServer) {
         if (!customServerHostname) {
           presentToast({
-            message: `${customServer} is not a valid server URL. Please try again`,
+            message: `${customServer} ${t("notValid")}`,
             color: "danger",
             fullscreen: true,
           });
@@ -129,7 +131,7 @@ export default function Login({
           await getClient(customServerHostname).getSite({});
         } catch (error) {
           presentToast({
-            message: `Problem connecting to ${customServerHostname}. Please try again`,
+            message: `${t("problemConn")} ${customServerHostname}. ${t("tryAgain")}`,
             color: "danger",
             fullscreen: true,
           });
@@ -146,7 +148,7 @@ export default function Login({
 
     if (!username || !password) {
       presentToast({
-        message: "Please fill out username and password fields",
+        message: t("fillout"),
         color: "danger",
         fullscreen: true,
       });
@@ -155,7 +157,7 @@ export default function Login({
 
     if (!totp && needsTotp) {
       presentToast({
-        message: `Please enter your second factor authentication code for ${username}`,
+        message: `${t('secondFactor')} ${username}`,
         color: "danger",
         fullscreen: true,
       });
@@ -179,7 +181,7 @@ export default function Login({
       }
 
       presentToast({
-        message: getLoginErrorMessage(error, server ?? customServer),
+        message: getLoginErrorMessage(error, server ?? customServer, t),
         color: "danger",
         fullscreen: true,
       });
@@ -191,7 +193,7 @@ export default function Login({
 
     onDismiss();
     presentToast({
-      message: "Login successful",
+      message: t('loginSuccess'),
       color: "success",
     });
   }
@@ -224,11 +226,11 @@ export default function Login({
                   onDismiss();
                 }}
               >
-                {serverConfirmed ? "Back" : "Cancel"}
+                {serverConfirmed ? t("back") : t("cancel")}
               </IonButton>
             </IonButtons>
             <IonTitle>
-              <Centered>Login {loading && <Spinner color="dark" />}</Centered>
+              <Centered>{t('login')} {loading && <Spinner color="dark" />}</Centered>
             </IonTitle>
             <IonButtons slot="end">
               <IonButton
@@ -236,7 +238,7 @@ export default function Login({
                 type="submit"
                 disabled={!server && !customServer}
               >
-                {serverConfirmed ? "Confirm" : "Next"}
+                {serverConfirmed ? t('confirm') : t('next')}
               </IonButton>
             </IonButtons>
           </IonToolbar>
@@ -244,7 +246,7 @@ export default function Login({
         <IonContent>
           {!serverConfirmed && (
             <>
-              <HelperText>Choose your account&apos;s server</HelperText>
+              <HelperText>{t('chooseAccount')}</HelperText>
               <IonRadioGroup
                 value={server}
                 onIonChange={(e) => setServer(e.target.value)}
@@ -259,7 +261,7 @@ export default function Login({
                   ))}
                   <IonItem disabled={loading}>
                     <IonRadio value={undefined} color="danger">
-                      other
+                      {t('other')}
                     </IonRadio>
                   </IonItem>
                 </IonList>
@@ -286,15 +288,15 @@ export default function Login({
 
               {isNative() ? (
                 <HelperText>
-                  By using Voyager, you agree to the{" "}
+                  {t("agreeToTerms")}{" "}
                   <IonRouterLink onClick={presentNativeTerms}>
-                    Terms of Use
+                    {t("termsOfUse")}
                   </IonRouterLink>
                 </HelperText>
               ) : (
                 <HelperText>
                   <IonRouterLink onClick={() => presentTerms()}>
-                    Privacy &amp; Terms
+                    {t('terms')}
                   </IonRouterLink>
                 </HelperText>
               )}
@@ -312,7 +314,7 @@ export default function Login({
                     Browser.open({ url: JOIN_LEMMY_URL });
                   }}
                 >
-                  <IonText color="primary">Don&apos;t have an account?</IonText>
+                  <IonText color="primary">{t('dontHaveAccount')}</IonText>
                 </IonRouterLink>
               </HelperText>
             </>
@@ -322,11 +324,11 @@ export default function Login({
               <HelperText>
                 {needsTotp ? (
                   <>
-                    Enter 2nd factor auth code for {username}@
+                    {t("enterSecondFactor")} {username}@
                     {server ?? customServer}
                   </>
                 ) : (
-                  <>Login to {server ?? customServerHostname}</>
+                  <>{t('loginTo')} {server ?? customServerHostname}</>
                 )}
               </HelperText>
               {!needsTotp ? (
@@ -334,7 +336,7 @@ export default function Login({
                   <IonItem>
                     <IonInput
                       ref={usernameRef}
-                      label="Username or email"
+                      label={t('username')}
                       autocomplete="username"
                       inputMode="email"
                       value={username}
@@ -344,7 +346,7 @@ export default function Login({
                   </IonItem>
                   <IonItem>
                     <IonInput
-                      label="Password"
+                      label={t("password")}
                       autocomplete="current-password"
                       type="password"
                       value={password}
@@ -358,7 +360,7 @@ export default function Login({
                 <IonList inset>
                   <IonItem>
                     <IonInput
-                      label="2fa code"
+                      label={t("2fa")}
                       value={totp}
                       onIonInput={(e) => setTotp(e.target.value as string)}
                       disabled={loading}
@@ -375,24 +377,24 @@ export default function Login({
   );
 }
 
-function getLoginErrorMessage(error: unknown, instanceActorId: string): string {
+function getLoginErrorMessage(error: unknown, instanceActorId: string, t: any): string {
   switch (error) {
     case "incorrect_totp token": // This might be a typo? Included "correct" case below
     case "incorrect_totp_token":
-      return "Incorrect 2nd factor code. Please try again.";
+      return t("incorrectSecondFactor");
     case "couldnt_find_that_username_or_email":
-      return `User not found. Is your account on ${instanceActorId}?`;
+      return `${t("userNotFound")} ${instanceActorId}?`;
     case "password_incorrect":
-      return "Incorrect password. Please try again.";
+      return t("incorrectPassword");
     case "incorrect_login":
-      return "Incorrect login credentials. Please try again.";
+      return t("incorrectLogin");
     case "email_not_verified":
-      return `Email not verified. Please check your inbox. Request a new verification email from https://${instanceActorId}.`;
+      return `${t("emailNotVertified")} https://${instanceActorId}.`;
     case "site_ban":
-      return "You have been banned.";
+      return t("banned");
     case "deleted":
-      return "Account deleted.";
+      return t("deleted");
     default:
-      return "Connection error, please try again.";
+      return t("connectionError");
   }
 }

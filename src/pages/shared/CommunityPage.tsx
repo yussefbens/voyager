@@ -22,6 +22,7 @@ import { markReadOnScrollSelector } from "../../features/settings/settingsSlice"
 import FeedContent from "./FeedContent";
 import FeedContextProvider from "../../features/feed/FeedContext";
 import PostFabs from "../../features/feed/postFabs/PostFabs";
+import { useTranslation } from "react-i18next";
 
 export default function CommunityPage() {
   const buildGeneralBrowseLink = useBuildGeneralBrowseLink();
@@ -71,6 +72,7 @@ export default function CommunityPage() {
     );
 
   const feed = <PostCommentFeed fetchFn={fetchFn} communityName={community} />;
+  const { t,i18n } = useTranslation();
 
   return (
     <FeedContextProvider>
@@ -80,7 +82,7 @@ export default function CommunityPage() {
             <IonToolbar>
               <IonButtons slot="start">
                 <AppBackButton
-                  defaultText="Communities"
+                  defaultText={t('communities')}
                   defaultHref={buildGeneralBrowseLink("/")}
                 />
               </IonButtons>

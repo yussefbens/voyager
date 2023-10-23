@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonLabel, IonList } from "@ionic/react";
 import DarkMode from "./DarkMode";
 import { ListHeader } from "../../../shared/formatting";
@@ -11,10 +12,12 @@ export default function System() {
     (state) => state.settings.appearance.dark,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <ListHeader>
-        <IonLabel>System</IonLabel>
+        <IonLabel>{t('system')}</IonLabel>
       </ListHeader>
       <IonList inset>
         {!isNative() || isAndroid() ? <DeviceMode /> : undefined}

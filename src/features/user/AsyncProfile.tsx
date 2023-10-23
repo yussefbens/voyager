@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import React from "react";
 import {
   IonRefresher,
@@ -39,6 +40,7 @@ export default function AsyncProfile({ handle }: AsyncProfileProps) {
   >();
   const router = useIonRouter();
   const [present] = useIonAlert();
+  const { t,i18n } = useTranslation();
 
   useEffect(() => {
     if (handle) load();
@@ -52,7 +54,7 @@ export default function AsyncProfile({ handle }: AsyncProfileProps) {
       data = await dispatch(getUser(handle));
     } catch (error) {
       if (error === "couldnt_find_that_username_or_email") {
-        await present(`Huh, u/${handle} doesn't exist. Mysterious...`);
+        await present(`u/${handle} ${t('doesnt-exist-mysterious')}`);
 
         if (router.canGoBack()) {
           router.goBack();
@@ -88,7 +90,7 @@ export default function AsyncProfile({ handle }: AsyncProfileProps) {
         >
           <IonRefresherContent />
         </IonRefresher>
-        <FailedMessage>failed to load user profile 😢</FailedMessage>
+        <FailedMessage>{t('failed-to-load-user-profile')}</FailedMessage>
       </>
     );
 

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonActionSheet, IonButton, IonIcon, useIonRouter } from "@ionic/react";
 import {
   ellipsisHorizontal,
@@ -17,6 +18,8 @@ export default function ConversationsMoreActions() {
 
   const { handle } = useParams<{ handle: string }>();
   const { isBlocked, blockOrUnblock } = useUserDetails(handle);
+
+  const { t,i18n } = useTranslation();
 
   return (
     <>
@@ -39,7 +42,7 @@ export default function ConversationsMoreActions() {
             },
           },
           {
-            text: !isBlocked ? "Block User" : "Unblock User",
+            text: !isBlocked ? t("blockUser") : t("unblockUser"),
             data: "block",
             role: !isBlocked ? "destructive" : undefined,
             icon: removeCircleOutline,
@@ -48,7 +51,7 @@ export default function ConversationsMoreActions() {
             },
           },
           {
-            text: "Cancel",
+            text: t("cancel"),
             role: "cancel",
           },
         ]}

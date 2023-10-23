@@ -14,6 +14,7 @@ import { useSetActivePage } from "../../features/auth/AppContext";
 import { useAppSelector } from "../../store";
 import AppContent from "../../features/shared/AppContent";
 import Sidebar from "../../features/sidebar/Sidebar";
+import { useTranslation } from "react-i18next";
 
 export default function InstanceSidebarPage() {
   const buildGeneralBrowseLink = useBuildGeneralBrowseLink();
@@ -24,6 +25,8 @@ export default function InstanceSidebarPage() {
 
   useSetActivePage(pageRef);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <FeedContextProvider>
       <TitleSearchProvider>
@@ -32,7 +35,7 @@ export default function InstanceSidebarPage() {
             <IonToolbar>
               <IonButtons slot="start">
                 <AppBackButton
-                  defaultText="Communities"
+                  defaultText={t('communities')}
                   defaultHref={buildGeneralBrowseLink("/")}
                 />
               </IonButtons>

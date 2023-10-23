@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -10,6 +11,7 @@ import AppContent from "../../features/shared/AppContent";
 import HidingSettings from "../../features/settings/general/hiding/HidingSettings";
 
 export default function HidingSettingsPage() {
+  const { t,i18n } = useTranslation();
   return (
     <IonPage className="grey-bg">
       <IonHeader>
@@ -18,7 +20,7 @@ export default function HidingSettingsPage() {
             <IonBackButton defaultHref="/settings/general" text="General" />
           </IonButtons>
 
-          <IonTitle>Marking Read / Hiding</IonTitle>
+          <IonTitle>{t('marking-read-hiding')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <AppContent scrollY>

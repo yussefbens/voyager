@@ -6,9 +6,10 @@ import {
 } from "../../../helpers/date";
 import { useAppSelector } from "../../../store";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 const NewAccountBadge = styled.span`
-  color: gold;
+  color: #ff8000;
 `;
 
 interface AgeBadgeProps {
@@ -19,6 +20,7 @@ export default function AgeBadge({ published }: AgeBadgeProps) {
   const highlightNewAccount = useAppSelector(
     (state) => state.settings.general.comments.highlightNewAccount,
   );
+  const { t,i18n } = useTranslation();
 
   const ageBadgeData = useMemo(() => {
     const publishedDate = new Date(fixLemmyDateString(published));
@@ -43,18 +45,18 @@ export default function AgeBadge({ published }: AgeBadgeProps) {
       return (
         <NewAccountBadge>
           {" "}
-          👶 {formatDaysOld(ageBadgeData.days)}
+          👶 {formatDaysOld(ageBadgeData.days, t)}
         </NewAccountBadge>
       );
     }
   }
 }
 
-function formatDaysOld(days: number): string {
+function formatDaysOld(days: number, t: any): string {
   switch (days) {
     case 0:
-      return "<1d";
+      return `<1${t("minute-short")}`;
     default:
-      return `${days}d`;
+      return `${days}${t("day-short")}`;
   }
 }

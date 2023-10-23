@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonBadge,
@@ -60,6 +61,8 @@ export default function UpdateAppPage() {
     }
   }
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage className="grey-bg">
       <IonHeader>
@@ -68,7 +71,7 @@ export default function UpdateAppPage() {
             <IonBackButton defaultHref="/settings" text="Settings" />
           </IonButtons>
 
-          <IonTitle>Updates</IonTitle>
+          <IonTitle>{t('updates')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -89,7 +92,7 @@ export default function UpdateAppPage() {
           <MaxWidthContainer>
             <IonList inset color="primary">
               <InsetIonItem>
-                <IonLabel>Current version</IonLabel>
+                <IonLabel>{t('current-version')}</IonLabel>
                 <SettingLabel slot="end" color="medium">
                   {APP_VERSION}
                 </SettingLabel>
@@ -99,14 +102,14 @@ export default function UpdateAppPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <IonLabel>Release notes</IonLabel>
+                <IonLabel>{t('release-notes')}</IonLabel>
               </InsetIonItem>
             </IonList>
 
             {status === "outdated" && (
               <IonList inset color="primary">
                 <InsetIonItem detail onClick={onInstallUpdate}>
-                  <IonLabel>Install new update</IonLabel>
+                  <IonLabel>{t('install-new-update')}</IonLabel>
                   <IonBadge color="danger">1</IonBadge>
                 </InsetIonItem>
               </IonList>

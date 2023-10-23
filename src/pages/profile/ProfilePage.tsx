@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonButton,
   IonButtons,
@@ -30,6 +31,8 @@ export default function ProfilePage() {
     },
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage className="grey-bg">
       <IonHeader>
@@ -40,7 +43,7 @@ export default function ProfilePage() {
                 <IonButton
                   onClick={() => presentAccountSwitcher({ cssClass: "small" })}
                 >
-                  Accounts
+                  {t('accounts')}
                 </IonButton>
               </IonButtons>
 
@@ -48,10 +51,10 @@ export default function ProfilePage() {
             </>
           ) : (
             <>
-              <IonTitle>Anonymous</IonTitle>
+              <IonTitle>{t('anonymous')}</IonTitle>
               <IonButtons slot="end">
                 <IonButton onClick={() => presentLoginIfNeeded()}>
-                  Login
+                  {t('login')}
                 </IonButton>
               </IonButtons>
             </>

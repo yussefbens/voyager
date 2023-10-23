@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonHeader,
   IonToolbar,
@@ -76,6 +77,8 @@ export default function SelectTextModal({
     return true;
   }
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonModal
       isOpen={isOpen}
@@ -90,7 +93,7 @@ export default function SelectTextModal({
       <IonHeader>
         <IonToolbar>
           <IonTitle>
-            <Centered>Select Text</Centered>
+            <Centered>{t('selectText')}</Centered>
           </IonTitle>
           <IonButtons slot="end">
             <IonButton
@@ -98,7 +101,7 @@ export default function SelectTextModal({
                 setIsOpen(false);
               }}
             >
-              Dismiss
+              {t('dismiss')}
             </IonButton>
           </IonButtons>
         </IonToolbar>

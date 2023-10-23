@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonAlert,
   IonButton,
@@ -18,6 +19,7 @@ export default function ComposeButton() {
   const router = useIonRouter();
   const dispatch = useAppDispatch();
   const presentToast = useAppToast();
+  const { t,i18n } = useTranslation();
 
   async function composeNew(handle: string) {
     setLoading(true);
@@ -30,8 +32,8 @@ export default function ComposeButton() {
       presentToast({
         message:
           error === "couldnt_find_that_username_or_email"
-            ? `Could not find user with handle ${handle}`
-            : "Server error. Please try again.",
+            ? `${t('could-not-find-user-with-handle')} ${handle}`
+            : t('server-error'),
         color: "danger",
       });
 
@@ -48,7 +50,7 @@ export default function ComposeButton() {
       <IonLoading isOpen={loading} />
       <IonAlert
         isOpen={isAlertOpen}
-        header="Compose new message"
+        header={t('compose-new-message')}
         onDidDismiss={(e) => {
           setIsAlertOpen(false);
 
@@ -62,7 +64,7 @@ export default function ComposeButton() {
             placeholder: "user@instance",
           },
         ]}
-        buttons={[{ text: "OK" }, { text: "Cancel", role: "cancel" }]}
+        buttons={[{ text: t('ok') }, { text: t('cancel'), role: "cancel" }]}
       />
       <IonButton onClick={() => setIsAlertOpen(true)}>
         <IonIcon icon={createOutline} />

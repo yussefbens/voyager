@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonLabel, IonList, IonToggle } from "@ionic/react";
 import { InsetIonItem } from "../../../pages/profile/ProfileFeedItemsPage";
 import { useAppDispatch, useAppSelector } from "../../../store";
@@ -12,14 +13,16 @@ export default function GeneralAppearance() {
     (state) => state.settings.appearance.general.userInstanceUrlDisplay,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <ListHeader>
-        <IonLabel>General</IonLabel>
+        <IonLabel>{t('general')}</IonLabel>
       </ListHeader>
       <IonList inset>
         <InsetIonItem>
-          <IonLabel>Show user instance</IonLabel>
+          <IonLabel>{t('showUserInstance')}</IonLabel>
           <IonToggle
             checked={
               userInstanceUrlDisplay === OInstanceUrlDisplayMode.WhenRemote

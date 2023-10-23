@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -61,15 +62,17 @@ export default function MessagesPage() {
     [messages, myUserId],
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/inbox" text="Boxes" />
+            <IonBackButton defaultHref="/inbox" text={t('boxes')} />
           </IonButtons>
 
-          <IonTitle>Messages</IonTitle>
+          <IonTitle>{t('messages')}</IonTitle>
 
           <IonButtons slot="end">
             <MarkAllAsReadButton />

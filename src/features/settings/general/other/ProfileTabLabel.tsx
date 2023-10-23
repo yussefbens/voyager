@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { OProfileLabelType, ProfileLabelType } from "../../../../services/db";
 import { useAppSelector } from "../../../../store";
 import { setProfileLabel } from "../../settingsSlice";
@@ -8,9 +9,11 @@ export default function ProfileTabLabel() {
     (state) => state.settings.appearance.general.profileLabel,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <SettingSelector
-      title="Profile Tab Label"
+      title={t('profile-tab-label')}
       selected={profileLabel}
       setSelected={setProfileLabel}
       options={OProfileLabelType}

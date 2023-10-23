@@ -23,6 +23,7 @@ import { StashMedia } from "capacitor-stash-media";
 import { isNative } from "../../helpers/device";
 import { Share } from "@capacitor/share";
 import useAppToast from "../../helpers/useAppToast";
+import { useTranslation } from "react-i18next";
 
 interface GalleryMoreActionsProps {
   post: PostView;
@@ -36,6 +37,7 @@ export default function GalleryMoreActions({
   const router = useIonRouter();
   const [presentActionSheet] = useIonActionSheet();
   const buildGeneralBrowseLink = useBuildGeneralBrowseLink();
+  const { t,i18n } = useTranslation();
 
   const { presentLoginIfNeeded } = useContext(PageContext);
   const presentToast = useAppToast();
@@ -49,7 +51,7 @@ export default function GalleryMoreActions({
       cssClass: "left-align-buttons",
       buttons: [
         {
-          text: "Share",
+          text: t('share'),
           icon: shareOutline,
           handler: () => {
             (async () => {
@@ -65,7 +67,7 @@ export default function GalleryMoreActions({
                 });
               } catch (error) {
                 presentToast({
-                  message: "Error sharing photo",
+                  message: t('error-sharing-photo'),
                   color: "danger",
                   position: "top",
                   fullscreen: true,
@@ -77,7 +79,7 @@ export default function GalleryMoreActions({
           },
         },
         {
-          text: "Save Image",
+          text: t('save-image'),
           icon: downloadOutline,
           handler: () => {
             (async () => {
@@ -85,7 +87,7 @@ export default function GalleryMoreActions({
                 await StashMedia.savePhoto({ url: imgSrc });
               } catch (error) {
                 presentToast({
-                  message: "Error saving photo to device",
+                  message: t('error-saving-photo-to-device'),
                   color: "danger",
                   position: "top",
                   fullscreen: true,
@@ -95,7 +97,7 @@ export default function GalleryMoreActions({
               }
 
               presentToast({
-                message: "Photo saved",
+                message: t('photo-saved'),
                 color: "success",
                 position: "top",
                 fullscreen: true,
@@ -104,7 +106,7 @@ export default function GalleryMoreActions({
           },
         },
         {
-          text: "Copy Image",
+          text: t('copy-image'),
           icon: copyOutline,
           handler: () => {
             (async () => {
@@ -112,7 +114,7 @@ export default function GalleryMoreActions({
                 await StashMedia.copyPhotoToClipboard({ url: imgSrc });
               } catch (error) {
                 presentToast({
-                  message: "Error copying photo to clipboard",
+                  message: t('error-copying-photo-to-clipboard'),
                   color: "danger",
                   position: "top",
                   fullscreen: true,
@@ -122,7 +124,7 @@ export default function GalleryMoreActions({
               }
 
               presentToast({
-                message: "Photo copied to clipboard",
+                message: t('photo-copied-to-clipboard'),
                 color: "success",
                 position: "top",
                 fullscreen: true,
@@ -131,14 +133,14 @@ export default function GalleryMoreActions({
           },
         },
         {
-          text: "Open in Browser",
+          text: t('open-in-browser'),
           icon: earthOutline,
           handler: () => {
             Browser.open({ url: post.post.ap_id });
           },
         },
         {
-          text: "Save",
+          text: t('save'),
           icon: bookmarkOutline,
           handler: () => {
             (async () => {
@@ -173,7 +175,7 @@ export default function GalleryMoreActions({
           },
         },
         {
-          text: "Cancel",
+          text: t('cancel'),
           role: "cancel",
         },
       ],

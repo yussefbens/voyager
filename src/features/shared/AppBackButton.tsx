@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonBackButton } from "@ionic/react";
 // import { useState } from "react";
 
@@ -22,10 +23,12 @@ export default function AppBackButton({
   //   })()
   // );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonBackButton
       // text={lastPageTitle ?? defaultText}
-      text="Back"
+      text={t('back')}
       defaultHref={defaultHref}
     />
   );

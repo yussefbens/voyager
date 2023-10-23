@@ -10,6 +10,16 @@ import { getAndroidNavMode, isNative } from "./helpers/device";
   } finally {
     const container = document.getElementById("root");
     const root = createRoot(container as HTMLElement);
+    const lang = localStorage.getItem("i18nextLng");
+    if (container) {
+      if (lang === "fr" || lang === "en") {
+        //container.style.direction = "ltr"
+        container.setAttribute("dir", "ltr")
+      } else {
+        //container.style.direction = "rtl"
+        container.setAttribute("dir", "rtl")
+      }
+    }
 
     root.render(
       <React.StrictMode>

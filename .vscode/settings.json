@@ -1,4 +1,9 @@
 {
-  "editor.formatOnSave": true,
-  "prettier.enable": true
+  "editor.formatOnSave": false,
+  "prettier.enable": false,
+  "i18n-ally.localesPaths": [
+    "public/assets/locales",
+    "src/features/inbox/messages"
+  ],
+  "i18n-ally.keystyle": "nested"
 }

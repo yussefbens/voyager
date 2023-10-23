@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonActionSheet,
   IonButton,
@@ -92,6 +93,8 @@ export default function MoreActions({ community }: MoreActionsProps) {
     return canPost;
   }, [community, communityByHandle, isAdmin, site]);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <IonButton
@@ -106,38 +109,38 @@ export default function MoreActions({ community }: MoreActionsProps) {
         isOpen={open}
         buttons={[
           {
-            text: "Submit Post",
+            text: t("submitPost"),
             data: "post",
             icon: createOutline,
           },
           {
-            text: "Hide Read Posts",
+            text: t("hidePosts"),
             data: "hide-read",
             icon: eyeOffOutline,
           },
           {
-            text: !isSubscribed ? "Subscribe" : "Unsubscribe",
+            text: !isSubscribed ? t("subscribe") : t("unsubscribe"),
             data: "subscribe",
             icon: !isSubscribed ? heartOutline : heartDislikeOutline,
           },
           {
-            text: !isFavorite ? "Favorite" : "Unfavorite",
+            text: !isFavorite ? t("favorite") : t("unfavorite"),
             data: "favorite",
             icon: !isFavorite ? starOutline : starSharp,
           },
           {
-            text: "Sidebar",
+            text: t("sidebar"),
             data: "sidebar",
             icon: tabletPortraitOutline,
           },
           {
-            text: !isBlocked ? "Block Community" : "Unblock Community",
+            text: !isBlocked ? t("blockCommunity") : t("unblockCommunity"),
             role: !isBlocked ? "destructive" : undefined,
             data: "block",
             icon: removeCircleOutline,
           },
           {
-            text: "Cancel",
+            text: t("cancel"),
             role: "cancel",
           },
         ]}
@@ -167,7 +170,7 @@ export default function MoreActions({ community }: MoreActionsProps) {
 
               if (!canPost) {
                 presentToast({
-                  message: "This community has disabled new posts",
+                  message: t("disabledNewPosts"),
                   color: "warning",
                 });
                 return;
@@ -191,7 +194,7 @@ export default function MoreActions({ community }: MoreActionsProps) {
 
               presentToast({
                 message: `${
-                  isFavorite ? "Unfavorited" : "Favorited"
+                  isFavorite ? t("unfavorited") : t("favorited")
                 } c/${community}.`,
                 color: "success",
               });
@@ -213,13 +216,13 @@ export default function MoreActions({ community }: MoreActionsProps) {
                 // User wants to block a NSFW community when account is set to show NSFW. Ask them
                 // if they want to hide all NSFW instead of blocking on a per community basis
                 presentActionSheet({
-                  header: "Block everything NSFW?",
+                  header: t("blockNSFW"),
                   subHeader:
-                    "Your choice will only affect your current account",
+                    t("affectAccount"),
                   cssClass: "left-align-buttons",
                   buttons: [
                     {
-                      text: "Block everything NSFW",
+                      text: t("blockNSFW"),
                       role: "destructive",
                       handler: () => {
                         (async () => {
@@ -230,7 +233,7 @@ export default function MoreActions({ community }: MoreActionsProps) {
                       },
                     },
                     {
-                      text: "Only this community",
+                      text: t("onlyThisCommunity"),
                       role: "destructive",
                       handler: () => {
                         (async () => {
@@ -243,7 +246,7 @@ export default function MoreActions({ community }: MoreActionsProps) {
                       },
                     },
                     {
-                      text: "Cancel",
+                      text: t("cancel"),
                       role: "cancel",
                     },
                   ],

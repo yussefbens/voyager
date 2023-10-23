@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonActionSheet, IonLabel, IonList, IonToggle } from "@ionic/react";
 import { InsetIonItem, ListHeader } from "../shared/formatting";
 import { useAppDispatch, useAppSelector } from "../../../store";
@@ -58,6 +59,8 @@ export default function SwipeSettings() {
     (state) => state.gesture.swipe.disableRightSwipes,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <SwipeList
@@ -89,11 +92,11 @@ export default function SwipeSettings() {
       />
       <>
         <ListHeader>
-          <IonLabel>Other</IonLabel>
+          <IonLabel>{t('other')}</IonLabel>
         </ListHeader>
         <IonList inset>
           <InsetIonItem>
-            <IonLabel>Disable Left Swipes</IonLabel>
+            <IonLabel>{t('disable-left-swipes')}</IonLabel>
             <IonToggle
               checked={disableLeftSwipes === true}
               onIonChange={(e) =>
@@ -102,7 +105,7 @@ export default function SwipeSettings() {
             />
           </InsetIonItem>
           <InsetIonItem>
-            <IonLabel>Disable Right Swipes</IonLabel>
+            <IonLabel>{t('disable-right-swipes')}</IonLabel>
             <IonToggle
               checked={disableRightSwipes === true}
               onIonChange={(e) =>
@@ -111,7 +114,7 @@ export default function SwipeSettings() {
             />
           </InsetIonItem>
           <InsetIonItem button onClick={() => setOpen(true)}>
-            <IonLabel>Reset All Gestures</IonLabel>
+            <IonLabel>{t('reset-all-gestures')}</IonLabel>
             <IonActionSheet
               cssClass="left-align-buttons"
               isOpen={open}
@@ -123,15 +126,15 @@ export default function SwipeSettings() {
                   dispatch(setAllSwipesToDefault());
                 }
               }}
-              header="Reset"
+              header={t('reset')}
               buttons={[
                 {
-                  text: "Reset All",
+                  text: t('reset-all'),
                   data: true,
                   role: "destructive",
                 },
                 {
-                  text: "Cancel",
+                  text: t('cancel'),
                   data: false,
                   role: "cancel",
                 },
@@ -175,6 +178,7 @@ function SwipeList({
   farEnd,
 }: SwipeListProps) {
   const Selector = SettingSelector<SwipeAction>;
+  const { t,i18n } = useTranslation();
 
   const disableLeftSwipes = useAppSelector(
     (state) => state.gesture.swipe.disableLeftSwipes,
@@ -191,7 +195,7 @@ function SwipeList({
       <IonList inset>
         <Selector
           icon={ShortSwipeSvg}
-          title="Left Short Swipe"
+          title={t('left-short-swipe')}
           selected={selector.start ?? options.None}
           setSelected={start}
           options={options}
@@ -200,7 +204,7 @@ function SwipeList({
         />
         <Selector
           icon={LongSwipeSvg}
-          title="Left Long Swipe"
+          title={t('left-long-swipe')}
           selected={selector.farStart ?? options.None}
           setSelected={farStart}
           options={options}
@@ -210,7 +214,7 @@ function SwipeList({
         <Selector
           icon={ShortSwipeSvg}
           iconMirrored
-          title="Right Short Swipe"
+          title={t('right-short-swipe')}
           selected={selector.end ?? options.None}
           setSelected={end}
           options={options}
@@ -220,7 +224,7 @@ function SwipeList({
         <Selector
           icon={LongSwipeSvg}
           iconMirrored
-          title="Right Long Swipe"
+          title={t('right-long-swipe')}
           selected={selector.farEnd ?? options.None}
           setSelected={farEnd}
           options={options}

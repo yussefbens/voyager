@@ -10,9 +10,11 @@ import {
 } from "@ionic/react";
 import AppContent from "../../features/shared/AppContent";
 import CommunitiesMoreActions from "../../features/community/list/InstanceMoreActions";
+import { useTranslation } from "react-i18next";
 
 export default function CommunitiesPage() {
   const pageRef = useRef<HTMLElement>(null);
+  const { t,i18n } = useTranslation();
 
   useSetActivePage(pageRef);
 
@@ -20,7 +22,7 @@ export default function CommunitiesPage() {
     <IonPage ref={pageRef}>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Communities</IonTitle>
+          <IonTitle>{t('communities')}</IonTitle>
           <IonButtons slot="end">
             <CommunitiesMoreActions />
           </IonButtons>

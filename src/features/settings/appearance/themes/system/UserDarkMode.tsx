@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonLabel, IonList, IonRadio, IonRadioGroup } from "@ionic/react";
 import { InsetIonItem } from "../../../../../pages/profile/ProfileFeedItemsPage";
 import { useAppDispatch, useAppSelector } from "../../../../../store";
@@ -10,10 +11,12 @@ export default function UserDarkMode() {
     (state) => state.settings.appearance.dark.userDarkMode,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <ListHeader>
-        <IonLabel>Light/Dark Mode</IonLabel>
+        <IonLabel>{t('light-dark-mode')}</IonLabel>
       </ListHeader>
       <IonRadioGroup
         value={userDarkMode}
@@ -21,11 +24,11 @@ export default function UserDarkMode() {
       >
         <IonList inset>
           <InsetIonItem>
-            <IonLabel>Light</IonLabel>
+            <IonLabel>{t('light')}</IonLabel>
             <IonRadio value={false} />
           </InsetIonItem>
           <InsetIonItem>
-            <IonLabel>Dark</IonLabel>
+            <IonLabel>{t('dark')}</IonLabel>
             <IonRadio value={true} />
           </InsetIonItem>
         </IonList>

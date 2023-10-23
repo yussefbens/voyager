@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import bold from "./icons/bold.svg";
 import italic from "./icons/italic.svg";
@@ -116,6 +117,7 @@ export default function MarkdownToolbar({
   const jwt = useAppSelector(jwtSelector);
   const instanceUrl = useAppSelector(urlSelector);
   const toolbarRef = useRef<HTMLDivElement>(null);
+  const { t,i18n } = useTranslation();
 
   const [presentPreview, onDismissPreview] = useIonModal(PreviewModal, {
     onDismiss: (data: string, role: string) => onDismissPreview(data, role),
@@ -143,17 +145,17 @@ export default function MarkdownToolbar({
       cssClass: "left-align-buttons",
       buttons: [
         {
-          text: "Preview",
+          text: t('preview'),
           icon: glassesOutline,
           handler: presentPreview,
         },
         {
-          text: "Text Faces",
+          text: t('textFaces'),
           icon: happyOutline,
           handler: presentTextFaces,
         },
         {
-          text: "Cancel",
+          text: t('cancel'),
           role: "cancel",
         },
       ],
@@ -171,7 +173,7 @@ export default function MarkdownToolbar({
       imageUrl = await uploadImage(instanceUrl, jwt, image);
     } catch (error) {
       presentToast({
-        message: "Problem uploading image. Please try again.",
+        message: t('problemUploading'),
         color: "danger",
         fullscreen: true,
       });
@@ -198,7 +200,7 @@ export default function MarkdownToolbar({
           data: face,
         })),
         {
-          text: "Cancel",
+          text: t('cancel'),
           role: "cancel",
         },
       ],
@@ -227,7 +229,7 @@ export default function MarkdownToolbar({
 
   return (
     <>
-      <IonLoading isOpen={imageUploading} message="Uploading image..." />
+      <IonLoading isOpen={imageUploading} message={t('uploading')} />
 
       <ToolbarContainer className="fixed-toolbar-container" slot={slot}>
         <Toolbar keyboardOpen={keyboardOpen} ref={toolbarRef}>

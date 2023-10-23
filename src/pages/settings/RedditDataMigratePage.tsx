@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -20,6 +21,8 @@ export default function RedditMigratePage() {
   const presentToast = useAppToast();
   const [subs, setSubs] = useState<string[] | undefined>();
   const [link, setLink] = useState("");
+
+  const { t,i18n } = useTranslation();
 
   useEffect(() => {
     if (!isValidUrl(link)) return;

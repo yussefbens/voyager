@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -10,6 +11,7 @@ import AppContent from "../../features/shared/AppContent";
 import SwipeSettings from "../../features/settings/gestures/SwipeSettings";
 
 export default function GesturesPage() {
+  const { t,i18n } = useTranslation();
   return (
     <IonPage className="grey-bg">
       <IonHeader>
@@ -18,7 +20,7 @@ export default function GesturesPage() {
             <IonBackButton defaultHref="/settings" text="Settings" />
           </IonButtons>
 
-          <IonTitle>Gestures</IonTitle>
+          <IonTitle>{t('gestures')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <AppContent scrollY>

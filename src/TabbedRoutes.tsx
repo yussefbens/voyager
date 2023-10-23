@@ -14,6 +14,7 @@ import {
   personCircleOutline,
   earth,
   fileTray,
+  layers,
   add,
   home
 } from "ionicons/icons";
@@ -69,6 +70,8 @@ import { getProfileTabLabel } from "./features/settings/general/other/ProfileTab
 import AppearanceThemePage from "./pages/settings/AppearanceThemePage";
 import GalleryProvider from "./features/gallery/GalleryProvider";
 import AppIconPage from "./pages/settings/AppIconPage";
+import LanguageSwitcher from "./features/settings/language/LanguageSwitcher";
+import LanguagePage from "./pages/settings/LanguagePage";
 
 const Interceptor = styled.div`
   position: absolute;
@@ -393,6 +396,9 @@ export default function TabbedRoutes() {
         <Route exact path="/settings/appearance">
           <AppearancePage />
         </Route>
+        <Route exact path="/settings/language">
+          <LanguagePage />
+        </Route>
         <Route exact path="/settings/appearance/theme">
           <AppearanceThemePage />
         </Route>
@@ -445,7 +451,7 @@ export default function TabbedRoutes() {
               tab="search"
               href="/search"
             >
-              <IonIcon aria-hidden="true" icon={earth} />
+              <IonIcon aria-hidden="true" icon={layers} />
               <Interceptor onClick={onSearchClick} />
             </IonTabButton>
             <IonTabButton tab="settings" href="/settings">

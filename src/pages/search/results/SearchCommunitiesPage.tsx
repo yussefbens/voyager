@@ -19,6 +19,7 @@ import { CommunityView, LemmyHttp } from "lemmy-js-client";
 import CommunityFeed from "../../../features/feed/CommunityFeed";
 import { jwtSelector } from "../../../features/auth/authSlice";
 import { notEmpty } from "../../../helpers/array";
+import { useTranslation } from "react-i18next";
 
 export default function SearchCommunitiesPage() {
   const { search: _encodedSearch } = useParams<{ search: string }>();
@@ -26,6 +27,7 @@ export default function SearchCommunitiesPage() {
   const client = useClient();
   const sort = useAppSelector((state) => state.post.sort);
   const jwt = useAppSelector(jwtSelector);
+  const { t,i18n } = useTranslation();
 
   const search = decodeURIComponent(_encodedSearch);
 
@@ -56,7 +58,7 @@ export default function SearchCommunitiesPage() {
         <IonToolbar>
           <IonButtons slot="start">
             <IonBackButton
-              text="Search"
+              text={t('search')}
               defaultHref={buildGeneralBrowseLink("")}
             />
           </IonButtons>

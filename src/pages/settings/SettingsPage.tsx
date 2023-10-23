@@ -1,5 +1,8 @@
+import { useTranslation } from "react-i18next";
 import {
+  IonBackButton,
   IonBadge,
+  IonButtons,
   IonHeader,
   IonIcon,
   IonList,
@@ -21,6 +24,7 @@ import {
   reloadCircle,
   removeCircle,
   returnUpForwardOutline,
+  globe,
   shieldCheckmarkOutline,
 } from "ionicons/icons";
 import { useContext, useEffect } from "react";
@@ -67,17 +71,21 @@ export default function SettingsPage() {
     checkForUpdates();
   }, [checkForUpdates]);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonPage className="grey-bg">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Settings</IonTitle>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/profile" text={t("back")} />
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <AppContent scrollY>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Settings</IonTitle>
+            <IonTitle size="large">{t('settings')}</IonTitle>
           </IonToolbar>
         </IonHeader>
 
@@ -92,7 +100,7 @@ export default function SettingsPage() {
                   `}
                 />
               </IconBg>
-              <SettingLabel>Install app</SettingLabel>
+              <SettingLabel>{t('installApp')}</SettingLabel>
               {shouldInstall && <IonBadge color="danger">1</IonBadge>}
             </InsetIonItem>
 
@@ -100,7 +108,7 @@ export default function SettingsPage() {
               <IconBg color="color(display-p3 0 0.8 0)">
                 <IonIcon icon={reloadCircle} />
               </IconBg>
-              <SettingLabel>Check for updates</SettingLabel>
+              <SettingLabel>{t('checkUpdates')}</SettingLabel>
               {updateStatus === "outdated" && (
                 <IonBadge color="danger">1</IonBadge>
               )}
@@ -112,20 +120,27 @@ export default function SettingsPage() {
             <IconBg color="color(display-p3 0.5 0.5 0.5)">
               <IonIcon icon={cog} />
             </IconBg>
-            <SettingLabel>General</SettingLabel>
+            <SettingLabel>{t('general')}</SettingLabel>
           </InsetIonItem>
 
           <InsetIonItem routerLink="/settings/appearance">
             <IconBg color="color(display-p3 1 0 0)">
               <IonIcon icon={colorPalette} />
             </IconBg>
-            <SettingLabel>Appearance</SettingLabel>
+            <SettingLabel>{t('appearance')}</SettingLabel>
+          </InsetIonItem>
+
+          <InsetIonItem routerLink="/settings/language">
+            <IconBg color="color(display-p3 0.25 0.65 0)">
+              <IonIcon icon={globe} />
+            </IconBg>
+            <SettingLabel>{t('language')}</SettingLabel>
           </InsetIonItem>
 
           {isNative() && (
             <InsetIonItem routerLink="/settings/app-icon">
               <AppIcon src={getIconSrc(icon)} />
-              <SettingLabel>App Icon</SettingLabel>
+              <SettingLabel>{t('app-icon')}</SettingLabel>
             </InsetIonItem>
           )}
 
@@ -134,7 +149,7 @@ export default function SettingsPage() {
               <IconBg color="color(display-p3 0 0.6 1)">
                 <IonIcon icon={removeCircle} />
               </IconBg>
-              <SettingLabel>Filters & Blocks</SettingLabel>
+              <SettingLabel>{t('filters-and-blocks')}</SettingLabel>
             </InsetIonItem>
           )}
 
@@ -142,7 +157,7 @@ export default function SettingsPage() {
             <IconBg color="color(display-p3 0.95 0.65 0)">
               <IonIcon icon={returnUpForwardOutline} />
             </IconBg>
-            <SettingLabel>Gestures</SettingLabel>
+            <SettingLabel>{t('gestures')}</SettingLabel>
           </InsetIonItem>
         </IonList>
 
@@ -151,7 +166,7 @@ export default function SettingsPage() {
             <IconBg color="color(display-p3 0.7 0 0)">
               <IonIcon icon={bagCheckOutline} />
             </IconBg>
-            <SettingLabel>Migrate subreddits</SettingLabel>
+            <SettingLabel>{t('migrateSub')}</SettingLabel>
           </InsetIonItem>
         </IonList>
 
@@ -159,7 +174,7 @@ export default function SettingsPage() {
           {!isNative() ? (
             <InsetIonItem routerLink="/settings/terms">
               <IonIcon icon={shieldCheckmarkOutline} color="primary" />
-              <SettingLabel>Terms &amp; Privacy</SettingLabel>
+              <SettingLabel>{t('terms')}</SettingLabel>
             </InsetIonItem>
           ) : undefined}
           <InsetIonItem
@@ -178,7 +193,7 @@ export default function SettingsPage() {
           <InsetIonItem href="mailto:hello@vger.app">
             <IonIcon icon={mailOutline} color="primary" />
             <SettingLabel>
-              Contact us{" "}
+              {t('contact')}{" "}
               <sup>
                 <IonIcon icon={openOutline} color="medium" />
               </sup>
@@ -192,7 +207,7 @@ export default function SettingsPage() {
               detail={false}
             >
               <IonIcon icon={gitCompareOutline} color="medium" />
-              <SettingLabel>Release</SettingLabel>
+              <SettingLabel>{t('release')}</SettingLabel>
               <SettingLabel color="medium" slot="end">
                 {APP_VERSION}
               </SettingLabel>

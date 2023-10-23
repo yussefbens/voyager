@@ -92,6 +92,7 @@ interface SettingsState {
     enableHapticFeedback: boolean;
     linkHandler: LinkHandlerType;
   };
+  language: any,
   blocks: {
     keywords: string[];
   };
@@ -158,6 +159,7 @@ const initialState: SettingsState = {
     enableHapticFeedback: true,
     linkHandler: OLinkHandlerType.InApp,
   },
+  language: "العربية",
   blocks: {
     keywords: [],
   },
@@ -299,6 +301,10 @@ export const appearanceSlice = createSlice({
       state.general.comments.sort = action.payload;
       db.setSetting("default_comment_sort", action.payload);
     },
+    setDefaultLanguage(state, action: PayloadAction<CommentDefaultSort>) {
+      state.language = action.payload;
+      db.setSetting("default_language", action.payload);
+    },
     setDisableMarkingPostsRead(state, action: PayloadAction<boolean>) {
       state.general.posts.disableMarkingRead = action.payload;
       db.setSetting("disable_marking_posts_read", action.payload);
@@ -423,6 +429,7 @@ export const fetchSettingsFromDatabase = createAsyncThunk<SettingsState>(
         "compact_thumbnail_size",
       );
       const vote_display_mode = await db.getSetting("vote_display_mode");
+      const default_language = await db.getSetting("default_language");
       const default_comment_sort = await db.getSetting("default_comment_sort");
       const disable_marking_posts_read = await db.getSetting(
         "disable_marking_posts_read",
@@ -500,6 +507,7 @@ export const fetchSettingsFromDatabase = createAsyncThunk<SettingsState>(
           enableHapticFeedback:
             enable_haptic_feedback ?? initialState.general.enableHapticFeedback,
         },
+        language: default_language ?? initialState.language,
         blocks: {
           keywords: filtered_keywords ?? initialState.blocks.keywords,
         },
@@ -537,6 +545,7 @@ export const {
   setUseSystemDarkMode,
   setDeviceMode,
   setDefaultCommentSort,
+  setDefaultLanguage,
   settingsReady,
   setDisableMarkingPostsRead,
   setMarkPostsReadOnScroll,

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonLabel, IonList } from "@ionic/react";
 import { useAppSelector } from "../../../store";
 import { setVoteDisplayMode } from "../settingsSlice";
@@ -12,14 +13,16 @@ export default function Votes() {
 
   const Selector = SettingSelector<VoteDisplayMode>;
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <ListHeader>
-        <IonLabel>Votes</IonLabel>
+        <IonLabel>{t('votes')}</IonLabel>
       </ListHeader>
       <IonList inset>
         <Selector
-          title="Display Votes"
+          title={t('displayVotes')}
           selected={voteDisplayMode}
           setSelected={setVoteDisplayMode}
           options={OVoteDisplayMode}

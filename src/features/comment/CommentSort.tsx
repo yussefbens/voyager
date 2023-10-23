@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import type { IonActionSheetCustomEvent } from "@ionic/core";
 import {
   ActionSheetButton,
@@ -37,6 +38,8 @@ export default function CommentSort({ sort, setSort }: CommentSortProps) {
   const [open, setOpen] = useState(false);
   const { activePageRef } = useContext(AppContext);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <IonButton fill="default" onClick={() => setOpen(true)}>
@@ -55,10 +58,11 @@ export default function CommentSort({ sort, setSort }: CommentSortProps) {
 
           scrollUpIfNeeded(activePageRef?.current, 1, "auto");
         }}
-        header="Sort by..."
+        header={t('sortBy')}
         buttons={BUTTONS.map((b) => ({
           ...b,
           role: sort === b.data ? "selected" : undefined,
+          text: t(b.text ? t(b.text.toLowerCase()) : t("test")) 
         }))}
       />
     </>

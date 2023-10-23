@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import {
   IonBackButton,
@@ -89,6 +90,8 @@ export default function NewPostText({
     }
   }
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <IonHeader>
@@ -98,7 +101,7 @@ export default function NewPostText({
           </IonButtons>
           <IonTitle>
             <Centered>
-              <IonText>Post Text</IonText>
+              <IonText>{t('postText')}</IonText>
               {loading && <Spinner color="dark" />}
             </Centered>
           </IonTitle>
@@ -109,7 +112,7 @@ export default function NewPostText({
               onClick={submit}
               disabled={isSubmitDisabled}
             >
-              Post
+              {t('post')}
             </IonButton>
           </IonButtons>
         </IonToolbar>

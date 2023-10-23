@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { IonLabel, IonList, IonRange, IonToggle } from "@ionic/react";
@@ -54,14 +55,16 @@ export default function TextSize() {
           step: 0.25,
         };
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <ListHeader>
-        <IonLabel>Text size</IonLabel>
+        <IonLabel>{t('textSize')}</IonLabel>
       </ListHeader>
       <IonList inset>
         <InsetIonItem>
-          <IonLabel>Use System Text Size</IonLabel>
+          <IonLabel>{t('useSystemText')}</IonLabel>
           <IonToggle
             checked={useSystemFontSize}
             onIonChange={(e) =>
@@ -88,7 +91,7 @@ export default function TextSize() {
         </InsetIonItem>
         {fontSizeMultiplier >= 1.4 && (
           <InsetIonItem>
-            <IonLabel>Larger Text Mode</IonLabel>
+            <IonLabel>{t('largerTextMode')}</IonLabel>
             <IonToggle
               checked={fontSizeMultiplier > MAX_REGULAR_FONT_ADJUSTMENT}
               onIonChange={() =>
@@ -104,7 +107,7 @@ export default function TextSize() {
           </InsetIonItem>
         )}
       </IonList>
-      <HelperText>Default is two ticks from the left.</HelperText>
+      <HelperText>{t('defaultTwoTicks')}</HelperText>
     </>
   );
 }

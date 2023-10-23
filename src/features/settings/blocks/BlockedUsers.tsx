@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonItemOption,
   IonItemOptions,
@@ -31,10 +32,12 @@ export default function BlockedUsers() {
     }
   }
 
+  const { t,i18n } = useTranslation();
+
   return (
     <>
       <ListHeader>
-        <IonLabel>Blocked Users</IonLabel>
+        <IonLabel>{t('blocked-users')}</IonLabel>
       </ListHeader>
       <IonList inset>
         {users?.length ? (
@@ -46,7 +49,7 @@ export default function BlockedUsers() {
                   expandable
                   onClick={() => remove(user)}
                 >
-                  Unblock
+                  {t('unblock')}
                 </IonItemOption>
               </IonItemOptions>
               <InsetIonItem>
@@ -56,7 +59,7 @@ export default function BlockedUsers() {
           ))
         ) : (
           <InsetIonItem>
-            <IonLabel color="medium">No blocked users</IonLabel>
+            <IonLabel color="medium">{t('no-blocked-users')}</IonLabel>
           </InsetIonItem>
         )}
       </IonList>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   OPostAppearanceType,
   PostAppearanceType,
@@ -13,9 +14,11 @@ export default function PostSize() {
 
   const PostSizeSelector = SettingSelector<PostAppearanceType>;
 
+  const { t,i18n } = useTranslation();
+
   return (
     <PostSizeSelector
-      title="Post Size"
+      title={t('postSize')}
       selected={postsAppearanceType}
       setSelected={setPostAppearance}
       options={OPostAppearanceType}

@@ -39,6 +39,33 @@ import { TabContextProvider } from "./TabContext";
 import { NavModes } from "capacitor-android-nav-mode";
 import { TextRecoveryStartupPrompt } from "./helpers/useTextRecovery";
 
+import i18n from "i18next";
+import { initReactI18next, useTranslation } from "react-i18next";
+import LanguageDetector from 'i18next-browser-languagedetector';
+import HttpApi from 'i18next-http-backend';
+
+// init i18n
+i18n
+.use(initReactI18next)
+.use(LanguageDetector)
+.use(HttpApi)
+.init({
+    supportedLngs: ['en', 'ar', 'fr'],
+    fallbackLng: "ar",
+    debug: true,
+    interpolation: {
+        escapeValue: false
+    },
+    detection: {
+        order: ["localStorage", "htmlTag"],
+        caches: ["localStorage"]
+    },
+    backend: {
+        loadPath: "/assets/locales/{{lng}}/translation.json"
+    }
+});
+
+
 // index.tsx ensurxes android nav mode resolves before app is rendered
 (async () => {
   let navMode;

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -10,6 +11,7 @@ import AppContent from "../../features/shared/AppContent";
 import AppIcon from "../../features/settings/app-icon/AppIcon";
 
 export default function AppIconPage() {
+  const { t,i18n } = useTranslation();
   return (
     <IonPage className="grey-bg">
       <IonHeader>
@@ -18,7 +20,7 @@ export default function AppIconPage() {
             <IonBackButton defaultHref="/settings" text="Settings" />
           </IonButtons>
 
-          <IonTitle>App Icon</IonTitle>
+          <IonTitle>{t('app-icon')}</IonTitle>
         </IonToolbar>
       </IonHeader>
       <AppContent scrollY>

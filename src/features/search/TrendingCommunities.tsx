@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonIcon, IonLabel, IonList, IonListHeader } from "@ionic/react";
 import { useBuildGeneralBrowseLink } from "../../helpers/routes";
 import { useAppDispatch, useAppSelector } from "../../store";
@@ -19,6 +20,8 @@ export default function TrendingCommunities() {
     if (!trendingCommunities.length) dispatch(getTrendingCommunities());
   }, [dispatch, trendingCommunities]);
 
+  const { t,i18n } = useTranslation();
+
   return (
     <IonList inset color="primary">
       <IonListHeader>
@@ -27,7 +30,7 @@ export default function TrendingCommunities() {
             margin-top: 0;
           `}
         >
-          Trending communities
+          {t('trendingCommunities')}
         </IonLabel>
       </IonListHeader>
       {trendingCommunities.map((community) => (

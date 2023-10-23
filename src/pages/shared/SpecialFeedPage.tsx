@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   IonBackButton,
   IonButtons,
@@ -37,6 +38,7 @@ export default function SpecialFeedPage({ type }: SpecialFeedProps) {
   const client = useClient();
   const sort = useAppSelector((state) => state.post.sort);
   const jwt = useAppSelector(jwtSelector);
+  const { t,i18n } = useTranslation();
 
   const markReadOnScroll = useAppSelector(markReadOnScrollSelector);
 
@@ -65,7 +67,7 @@ export default function SpecialFeedPage({ type }: SpecialFeedProps) {
             <IonToolbar>
               <IonButtons slot="start">
                 <IonBackButton
-                  text="Communities"
+                  text={t('communities')}
                   defaultHref={buildGeneralBrowseLink("")}
                 />
               </IonButtons>

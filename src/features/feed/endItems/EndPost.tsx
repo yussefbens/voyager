@@ -14,16 +14,17 @@ export const Container = styled.div`
 interface EndPostProps {
   empty?: boolean;
   communityName?: string;
+  t?: any;
 }
 
-export default function EndPost({ empty, communityName }: EndPostProps) {
-  const feedName = communityName ? `c/${communityName}` : "this feed";
+export default function EndPost({ empty, communityName, t }: EndPostProps) {
+  const feedName = communityName ? `c/${communityName}` : t('this-feed');
 
   function renderError() {
     if (empty)
-      return <>Nothing to see here — {feedName} is completely empty.</>;
+      return <>{t('nothing-to-see-here')} — {feedName} {t('is-completely-empty')}</>;
 
-    return <>You&apos;ve reached the end!</>;
+    return <>{t('you-reached-the-end')}</>;
   }
 
   return <Container>{renderError()}</Container>;

@@ -23,6 +23,7 @@ import { markReadOnScrollSelector } from "../settings/settingsSlice";
 import { isSafariFeedHackEnabled } from "../../pages/shared/FeedContent";
 import useFeedOnScroll from "./useFeedOnScroll";
 import FeedLoadMoreFailed from "./endItems/FeedLoadMoreFailed";
+import { useTranslation } from "react-i18next";
 
 export type FetchFn<I> = (page: number) => Promise<I[]>;
 
@@ -53,6 +54,7 @@ export default function Feed<I>({
   const [loading, setLoading] = useState<boolean | undefined>();
   const [isListAtTop, setIsListAtTop] = useState<boolean>(true);
   const [atEnd, setAtEnd] = useState(false);
+  const { t,i18n } = useTranslation();
   const postAppearanceType = useAppSelector(
     (state) => state.settings.appearance.posts.type,
   );
@@ -148,7 +150,7 @@ export default function Feed<I>({
     if (loadFailed)
       return <FeedLoadMoreFailed fetchMore={fetchMore} loading={!!loading} />;
     else if (atEnd)
-      return <EndPost empty={!items.length} communityName={communityName} />;
+      return <EndPost empty={!items.length} communityName={communityName} t={t} />;
   }, [atEnd, communityName, items.length, loadFailed, fetchMore, loading]);
 
   async function handleRefresh(event: RefresherCustomEvent) {

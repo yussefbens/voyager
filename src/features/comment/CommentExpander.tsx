@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { CommentView } from "lemmy-js-client";
 import { Container, CustomIonItem, PositionedContainer } from "./Comment";
 import styled from "@emotion/styled";
@@ -58,6 +59,7 @@ export default function CommentExpander({
   const { appendComments } = useContext(CommentsContext);
   const client = useClient();
   const [loading, setLoading] = useState(false);
+  const { t,i18n } = useTranslation();
 
   async function fetchChildren() {
     if (loading) return;
@@ -74,7 +76,7 @@ export default function CommentExpander({
       });
     } catch (error) {
       presentToast({
-        message: "Problem fetching more comments. Please try again.",
+        message:t("problemFetchingComments"),
         color: "danger",
       });
       throw error;
@@ -84,7 +86,7 @@ export default function CommentExpander({
 
     if (response.comments.length === 0) {
       presentToast({
-        message: `Uh-oh. Looks like Lemmy returned 0 comments, but there's actually ${missing}`,
+        message: `${t("zeroComments")} ${missing}`,
         color: "danger",
       });
       return;
@@ -100,7 +102,7 @@ export default function CommentExpander({
         <PositionedContainer depth={depth || 0} highlighted={false}>
           <Container depth={depth || 0} hidden={loading}>
             <MoreRepliesBlock hidden={loading}>
-              {missing} more {missing === 1 ? "reply" : "replies"}
+              {missing} {t('more')} {missing === 1 ? t('replyLower') : t('replies')}
               <ChevronIcon icon={chevronDown} />
             </MoreRepliesBlock>
             {loading && <StyledIonSpinner />}

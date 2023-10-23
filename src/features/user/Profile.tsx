@@ -1,11 +1,12 @@
 import React, { useCallback } from "react";
 import { IonIcon, IonLabel, IonList, IonItem } from "@ionic/react";
 import styled from "@emotion/styled";
-import Scores from "./Scores";
+import { useTranslation } from "react-i18next";
 import {
   albumsOutline,
   bookmarkOutline,
   chatbubbleOutline,
+  settings,
   eyeOffOutline,
 } from "ionicons/icons";
 import { GetPersonDetailsResponse } from "lemmy-js-client";
@@ -22,6 +23,9 @@ import PostCommentFeed, {
 } from "../feed/PostCommentFeed";
 import { handleSelector, jwtSelector } from "../auth/authSlice";
 import { fixLemmyDateString } from "../../helpers/date";
+import Scores from "./Scores";
+
+
 
 export const InsetIonItem = styled(IonItem)`
   --background: var(--ion-tab-bar-background, var(--ion-color-step-50, #fff));
@@ -29,6 +33,7 @@ export const InsetIonItem = styled(IonItem)`
 
 export const SettingLabel = styled(IonLabel)`
   margin-left: 16px;
+  margin-right: 16px;
 `;
 
 interface ProfileProps {
@@ -59,6 +64,8 @@ export default function Profile({ person }: ProfileProps) {
     [person, client, jwt],
   );
 
+  const { t,i18n } = useTranslation();
+
   const header = useCallback(
     () => (
       <MaxWidthContainer>
@@ -73,7 +80,7 @@ export default function Profile({ person }: ProfileProps) {
             )}
           >
             <IonIcon icon={albumsOutline} color="primary" />{" "}
-            <SettingLabel>Posts</SettingLabel>
+            <SettingLabel>{t('posts')}</SettingLabel>
           </InsetIonItem>
           <InsetIonItem
             routerLink={buildGeneralBrowseLink(
@@ -81,7 +88,7 @@ export default function Profile({ person }: ProfileProps) {
             )}
           >
             <IonIcon icon={chatbubbleOutline} color="primary" />{" "}
-            <SettingLabel>Comments</SettingLabel>
+            <SettingLabel>{t('comments')}</SettingLabel>
           </InsetIonItem>
           {isSelf && (
             <>
@@ -91,7 +98,7 @@ export default function Profile({ person }: ProfileProps) {
                 )}
               >
                 <IonIcon icon={bookmarkOutline} color="primary" />{" "}
-                <SettingLabel>Saved</SettingLabel>
+                <SettingLabel>{t('saved')}</SettingLabel>
               </InsetIonItem>
               <InsetIonItem
                 routerLink={buildGeneralBrowseLink(
@@ -99,10 +106,18 @@ export default function Profile({ person }: ProfileProps) {
                 )}
               >
                 <IonIcon icon={eyeOffOutline} color="primary" />{" "}
-                <SettingLabel>Hidden</SettingLabel>
+                <SettingLabel>{t('hidden')}</SettingLabel>
               </InsetIonItem>
             </>
           )}
+        </IonList>
+        <IonList inset color="primary">
+          <InsetIonItem
+            routerLink='settings'
+          >
+            <IonIcon icon={settings} color="primary" />{" "}
+            <SettingLabel>{t('settings')}</SettingLabel>
+          </InsetIonItem>
         </IonList>
       </MaxWidthContainer>
     ),

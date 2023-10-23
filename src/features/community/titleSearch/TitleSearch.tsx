@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import styled from "@emotion/styled";
 import { IonButton, IonButtons, IonIcon, IonTitle } from "@ionic/react";
 import { chevronDown } from "ionicons/icons";
@@ -58,13 +59,15 @@ export default function TitleSearch({ name, children }: TitleSearchProps) {
     searchRef.current?.focus();
   }, [searching]);
 
+  const { t,i18n } = useTranslation();
+
   if (searching) {
     return (
       <>
         <IonTitle>
           <StyledInput
             ref={searchRef}
-            placeholder="Community..."
+            placeholder={`${t("community")}...`}
             onChange={(e) => setSearch(e.target.value || "")}
             onKeyDown={(e) => {
               if (e.key === "Escape" || e.key === "Tab") {
@@ -78,7 +81,7 @@ export default function TitleSearch({ name, children }: TitleSearchProps) {
         </IonTitle>
 
         <IonButtons slot="end">
-          <IonButton onClick={() => setSearching(false)}>Cancel</IonButton>
+          <IonButton onClick={() => setSearching(false)}>{t("cancel")}</IonButton>
         </IonButtons>
       </>
     );

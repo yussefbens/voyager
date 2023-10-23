@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { IonLabel, IonToggle } from "@ionic/react";
 import { InsetIonItem } from "../../../../pages/profile/ProfileFeedItemsPage";
 import { useAppDispatch, useAppSelector } from "../../../../store";
@@ -13,9 +14,11 @@ export default function CollapsedByDefault() {
     (state) => state.settings.general.comments,
   );
 
+  const { t,i18n } = useTranslation();
+
   return (
     <InsetIonItem>
-      <IonLabel>Collapse Comment Threads</IonLabel>
+      <IonLabel>{t('collapse-comment-threads')}</IonLabel>
       <IonToggle
         checked={collapseCommentThreads === OCommentThreadCollapse.Always}
         onIonChange={(e) =>

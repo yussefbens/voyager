@@ -12,35 +12,36 @@ import {
 } from "../../../services/db";
 import { ListHeader } from "../shared/formatting";
 import SettingSelector from "../shared/SettingSelector";
+import { useTranslation } from "react-i18next";
 
 export default function CompactSettings() {
   const dispatch = useAppDispatch();
   const { thumbnailsPosition, showVotingButtons, thumbnailSize } =
     useAppSelector((state) => state.settings.appearance.compact);
-
+  const { t,i18n } = useTranslation();
   return (
     <>
       <ListHeader>
-        <IonLabel>Compact Posts</IonLabel>
+        <IonLabel>{t('compactPosts')}</IonLabel>
       </ListHeader>
       <IonList inset>
         <SettingSelector
-          title="Thumbnail Size"
+          title={t('thumbnail-size')}
           selected={thumbnailSize}
           setSelected={setCompactThumbnailSize}
           options={OCompactThumbnailSizeType}
           getOptionLabel={(o) => {
-            if (o === OCompactThumbnailSizeType.Small) return "Small (default)";
+            if (o === OCompactThumbnailSizeType.Small) return t('smallDefault');
           }}
         />
         <SettingSelector
-          title="Thumbnail Position"
+          title={t('thumbnailPosition')}
           selected={thumbnailsPosition}
           setSelected={setThumbnailPosition}
           options={OCompactThumbnailPositionType}
         />
         <InsetIonItem>
-          <IonLabel>Show Voting Buttons</IonLabel>
+          <IonLabel>{t('show-voting-buttons')}</IonLabel>
           <IonToggle
             checked={showVotingButtons}
             onIonChange={(e) =>
