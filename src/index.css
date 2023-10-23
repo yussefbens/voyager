@@ -98,7 +98,7 @@ ion-action-sheet .action-sheet-selected .action-sheet-button-inner::after {
   height: 24px;
 }
 
-#root[dir="rtl"] ion-action-sheet .action-sheet-selected .action-sheet-button-inner::after {
+html[dir="rtl"] ion-action-sheet .action-sheet-selected .action-sheet-button-inner::after {
   right: initial;
   left: 6px;
 }

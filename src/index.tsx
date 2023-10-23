@@ -9,15 +9,18 @@ import { getAndroidNavMode, isNative } from "./helpers/device";
     await getAndroidNavMode();
   } finally {
     const container = document.getElementById("root");
+    const html = document.documentElement;
     const root = createRoot(container as HTMLElement);
     const lang = localStorage.getItem("i18nextLng");
     if (container) {
       if (lang === "fr" || lang === "en") {
         //container.style.direction = "ltr"
-        container.setAttribute("dir", "ltr")
+        //container.setAttribute("dir", "ltr")
+        html.setAttribute("dir", "ltr")
       } else {
         //container.style.direction = "rtl"
-        container.setAttribute("dir", "rtl")
+        //container.setAttribute("dir", "rtl")
+        html.setAttribute("dir", "rtl")
       }
     }
 
