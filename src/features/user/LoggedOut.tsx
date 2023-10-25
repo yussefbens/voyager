@@ -5,18 +5,18 @@ import { InsetIonItem, SettingLabel } from "./Profile";
 import styled from "@emotion/styled";
 import IncognitoSvg from "./incognito.svg?react";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { updateConnectedInstance } from "../auth/authSlice";
-import { swapHorizontalOutline } from "ionicons/icons";
+import { swapHorizontalOutline, logIn } from "ionicons/icons";
 import { getCustomServers } from "../../services/app";
+import { PageContext } from "../auth/PageContext";
 
 const Incognito = styled(IncognitoSvg)`
   opacity: 0.1;
   width: 300px;
   height: 300px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  margin: auto;
 `;
 
 export default function LoggedOut() {
@@ -25,6 +25,7 @@ export default function LoggedOut() {
     (state) => state.auth.connectedInstance,
   );
   const [pickerOpen, setPickerOpen] = useState(false);
+  const { pageRef, presentLoginIfNeeded } = useContext(PageContext);
 
   const { t,i18n } = useTranslation();
 
@@ -37,20 +38,19 @@ export default function LoggedOut() {
             padding: 1rem;
           `}
         >
-          {t('change-the-instance')}
+          {t('logged-out')}
         </p>
       </IonText>
       <IonList inset>
         <InsetIonItem
           onClick={() => {
-            setPickerOpen(true);
+            presentLoginIfNeeded()
           }}
           detail
         >
-          <IonIcon icon={swapHorizontalOutline} color="primary" />
+          <IonIcon icon={logIn} color="primary" />
           <SettingLabel>
-            {t('connectedTo')} {connectedInstance}{" "}
-            <IonText color="medium">{t('asGuest')}</IonText>
+            <IonText color="medium">{t('login-now')}</IonText>
           </SettingLabel>
         </InsetIonItem>
       </IonList>

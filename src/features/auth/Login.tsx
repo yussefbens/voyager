@@ -22,7 +22,7 @@ import styled from "@emotion/styled";
 import { useAppDispatch } from "../../store";
 import { login } from "./authSlice";
 import { getClient } from "../../services/lemmy";
-import { IonInputCustomEvent } from "@ionic/core";
+import { IonInputCustomEvent, componentOnReady } from "@ionic/core";
 import TermsSheet from "../settings/terms/TermsSheet";
 import { preventPhotoswipeGalleryFocusTrap } from "../gallery/GalleryImg";
 import { getCustomServers } from "../../services/app";
@@ -30,7 +30,7 @@ import { isNative } from "../../helpers/device";
 import { Browser } from "@capacitor/browser";
 import useAppToast from "../../helpers/useAppToast";
 
-const JOIN_LEMMY_URL = "https://join-lemmy.org/instances";
+const JOIN_LEMMY_URL = "https://startimes.app/register";
 
 export const Spinner = styled(IonSpinner)`
   width: 1.5rem;
@@ -59,7 +59,7 @@ export default function Login({
   const [servers] = useState(getCustomServers());
   const [server, setServer] = useState(servers[0]);
   const [customServer, setCustomServer] = useState("");
-  const [serverConfirmed, setServerConfirmed] = useState(false);
+  const [serverConfirmed, setServerConfirmed] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const usernameRef = useRef<IonInputCustomEvent<never>["target"]>(null);
@@ -214,19 +214,19 @@ export default function Login({
               <IonButton
                 color="medium"
                 onClick={() => {
-                  if (serverConfirmed) {
-                    setServerConfirmed(false);
-                    setNeedsTotp(false);
-                    setUsername("");
-                    setPassword("");
-                    setTotp("");
-                    return;
-                  }
+                  // if (serverConfirmed) {
+                  //   setServerConfirmed(false);
+                  //   setNeedsTotp(false);
+                  //   setUsername("");
+                  //   setPassword("");
+                  //   setTotp("");
+                  //   return;
+                  // }
 
                   onDismiss();
                 }}
               >
-                {serverConfirmed ? t("back") : t("cancel")}
+                {serverConfirmed ? t("cancel") : t("cancel")}
               </IonButton>
             </IonButtons>
             <IonTitle>
@@ -332,30 +332,63 @@ export default function Login({
                 )}
               </HelperText>
               {!needsTotp ? (
-                <IonList inset>
-                  <IonItem>
-                    <IonInput
-                      ref={usernameRef}
-                      label={t('username')}
-                      autocomplete="username"
-                      inputMode="email"
-                      value={username}
-                      onIonInput={(e) => setUsername(e.target.value as string)}
-                      disabled={loading}
-                    />
-                  </IonItem>
-                  <IonItem>
-                    <IonInput
-                      label={t("password")}
-                      autocomplete="current-password"
-                      type="password"
-                      value={password}
-                      onIonInput={(e) => setPassword(e.target.value as string)}
-                      disabled={loading}
-                      enterkeyhint="done"
-                    />
-                  </IonItem>
-                </IonList>
+                <>
+                  <IonList inset>
+                    <IonItem>
+                      <IonInput
+                        ref={usernameRef}
+                        label={t('username')}
+                        autocomplete="username"
+                        inputMode="email"
+                        value={username}
+                        onIonInput={(e) => setUsername(e.target.value as string)}
+                        disabled={loading}
+                      />
+                    </IonItem>
+                    <IonItem>
+                      <IonInput
+                        label={t("password")}
+                        autocomplete="current-password"
+                        type="password"
+                        value={password}
+                        onIonInput={(e) => setPassword(e.target.value as string)}
+                        disabled={loading}
+                        enterkeyhint="done"
+                      />
+                    </IonItem>
+                  </IonList>
+                  {isNative() ? (
+                    <HelperText>
+                      {t("agreeToTerms")}{" "}
+                      <IonRouterLink onClick={presentNativeTerms}>
+                        {t("termsOfUse")}
+                      </IonRouterLink>
+                    </HelperText>
+                  ) : (
+                    <HelperText>
+                      <IonRouterLink onClick={() => presentTerms()}>
+                        {t('terms')}
+                      </IonRouterLink>
+                    </HelperText>
+                  )}
+
+                  <HelperText>
+                    <IonRouterLink
+                      href={JOIN_LEMMY_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => {
+                        if (!isNative()) return;
+
+                        e.preventDefault();
+
+                        Browser.open({ url: JOIN_LEMMY_URL });
+                      }}
+                    >
+                      <IonText color="primary">{t('dontHaveAccount')}</IonText>
+                    </IonRouterLink>
+                  </HelperText>
+                </>
               ) : (
                 <IonList inset>
                   <IonItem>

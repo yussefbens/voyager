@@ -244,6 +244,7 @@
   "failed-to-load-user-profile": "failed to load user profile 😢",
   "doesnt-exist-mysterious": "doesn't exist. Mysterious...",
   "change-the-instance": "Change the instance you&apos;re currently connected to below. Alternatively, click <strong>login</strong> to join your instance with your account.",
+  "logged-out": "You are currently not connected",
   "confirm": "Confirm",
   "post-points": "Post Points",
   "comment-points": "Comment Points",
@@ -311,5 +312,8 @@
   "year-short": "y",
   "language": "Language",
   "test": "test",
-  "select-a-language": "Select a Language"
+  "select-a-language": "Select a Language",
+  "restart-now": "Restart Now",
+  "language-changed-and-need-restart": "Language changed and need restart",
+  "login-now": "Login now"
 }

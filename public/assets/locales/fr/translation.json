@@ -311,5 +311,9 @@
     "year-short": "a",
     "language": "Langue",
     "select-a-language": "Choissisez une langue",
-    "test": "test"
+    "restart-now": "Redémarrer maintenant",
+    "language-changed-and-need-restart": "La langue a changé et doit être redémarrée",
+    "logged-out": "Vous n'êtes actuellement pas connecté",
+    "test": "test",
+    "login-now": "Se Connectez maitenant"
   }

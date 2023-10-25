@@ -311,6 +311,10 @@
     "year-short": "سن",
     "language": "اللغة",
     "select-a-language": "إختر اللغة",
+    "restart-now": "إعادة التشغيل",
+    "language-changed-and-need-restart": "تغيرت اللغة بنجاح وتحتاج إلى إعادة التشغيل",
+    "logged-out": "أنت غير متصل حاليًا",
+    "login-now": "تسجيل الدخول الآن",
     "test": "test"
   }
   

@@ -10,6 +10,8 @@ import {
 } from "../../../services/db";
 import { IonActionSheetCustomEvent, OverlayEventDetail } from "@ionic/core";
 import { setDefaultLanguage } from "../settingsSlice";
+import useAppToast from "../../../helpers/useAppToast";
+import { useIonToast } from "@ionic/react";
 
 
 const BUTTONS: ActionSheetButton<any>[] = Object.values(
@@ -23,6 +25,7 @@ const BUTTONS: ActionSheetButton<any>[] = Object.values(
 
 export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
+  const [present] = useIonToast();
 
   const dispatch = useAppDispatch();
   const postsAppearanceType = useAppSelector(
@@ -59,6 +62,13 @@ export default function LanguageSwitcher() {
                   break;
               }
               dispatch(setDefaultLanguage(e.detail.data));
+              present({
+                message: t('language-changed-and-need-restart'),
+                color: "success",
+              })
+              setTimeout(() => {
+                window.location.reload();
+              }, 1500) 
             }
           }}
           buttons={BUTTONS.map((b) => ({
