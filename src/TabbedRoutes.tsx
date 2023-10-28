@@ -15,6 +15,7 @@ import {
   cog,
   search,
   fileTray,
+  add,
   telescope,
 } from "ionicons/icons";
 import PostDetail from "./pages/posts/PostPage";
@@ -71,6 +72,7 @@ import AppIconPage from "./pages/settings/AppIconPage";
 import { DefaultFeedType, ODefaultFeedType } from "./services/db";
 import { AppContext } from "./features/auth/AppContext";
 import SearchFeedResultsPage from "./pages/search/results/SearchFeedResultsPage";
+import NewPostPage from "./pages/posts/NewPostPage";
 
 const Interceptor = styled.div`
   position: absolute;
@@ -389,9 +391,14 @@ export default function TabbedRoutes() {
         <Route exact path="/profile">
           <ProfilePage />
         </Route>
+        
         {...buildGeneralBrowseRoutes("profile")}
         <Route exact path="/profile/:actor">
           <Redirect to="/profile" push={false} />
+        </Route>
+
+        <Route exact path="/new-post">
+          <NewPostPage />
         </Route>
 
         <Route exact path="/search">
@@ -491,6 +498,9 @@ export default function TabbedRoutes() {
                 <IonBadge color="danger">{totalUnread}</IonBadge>
               ) : undefined}
               <Interceptor onClick={onInboxClick} />
+            </IonTabButton>
+            <IonTabButton tab="new-post" href="/new-post">
+              <IonIcon aria-hidden="true" icon={add} style={{ border: "1px solid", borderRadius: "7px" }} />
             </IonTabButton>
             <IonTabButton
               disabled={isProfileButtonDisabled}
