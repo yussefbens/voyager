@@ -54,6 +54,7 @@ export default function NewPostPage() {
   const [search, setSearch] = useState("");
   const [searchPayload, setSearchPayload] = useState<CommunityView[]>([]);
   const debouncedSearch = useDebounce(search, 750);
+  const { presentLoginIfNeeded } = useContext(PageContext);
 
   useEffect(() => {
     if (!trendingCommunities.length) dispatch(getTrendingCommunities());
@@ -96,6 +97,8 @@ export default function NewPostPage() {
 
 
   function onCommunityClick(community: any) {
+    if (presentLoginIfNeeded()) return;
+
     dispatch(getCommunity(community)).then(res => {
       presentPostEditor(community)
     });
@@ -129,9 +132,7 @@ export default function NewPostPage() {
           </IonItem>
         )) : (trendingCommunities.map((community) => (
         <InsetIonItem
-          routerLink={buildGeneralBrowseLink(
-            `/c/${getHandle(community.community)}`,
-          )}
+          onClick={() => onCommunityClick(community.community.name)}
           key={community.community.id}
         >
           <IonIcon icon={trendingUp} color="primary" />
