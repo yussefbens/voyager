@@ -56,6 +56,7 @@ import AppearancePage from "./pages/settings/AppearancePage";
 import CommunitySidebarPage from "./pages/shared/CommunitySidebarPage";
 import RedditMigratePage from "./pages/settings/RedditDataMigratePage";
 import ProfilePage from "./pages/profile/ProfilePage";
+import NewPostPage from "./pages/posts/NewPostPage";
 import ProfileFeedHiddenPostsPage from "./pages/profile/ProfileFeedHiddenPostsPage";
 import { PageContextProvider } from "./features/auth/PageContext";
 import { scrollUpIfNeeded } from "./helpers/scrollUpIfNeeded";
@@ -358,6 +359,10 @@ export default function TabbedRoutes() {
           <Redirect to="/profile" push={false} />
         </Route>
 
+        <Route exact path="/new-post">
+          <NewPostPage />
+        </Route>
+
         <Route exact path="/search">
           <SearchPage />
         </Route>
@@ -454,7 +459,7 @@ export default function TabbedRoutes() {
               <IonIcon aria-hidden="true" icon={layers} />
               <Interceptor onClick={onSearchClick} />
             </IonTabButton>
-            <IonTabButton tab="settings" href="/settings">
+            <IonTabButton tab="new-post" href="/new-post">
               <IonIcon aria-hidden="true" icon={add} style={{ border: "1px solid", borderRadius: "7px" }} />
             </IonTabButton>
             <IonTabButton

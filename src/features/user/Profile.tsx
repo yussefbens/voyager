@@ -64,7 +64,7 @@ export default function Profile({ person }: ProfileProps) {
     [person, client, jwt],
   );
 
-  const { t,i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const header = useCallback(
     () => (
@@ -111,14 +111,15 @@ export default function Profile({ person }: ProfileProps) {
             </>
           )}
         </IonList>
-        <IonList inset color="primary">
-          <InsetIonItem
-            routerLink='settings'
-          >
-            <IonIcon icon={settings} color="primary" />{" "}
-            <SettingLabel>{t('settings')}</SettingLabel>
-          </InsetIonItem>
-        </IonList>
+        {isSelf ?
+          <IonList inset color="primary">
+            <InsetIonItem
+              routerLink='settings'
+            >
+              <IonIcon icon={settings} color="primary" />{" "}
+              <SettingLabel>{t('settings')}</SettingLabel>
+            </InsetIonItem>
+          </IonList> : <></>}
       </MaxWidthContainer>
     ),
     [person, buildGeneralBrowseLink, isSelf],

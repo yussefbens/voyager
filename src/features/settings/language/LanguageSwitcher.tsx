@@ -68,7 +68,7 @@ export default function LanguageSwitcher() {
               })
               setTimeout(() => {
                 window.location.reload();
-              }, 1500) 
+              }, 850) 
             }
           }}
           buttons={BUTTONS.map((b) => ({

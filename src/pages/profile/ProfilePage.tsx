@@ -10,7 +10,7 @@ import {
 } from "@ionic/react";
 import AsyncProfile from "../../features/user/AsyncProfile";
 import { useAppSelector } from "../../store";
-import { handleSelector } from "../../features/auth/authSlice";
+import { handleSelector, usernameSelector } from "../../features/auth/authSlice";
 import LoggedOut from "../../features/user/LoggedOut";
 import AccountSwitcher from "../../features/auth/AccountSwitcher";
 import { useContext } from "react";
@@ -19,7 +19,7 @@ import { PageContext } from "../../features/auth/PageContext";
 import FeedContent from "../shared/FeedContent";
 
 export default function ProfilePage() {
-  const handle = useAppSelector(handleSelector);
+  const handle = useAppSelector(usernameSelector);
   const { pageRef, presentLoginIfNeeded } = useContext(PageContext);
 
   const [presentAccountSwitcher, onDismissAccountSwitcher] = useIonModal(
