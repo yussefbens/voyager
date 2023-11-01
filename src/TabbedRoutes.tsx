@@ -362,6 +362,7 @@ export default function TabbedRoutes() {
         <Route exact path="/new-post">
           <NewPostPage />
         </Route>
+        {...buildGeneralBrowseRoutes("new-post")}
 
         <Route exact path="/search">
           <SearchPage />
