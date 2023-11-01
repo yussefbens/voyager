@@ -29,7 +29,6 @@ import { CommunityView } from "lemmy-js-client";
 import useClient from "../../helpers/useClient";
 import { useDebounce } from "usehooks-ts";
 import styled from "@emotion/styled";
-import empty from "../../../public/empty.png";
 
 const SubImgIcon = styled.img<{ size: number }>`
   width: ${({ size }) => `${size}px`};
@@ -125,7 +124,7 @@ export default function NewPostPage() {
           <IonItem key={community.community.id}
           onClick={() => onCommunityClick(community.community.name)}>
             <SubImgIcon
-              src={community.community.icon ? community.community.icon : empty}
+              src={community.community.icon ? community.community.icon : "/empty.png"}
               size={28}
             />
             {community.community.name}

@@ -62,7 +62,7 @@ export default function CommentSort({ sort, setSort }: CommentSortProps) {
         buttons={BUTTONS.map((b) => ({
           ...b,
           role: sort === b.data ? "selected" : undefined,
-          text: t(b.text ? t(b.text.toLowerCase()) : t("test")) 
+          text: t(b.text ? t(b.text.toLowerCase().replace(/\s/g, '')) : t("test")) 
         }))}
       />
     </>
