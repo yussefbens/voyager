@@ -89,7 +89,7 @@ export default function SettingsPage() {
           </IonToolbar>
         </IonHeader>
 
-        {!isNative() && (
+        {/* {!isNative() && (
           <IonList inset color="primary">
             <InsetIonItem routerLink="/settings/install">
               <IconBg color="color(display-p3 0 0.6 1)">
@@ -114,7 +114,7 @@ export default function SettingsPage() {
               )}
             </InsetIonItem>
           </IonList>
-        )}
+        )} */}
         <IonList inset color="primary">
           <InsetIonItem routerLink="/settings/general">
             <IconBg color="color(display-p3 0.5 0.5 0.5)">
@@ -161,14 +161,14 @@ export default function SettingsPage() {
           </InsetIonItem>
         </IonList>
 
-        <IonList inset color="primary">
+        {/* <IonList inset color="primary">
           <InsetIonItem routerLink="/settings/reddit-migrate">
             <IconBg color="color(display-p3 0.7 0 0)">
               <IonIcon icon={bagCheckOutline} />
             </IconBg>
             <SettingLabel>{t('migrateSub')}</SettingLabel>
           </InsetIonItem>
-        </IonList>
+        </IonList> */}
 
         <IonList inset color="primary">
           {!isNative() ? (
@@ -177,7 +177,7 @@ export default function SettingsPage() {
               <SettingLabel>{t('terms')}</SettingLabel>
             </InsetIonItem>
           ) : undefined}
-          <InsetIonItem
+          {/* <InsetIonItem
             href="https://github.com/aeharding/voyager"
             target="_blank"
             rel="noopener noreferrer"
@@ -189,8 +189,8 @@ export default function SettingsPage() {
                 <IonIcon icon={openOutline} color="medium" />
               </sup>
             </SettingLabel>
-          </InsetIonItem>
-          <InsetIonItem href="mailto:hello@vger.app">
+          </InsetIonItem> */}
+          <InsetIonItem href="mailto:support@startimes.app">
             <IonIcon icon={mailOutline} color="primary" />
             <SettingLabel>
               {t('contact')}{" "}
@@ -199,7 +199,7 @@ export default function SettingsPage() {
               </sup>
             </SettingLabel>
           </InsetIonItem>
-          {isNative() && (
+          {/* {isNative() && (
             <InsetIonItem
               href="https://github.com/aeharding/voyager/releases"
               target="_blank"
@@ -212,7 +212,7 @@ export default function SettingsPage() {
                 {APP_VERSION}
               </SettingLabel>
             </InsetIonItem>
-          )}
+          )} */}
         </IonList>
       </AppContent>
     </IonPage>

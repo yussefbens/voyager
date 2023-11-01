@@ -2,13 +2,13 @@ import { useTranslation } from "react-i18next";
 import { isNative } from "../../../helpers/device";
 
 export default function Terms() {
-  const appName = isNative() ? "Voyager" : location.hostname;
+  const appName = "Startimes Mobile";
 
   return (
     <div className="ion-padding">
       <h3>{appName} Privacy Policy</h3>
 
-      <p>Last updated: June 24, 2023</p>
+      <p>Last updated: Nov 1, 2023</p>
 
       <p>
         We respect your privacy. When you use {appName}, we proxy information to
@@ -37,7 +37,7 @@ export default function Terms() {
 
       <h3>{appName} Terms of Use</h3>
 
-      <p>Last updated: June 24, 2023</p>
+      <p>Last updated: Nov 21, 2023</p>
 
       <p>
         THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
