@@ -315,5 +315,10 @@
     "language-changed-and-need-restart": "La langue a changé et doit être redémarrée",
     "logged-out": "Vous n'êtes actuellement pas connecté",
     "test": "test",
-    "login-now": "Se Connectez maitenant"
+    "login-now": "Se Connectez maitenant",
+    "repeat-password": "Confirmez le mot de passe",
+    "register": "Registrer",
+    "passwords_do_not_match": "Le mot de passe répété ne correspond pas",
+    "user_already_exists": "L'utilisateur existe déjà",
+    "startimes-mobile": "Startimes Mobile"
   }

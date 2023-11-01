@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import {
   IonButtons,
   IonButton,
@@ -29,6 +29,8 @@ import { getCustomServers } from "../../services/app";
 import { isNative } from "../../helpers/device";
 import { Browser } from "@capacitor/browser";
 import useAppToast from "../../helpers/useAppToast";
+import { PageContext } from "./PageContext";
+import Register from "./Register";
 
 const JOIN_LEMMY_URL = "https://startimes.app/register";
 
@@ -71,6 +73,10 @@ export default function Login({
 
   const [presentTerms, onDismissTerms] = useIonModal(TermsSheet, {
     onDismiss: (data: string, role: string) => onDismissTerms(data, role),
+  });
+
+  const [presentRegister, onDismissRegister] = useIonModal(Register, {
+    onDismiss: (data: string, role: string) => onDismissRegister(data, role),
   });
 
   function presentNativeTerms() {
@@ -328,7 +334,7 @@ export default function Login({
                     {server ?? customServer}
                   </>
                 ) : (
-                  <>{t('loginTo')} {server ?? customServerHostname}</>
+                  <>{t('loginTo')} {t("startimes-mobile")}</>
                 )}
               </HelperText>
               {!needsTotp ? (
@@ -374,15 +380,10 @@ export default function Login({
 
                   <HelperText>
                     <IonRouterLink
-                      href={JOIN_LEMMY_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       onClick={(e) => {
-                        if (!isNative()) return;
-
                         e.preventDefault();
-
-                        Browser.open({ url: JOIN_LEMMY_URL });
+                        //Browser.open({ url: JOIN_LEMMY_URL });
+                        presentRegister()
                       }}
                     >
                       <IonText color="primary">{t('dontHaveAccount')}</IonText>

@@ -315,5 +315,10 @@
   "select-a-language": "Select a Language",
   "restart-now": "Restart Now",
   "language-changed-and-need-restart": "Language changed and need restart",
-  "login-now": "Login now"
+  "login-now": "Login now",
+  "repeat-password": "Repeat Password",
+  "register": "Register",
+  "passwords_do_not_match": "Repeat password doesn't match",
+  "user_already_exists": "User already exists",
+  "startimes-mobile": "Startimes Mobile"
 }

@@ -208,6 +208,34 @@ export const login =
     dispatch(updateConnectedInstance(parseJWT(res.jwt).iss));
   };
 
+export const register =
+(baseUrl: string, username: string, password: string, repeatPassword: string, totp?: string) =>
+  async (dispatch: AppDispatch) => {
+    const client = getClient(baseUrl);
+
+    const res = await client.register({
+      username: username,
+      password,
+      password_verify: repeatPassword,
+      show_nsfw: true
+    });
+
+    if (!res.jwt) {
+      // todo
+      throw new Error("broke");
+    }
+
+    const authenticatedClient = getClient(baseUrl, res.jwt);
+
+    const site = await authenticatedClient.getSite({ auth: res.jwt });
+    const myUser = site.my_user?.local_user_view?.person;
+
+    if (!myUser) throw new Error("broke");
+
+    //dispatch(addAccount({ jwt: res.jwt, handle: getRemoteHandle(myUser) }));
+    //dispatch(updateConnectedInstance(parseJWT(res.jwt).iss));
+  };
+
 export const getSiteIfNeeded =
   () => async (dispatch: AppDispatch, getState: () => RootState) => {
     const jwtPayload = jwtPayloadSelector(getState());
