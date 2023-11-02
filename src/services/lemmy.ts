@@ -52,9 +52,9 @@ export async function uploadImage(url: string, auth: string, image: File) {
 
   // Cookie header can only be set by native code (Capacitor http plugin)
   if (isNative()) {
-    const response = await getClient(url).uploadImage({
+    const response = await getClient(url, auth).uploadImage({
       image: compressedImageIfNeeded as File,
-      auth,
+      auth
     });
 
     if (!response.url) throw new Error("unknown native image upload error");
