@@ -320,5 +320,6 @@
     "register": "Registrer",
     "passwords_do_not_match": "Le mot de passe répété ne correspond pas",
     "user_already_exists": "L'utilisateur existe déjà",
-    "startimes-mobile": "Startimes Mobile"
+    "startimes-mobile": "Startimes Mobile",
+    "really-logout": "souhaitez-vous vraiment vous déconnecter?"
   }

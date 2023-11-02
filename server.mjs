@@ -10,6 +10,7 @@ const CUSTOM_LEMMY_SERVERS = process.env.CUSTOM_LEMMY_SERVERS
 // avoid issues where popular servers are flakey
 // and get blacklisted for a few minutes
 const INITIAL_VALID_LEMMY_SERVERS = [
+  "startimes.app",
   "lemmy.ml",
   "lemmy.world",
   "lemmy.one",

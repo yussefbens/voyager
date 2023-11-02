@@ -6,11 +6,12 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  useIonAlert,
   useIonModal,
 } from "@ionic/react";
 import AsyncProfile from "../../features/user/AsyncProfile";
-import { useAppSelector } from "../../store";
-import { handleSelector, usernameSelector } from "../../features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { handleSelector, logoutAccount, usernameSelector } from "../../features/auth/authSlice";
 import LoggedOut from "../../features/user/LoggedOut";
 import AccountSwitcher from "../../features/auth/AccountSwitcher";
 import { useContext } from "react";
@@ -20,7 +21,10 @@ import FeedContent from "../shared/FeedContent";
 
 export default function ProfilePage() {
   const handle = useAppSelector(usernameSelector);
+  const dispatch = useAppDispatch();
   const { pageRef, presentLoginIfNeeded } = useContext(PageContext);
+  const accounts = useAppSelector((state) => state.auth.accountData?.accounts);
+  const [presentAlert] = useIonAlert()
 
   const [presentAccountSwitcher, onDismissAccountSwitcher] = useIonModal(
     AccountSwitcher,
@@ -33,17 +37,40 @@ export default function ProfilePage() {
 
   const { t,i18n } = useTranslation();
 
+  function logout() {
+    presentAlert({
+      header: t("logout") + "?",
+      message: t("really-logout"),
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          handler: () => {
+            console.log('cancel')
+          }
+        },
+        {
+          text: "Yes",
+          role: "confirm",
+          handler: () => {
+            dispatch(logoutAccount(accounts ? accounts[0].handle : ""));
+          }
+        }
+      ]
+    })
+  }
+
   return (
     <IonPage className="grey-bg">
       <IonHeader>
         <IonToolbar>
           {handle ? (
             <>
-              <IonButtons slot="start">
+              <IonButtons slot="end">
                 <IonButton
-                  onClick={() => presentAccountSwitcher({ cssClass: "small" })}
+                  onClick={() => logout()}
                 >
-                  {t('accounts')}
+                  {t('logout')}
                 </IonButton>
               </IonButtons>
 
