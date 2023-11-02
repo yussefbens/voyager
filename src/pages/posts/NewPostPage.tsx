@@ -106,10 +106,10 @@ export default function NewPostPage() {
   return (
     <IonPage ref={pageRef}>
       <AppContent scrollY>
-        <h5 className="ion-text-center">Post to</h5>
+        <h5 className="ion-text-center">{t("post-to")}</h5>
         <IonSearchbar
           ref={searchBarRef}
-          placeholder={"Search for a community"}
+          placeholder={t("search-community")}
           css={css`
             padding-top: 0 !important;
             padding-bottom: 0 !important;

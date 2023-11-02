@@ -321,5 +321,7 @@
   "passwords_do_not_match": "Repeat password doesn't match",
   "user_already_exists": "User already exists",
   "startimes-mobile": "Startimes Mobile",
-  "really-logout": "do you really wish to logout?"
+  "really-logout": "do you really wish to logout?",
+  "post-to": "Post to",
+  "search-community": "Search for a community"
 }
