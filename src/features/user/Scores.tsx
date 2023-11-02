@@ -45,13 +45,13 @@ export default function Scores({ aggregates, accountCreated }: ScoreProps) {
   );
   const creationDate = new Date(accountCreated);
 
-  const postScore = aggregates.post_score;
-  const commentScore = aggregates.comment_score;
-  const totalScore = postScore + commentScore;
+  const posts = aggregates.post_count;
+  const comments = aggregates.comment_count;
+  const totalScore = posts + comments;
 
   const showScoreAlert = async (focus: "post" | "comment") => {
-    const postPointsLine = `${postScore.toLocaleString()} ${t('post-points')}`;
-    const commentPointsLine = `${commentScore.toLocaleString()} ${t('comment-points')}`;
+    const postPointsLine = `${posts.toLocaleString()} ${t('post-points')}`;
+    const commentPointsLine = `${comments.toLocaleString()} ${t('comment-points')}`;
 
     const totalScoreLine = `${totalScore.toLocaleString()} ${t('total-points')}`;
 
@@ -78,7 +78,7 @@ export default function Scores({ aggregates, accountCreated }: ScoreProps) {
             showScoreAlert("comment");
           }}
         >
-          {formatNumber(aggregates.comment_score)}
+          {formatNumber(aggregates.comment_count)}
           <aside>{t('commentScore')}</aside>
         </Score>
         <Score
@@ -86,7 +86,7 @@ export default function Scores({ aggregates, accountCreated }: ScoreProps) {
             showScoreAlert("post");
           }}
         >
-          {formatNumber(aggregates.post_score)}
+          {formatNumber(aggregates.post_count)}
           <aside>{t('postScore')}</aside>
         </Score>
         <Score
