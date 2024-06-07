@@ -51,7 +51,7 @@ i18n
 .use(HttpApi)
 .init({
     supportedLngs: ['en', 'ar', 'fr'],
-    fallbackLng: "ar",
+    fallbackLng: "en",
     debug: true,
     interpolation: {
         escapeValue: false
