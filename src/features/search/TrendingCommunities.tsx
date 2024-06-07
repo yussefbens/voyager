@@ -8,6 +8,17 @@ import { getHandle } from "../../helpers/lemmy";
 import { trendingUp } from "ionicons/icons";
 import { useEffect } from "react";
 import { getTrendingCommunities } from "../community/communitySlice";
+import ItemIcon from "../labels/img/ItemIcon";
+import styled from "@emotion/styled";
+import { getImageSrc } from "../../services/lemmy";
+
+const SubImgIcon = styled.img<{ size: number }>`
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size}px`};
+  border-radius: 15%;
+  object-fit: cover;
+  margin: 1em 0;
+`;
 
 export default function TrendingCommunities() {
   const dispatch = useAppDispatch();
@@ -18,6 +29,7 @@ export default function TrendingCommunities() {
 
   useEffect(() => {
     if (!trendingCommunities.length) dispatch(getTrendingCommunities());
+    console.log('trendingCommunities', trendingCommunities)
   }, [dispatch, trendingCommunities]);
 
   const { t,i18n } = useTranslation();
@@ -40,7 +52,12 @@ export default function TrendingCommunities() {
           )}
           key={community.community.id}
         >
-          <IonIcon icon={trendingUp} color="primary" />
+          <SubImgIcon
+              src={getImageSrc(community.community.icon ? community.community.icon : "https://i.ibb.co/jG7gkQr/noicon.png", {
+                size: 50,
+              })}
+              size={50}
+            />
           <SettingLabel>{getHandle(community.community)}</SettingLabel>
         </InsetIonItem>
       ))}
