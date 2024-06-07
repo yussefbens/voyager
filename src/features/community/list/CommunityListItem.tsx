@@ -46,7 +46,7 @@ export default function CommunityListItem({
       routerLink={buildGeneralBrowseLink(`/c/${getHandle(community)}`)}
     >
       <Content>
-        <ItemIcon item={community} size={28} />
+        <ItemIcon item={community} size={60} />
         {getHandle(community)}
       </Content>
       <ActionButton

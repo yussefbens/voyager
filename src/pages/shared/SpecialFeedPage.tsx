@@ -72,7 +72,7 @@ export default function SpecialFeedPage({ type }: SpecialFeedProps) {
                 />
               </IonButtons>
 
-              <TitleSearch name={listingTypeTitle(type)}>
+              <TitleSearch name={listingTypeTitle(type, t)}>
                 <IonButtons slot="end">
                   <PostSort />
                   <SpecialFeedMoreActions />
@@ -95,12 +95,13 @@ export default function SpecialFeedPage({ type }: SpecialFeedProps) {
   );
 }
 
-function listingTypeTitle(type: ListingType): string {
+function listingTypeTitle(type: ListingType, t: any): string {
   switch (type) {
     case "All":
+      return t('all');
     case "Local":
       return type;
     case "Subscribed":
-      return "Home";
+      return t('home');
   }
 }

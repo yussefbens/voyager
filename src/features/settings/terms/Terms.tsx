@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { isNative } from "../../../helpers/device";
 
 export default function Terms() {
-  const appName = "Startimes Mobile";
+  const appName = "Jma'a";
 
   return (
     <div className="ion-padding">

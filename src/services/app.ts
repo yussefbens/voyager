@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const DEFAULT_LEMMY_SERVERS = [
-  "startimes.app",
+  "jmaa.ma",
   "lemmy.world",
   "lemmy.ml",
   "beehaw.org",

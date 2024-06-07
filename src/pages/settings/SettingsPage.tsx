@@ -190,7 +190,7 @@ export default function SettingsPage() {
               </sup>
             </SettingLabel>
           </InsetIonItem> */}
-          <InsetIonItem href="mailto:support@startimes.app">
+          <InsetIonItem href="mailto:yussef.bens@gmail.com">
             <IonIcon icon={mailOutline} color="primary" />
             <SettingLabel>
               {t('contact')}{" "}

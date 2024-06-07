@@ -73,7 +73,7 @@ let SPECIAL_FEEDS = [
   {
     id: "all",
     type: "all",
-    label: "All",
+    label: 'All',
   },
 ];
 

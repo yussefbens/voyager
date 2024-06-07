@@ -7,6 +7,7 @@
     "all": "Le Tout",
     "postsAcross": "Publications dans toutes les communautés fédérées",
     "local": "locale",
+    "community": "Communauté",
     "postsFromCom": "Publications des communautés sur",
     "sortBy": "Trier par...",
     "sortByTop": "Trier par Top pour...",
@@ -320,7 +321,7 @@
     "register": "Registrer",
     "passwords_do_not_match": "Le mot de passe répété ne correspond pas",
     "user_already_exists": "L'utilisateur existe déjà",
-    "startimes-mobile": "Startimes Mobile",
+    "startimes-mobile": "Jma'a",
     "really-logout": "souhaitez-vous vraiment vous déconnecter?",
     "post-to": "Poster à",
     "search-community": "Chercher une communauté"

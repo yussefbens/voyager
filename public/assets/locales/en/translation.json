@@ -7,6 +7,7 @@
   "all": "All",
   "postsAcross": "Posts across all federated communities",
   "local": "Local",
+  "community": "Community",
   "postsFromCom": "Posts from communities on",
   "sortBy": "Sort by...",
   "sortByTop": "Sort by Top for...",
@@ -320,7 +321,7 @@
   "register": "Register",
   "passwords_do_not_match": "Repeat password doesn't match",
   "user_already_exists": "User already exists",
-  "startimes-mobile": "Startimes Mobile",
+  "startimes-mobile": "Jma'a",
   "really-logout": "do you really wish to logout?",
   "post-to": "Post to",
   "search-community": "Search for a community"

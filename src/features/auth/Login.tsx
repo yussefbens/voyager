@@ -32,7 +32,7 @@ import useAppToast from "../../helpers/useAppToast";
 import { PageContext } from "./PageContext";
 import Register from "./Register";
 
-const JOIN_LEMMY_URL = "https://startimes.app/register";
+const JOIN_LEMMY_URL = "http://jmaa.ma/register";
 
 export const Spinner = styled(IonSpinner)`
   width: 1.5rem;
@@ -80,13 +80,15 @@ export default function Login({
   });
 
   function presentNativeTerms() {
-    Browser.open({ url: "https://statimes.app/terms.html" });
+    Browser.open({ url: "https://jmaa.ma/terms.html" });
   }
 
   const customServerHostname = (() => {
+    console.log('customer server', customServer)
     if (!customServer) return;
 
     try {
+      console.log('customer server', customServer)
       return new URL(
         customServer.startsWith("https://")
           ? customServer

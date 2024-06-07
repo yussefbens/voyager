@@ -6,7 +6,7 @@ import { getImageSrc } from "../../../services/lemmy";
 const SubImgIcon = styled.img<{ size: number }>`
   width: ${({ size }) => `${size}px`};
   height: ${({ size }) => `${size}px`};
-  border-radius: 50%;
+  border-radius: 15%;
   object-fit: cover;
 `;
 

@@ -30,7 +30,7 @@ import { isNative } from "../../helpers/device";
 import { Browser } from "@capacitor/browser";
 import useAppToast from "../../helpers/useAppToast";
 
-const JOIN_LEMMY_URL = "https://startimes.app/register";
+const JOIN_LEMMY_URL = "http://jmaa.ma/register";
 
 export const Spinner = styled(IonSpinner)`
   width: 1.5rem;
