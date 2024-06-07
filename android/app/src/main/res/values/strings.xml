@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Voyager</string>
-    <string name="title_activity_main">Voyager</string>
-    <string name="package_name">app.vger.voyager</string>
-    <string name="custom_url_scheme">app.vger.voyager</string>
+    <string name="app_name">Jma\'a</string>
+    <string name="title_activity_main">Jma\'a</string>
+    <string name="package_name">ma.jmaa</string>
+    <string name="custom_url_scheme">ma.jmaa</string>
 </resources>

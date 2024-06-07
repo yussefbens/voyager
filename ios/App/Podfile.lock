@@ -25,9 +25,9 @@ PODS:
     - SDWebImage
   - CapacitorStatusBar (5.0.6):
     - Capacitor
-  - SDWebImage (5.17.0):
-    - SDWebImage/Core (= 5.17.0)
-  - SDWebImage/Core (5.17.0)
+  - SDWebImage (5.18.8):
+    - SDWebImage/Core (= 5.18.8)
+  - SDWebImage/Core (5.18.8)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/.pnpm/@capacitor+ios@5.2.3_@capacitor+core@5.2.3/node_modules/@capacitor/ios`)"
@@ -90,7 +90,7 @@ SPEC CHECKSUMS:
   CapacitorShare: cd41743331cb71d217c029de54b681cbd91e0fcc
   CapacitorStashMedia: 7c02b8e710f7ee187f2bc050881b15db046bf07f
   CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
-  SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
+  SDWebImage: a81bbb3ba4ea5f810f4069c68727cb118467a04a
 
 PODFILE CHECKSUM: 7fb06670c948e03c9d4b3747a21669a0f25384a7
 

@@ -15,50 +15,7 @@
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
 		A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */; };
-		E73782672A8B33E200FCDF7B /* original.png in Resources */ = {isa = PBXBuildFile; fileRef = E73782662A8B33E200FCDF7B /* original.png */; };
-		E73A34CB2A8DAE3B0004DC5B /* galactic.png in Resources */ = {isa = PBXBuildFile; fileRef = E73A34CA2A8DAE3A0004DC5B /* galactic.png */; };
-		E74573C22A7C44D50073E5C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E74573C12A7C44D50073E5C5 /* Assets.xcassets */; };
-		E75D25492A7C351E00C4AD87 /* VoyagerWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D25482A7C351E00C4AD87 /* VoyagerWatchApp.swift */; };
-		E75D25502A7C351F00C4AD87 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E75D254F2A7C351F00C4AD87 /* Preview Assets.xcassets */; };
-		E75D25532A7C351F00C4AD87 /* VoyagerWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E75D25462A7C351E00C4AD87 /* VoyagerWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E75D25612A7C357D00C4AD87 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D25582A7C357D00C4AD87 /* APIManager.swift */; };
-		E75D25622A7C357D00C4AD87 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D25592A7C357D00C4AD87 /* FeedViewModel.swift */; };
-		E75D25632A7C357D00C4AD87 /* PostUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D255A2A7C357D00C4AD87 /* PostUIView.swift */; };
-		E75D25652A7C357D00C4AD87 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D255C2A7C357D00C4AD87 /* FeedView.swift */; };
-		E75D25662A7C357D00C4AD87 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D255D2A7C357D00C4AD87 /* HomeView.swift */; };
-		E75D25692A7C357D00C4AD87 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D25602A7C357D00C4AD87 /* WatchSessionManager.swift */; };
-		E75D256F2A7C369900C4AD87 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D256B2A7C369800C4AD87 /* Post.swift */; };
-		E75D25702A7C369900C4AD87 /* SavePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D256C2A7C369800C4AD87 /* SavePost.swift */; };
-		E75D25712A7C369900C4AD87 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D256D2A7C369800C4AD87 /* PostView.swift */; };
-		E75D25722A7C369900C4AD87 /* GetPostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D256E2A7C369800C4AD87 /* GetPostsResponse.swift */; };
-		E761A9562A8B15EE00DDD466 /* space.png in Resources */ = {isa = PBXBuildFile; fileRef = E761A9552A8B15EE00DDD466 /* space.png */; };
-		E761A9592A8B15F800DDD466 /* psych.png in Resources */ = {isa = PBXBuildFile; fileRef = E761A9572A8B15F800DDD466 /* psych.png */; };
-		E761A95A2A8B15F800DDD466 /* planetary.png in Resources */ = {isa = PBXBuildFile; fileRef = E761A9582A8B15F800DDD466 /* planetary.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E75D25512A7C351F00C4AD87 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E75D25452A7C351E00C4AD87;
-			remoteInfo = "VoyagerWatch Watch App";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E75D25542A7C351F00C4AD87 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				E75D25532A7C351F00C4AD87 /* VoyagerWatch Watch App.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
@@ -72,25 +29,6 @@
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
 		AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
-		E73782662A8B33E200FCDF7B /* original.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = original.png; sourceTree = "<group>"; };
-		E73A34CA2A8DAE3A0004DC5B /* galactic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = galactic.png; sourceTree = "<group>"; };
-		E74573C12A7C44D50073E5C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E75D25462A7C351E00C4AD87 /* VoyagerWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VoyagerWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E75D25482A7C351E00C4AD87 /* VoyagerWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoyagerWatchApp.swift; sourceTree = "<group>"; };
-		E75D254F2A7C351F00C4AD87 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E75D25582A7C357D00C4AD87 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		E75D25592A7C357D00C4AD87 /* FeedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
-		E75D255A2A7C357D00C4AD87 /* PostUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostUIView.swift; sourceTree = "<group>"; };
-		E75D255C2A7C357D00C4AD87 /* FeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
-		E75D255D2A7C357D00C4AD87 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		E75D25602A7C357D00C4AD87 /* WatchSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
-		E75D256B2A7C369800C4AD87 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		E75D256C2A7C369800C4AD87 /* SavePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavePost.swift; sourceTree = "<group>"; };
-		E75D256D2A7C369800C4AD87 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
-		E75D256E2A7C369800C4AD87 /* GetPostsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPostsResponse.swift; sourceTree = "<group>"; };
-		E761A9552A8B15EE00DDD466 /* space.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = space.png; sourceTree = "<group>"; };
-		E761A9572A8B15F800DDD466 /* psych.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = psych.png; sourceTree = "<group>"; };
-		E761A9582A8B15F800DDD466 /* planetary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planetary.png; sourceTree = "<group>"; };
 		FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,13 +38,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E75D25432A7C351E00C4AD87 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +56,6 @@
 			isa = PBXGroup;
 			children = (
 				504EC3061FED79650016851F /* App */,
-				E75D25472A7C351E00C4AD87 /* VoyagerWatch Watch App */,
 				504EC3051FED79650016851F /* Products */,
 				7F8756D8B27F46E3366F6CEA /* Pods */,
 				27E2DDA53C4D2A4D1A88CE4A /* Frameworks */,
@@ -136,7 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				504EC3041FED79650016851F /* App.app */,
-				E75D25462A7C351E00C4AD87 /* VoyagerWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,7 +73,6 @@
 		504EC3061FED79650016851F /* App */ = {
 			isa = PBXGroup;
 			children = (
-				E761A9542A8B15C100DDD466 /* AlternateIcons */,
 				50379B222058CBB4000EE86E /* capacitor.config.json */,
 				504EC3071FED79650016851F /* AppDelegate.swift */,
 				504EC30B1FED79650016851F /* Main.storyboard */,
@@ -166,54 +94,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E75D25472A7C351E00C4AD87 /* VoyagerWatch Watch App */ = {
-			isa = PBXGroup;
-			children = (
-				E75D256A2A7C367600C4AD87 /* models */,
-				E75D25582A7C357D00C4AD87 /* APIManager.swift */,
-				E75D255C2A7C357D00C4AD87 /* FeedView.swift */,
-				E75D25592A7C357D00C4AD87 /* FeedViewModel.swift */,
-				E75D255D2A7C357D00C4AD87 /* HomeView.swift */,
-				E75D255A2A7C357D00C4AD87 /* PostUIView.swift */,
-				E75D25602A7C357D00C4AD87 /* WatchSessionManager.swift */,
-				E75D25482A7C351E00C4AD87 /* VoyagerWatchApp.swift */,
-				E75D254E2A7C351F00C4AD87 /* Preview Content */,
-				E74573C12A7C44D50073E5C5 /* Assets.xcassets */,
-			);
-			path = "VoyagerWatch Watch App";
-			sourceTree = "<group>";
-		};
-		E75D254E2A7C351F00C4AD87 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				E75D254F2A7C351F00C4AD87 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		E75D256A2A7C367600C4AD87 /* models */ = {
-			isa = PBXGroup;
-			children = (
-				E75D256E2A7C369800C4AD87 /* GetPostsResponse.swift */,
-				E75D256B2A7C369800C4AD87 /* Post.swift */,
-				E75D256D2A7C369800C4AD87 /* PostView.swift */,
-				E75D256C2A7C369800C4AD87 /* SavePost.swift */,
-			);
-			path = models;
-			sourceTree = "<group>";
-		};
-		E761A9542A8B15C100DDD466 /* AlternateIcons */ = {
-			isa = PBXGroup;
-			children = (
-				E761A9582A8B15F800DDD466 /* planetary.png */,
-				E73A34CA2A8DAE3A0004DC5B /* galactic.png */,
-				E73782662A8B33E200FCDF7B /* original.png */,
-				E761A9572A8B15F800DDD466 /* psych.png */,
-				E761A9552A8B15EE00DDD466 /* space.png */,
-			);
-			path = AlternateIcons;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -226,33 +106,14 @@
 				504EC3011FED79650016851F /* Frameworks */,
 				504EC3021FED79650016851F /* Resources */,
 				9592DBEFFC6D2A0C8D5DEB22 /* [CP] Embed Pods Frameworks */,
-				E75D25542A7C351F00C4AD87 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E75D25522A7C351F00C4AD87 /* PBXTargetDependency */,
 			);
 			name = App;
 			productName = App;
 			productReference = 504EC3041FED79650016851F /* App.app */;
-			productType = "com.apple.product-type.application";
-		};
-		E75D25452A7C351E00C4AD87 /* VoyagerWatch Watch App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E75D25572A7C351F00C4AD87 /* Build configuration list for PBXNativeTarget "VoyagerWatch Watch App" */;
-			buildPhases = (
-				E75D25422A7C351E00C4AD87 /* Sources */,
-				E75D25432A7C351E00C4AD87 /* Frameworks */,
-				E75D25442A7C351E00C4AD87 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "VoyagerWatch Watch App";
-			productName = "VoyagerWatch Watch App";
-			productReference = E75D25462A7C351E00C4AD87 /* VoyagerWatch Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -261,16 +122,12 @@
 		504EC2FC1FED79650016851F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 920;
 				LastUpgradeCheck = 920;
 				TargetAttributes = {
 					504EC3031FED79650016851F = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1100;
-						ProvisioningStyle = Automatic;
-					};
-					E75D25452A7C351E00C4AD87 = {
-						CreatedOnToolsVersion = 14.3.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -289,7 +146,6 @@
 			projectRoot = "";
 			targets = (
 				504EC3031FED79650016851F /* App */,
-				E75D25452A7C351E00C4AD87 /* VoyagerWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -299,26 +155,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E761A95A2A8B15F800DDD466 /* planetary.png in Resources */,
 				504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */,
 				50B271D11FEDC1A000F3C39B /* public in Resources */,
-				E73A34CB2A8DAE3B0004DC5B /* galactic.png in Resources */,
 				504EC30F1FED79650016851F /* Assets.xcassets in Resources */,
-				E73782672A8B33E200FCDF7B /* original.png in Resources */,
-				E761A9592A8B15F800DDD466 /* psych.png in Resources */,
 				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
 				504EC30D1FED79650016851F /* Main.storyboard in Resources */,
 				2FAD9763203C412B000D30F8 /* config.xml in Resources */,
-				E761A9562A8B15EE00DDD466 /* space.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E75D25442A7C351E00C4AD87 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E74573C22A7C44D50073E5C5 /* Assets.xcassets in Resources */,
-				E75D25502A7C351F00C4AD87 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,33 +211,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E75D25422A7C351E00C4AD87 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E75D25652A7C357D00C4AD87 /* FeedView.swift in Sources */,
-				E75D25612A7C357D00C4AD87 /* APIManager.swift in Sources */,
-				E75D25492A7C351E00C4AD87 /* VoyagerWatchApp.swift in Sources */,
-				E75D256F2A7C369900C4AD87 /* Post.swift in Sources */,
-				E75D25662A7C357D00C4AD87 /* HomeView.swift in Sources */,
-				E75D25632A7C357D00C4AD87 /* PostUIView.swift in Sources */,
-				E75D25722A7C369900C4AD87 /* GetPostsResponse.swift in Sources */,
-				E75D25622A7C357D00C4AD87 /* FeedViewModel.swift in Sources */,
-				E75D25702A7C369900C4AD87 /* SavePost.swift in Sources */,
-				E75D25712A7C369900C4AD87 /* PostView.swift in Sources */,
-				E75D25692A7C357D00C4AD87 /* WatchSessionManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E75D25522A7C351F00C4AD87 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E75D25452A7C351E00C4AD87 /* VoyagerWatch Watch App */;
-			targetProxy = E75D25512A7C351F00C4AD87 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		504EC30B1FED79650016851F /* Main.storyboard */ = {
@@ -471,7 +287,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Debug;
 		};
@@ -522,7 +337,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
@@ -530,17 +344,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SYTN44U2UN;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
-				PRODUCT_BUNDLE_IDENTIFIER = app.vger.voyager;
+				PRODUCT_BUNDLE_IDENTIFIER = ma.jmaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
@@ -552,87 +364,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SYTN44U2UN;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.vger.voyager;
+				PRODUCT_BUNDLE_IDENTIFIER = ma.jmaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		E75D25552A7C351F00C4AD87 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"VoyagerWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = SYTN44U2UN;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Voyager;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = app.vger.voyager;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = app.vger.voyager.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.1;
-			};
-			name = Debug;
-		};
-		E75D25562A7C351F00C4AD87 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"VoyagerWatch Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = SYTN44U2UN;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Voyager;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = app.vger.voyager;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = app.vger.voyager.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
@@ -653,15 +396,6 @@
 			buildConfigurations = (
 				504EC3171FED79650016851F /* Debug */,
 				504EC3181FED79650016851F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E75D25572A7C351F00C4AD87 /* Build configuration list for PBXNativeTarget "VoyagerWatch Watch App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E75D25552A7C351F00C4AD87 /* Debug */,
-				E75D25562A7C351F00C4AD87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

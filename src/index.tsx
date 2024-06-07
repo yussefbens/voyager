@@ -13,14 +13,14 @@ import { getAndroidNavMode, isNative } from "./helpers/device";
     const root = createRoot(container as HTMLElement);
     const lang = localStorage.getItem("i18nextLng");
     if (container) {
-      if (lang === "fr" || lang === "en") {
+      if (lang === "ar") {
         //container.style.direction = "ltr"
         //container.setAttribute("dir", "ltr")
-        html.setAttribute("dir", "ltr")
+        html.setAttribute("dir", "rtl")
       } else {
         //container.style.direction = "rtl"
         //container.setAttribute("dir", "rtl")
-        html.setAttribute("dir", "rtl")
+        html.setAttribute("dir", "ltr")
       }
     }
 
