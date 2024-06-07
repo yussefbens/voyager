@@ -1,5 +1,7 @@
 import {
   IonHeader,
+  IonIcon,
+  IonList,
   IonPage,
   IonSearchbar,
   IonToolbar,
@@ -11,6 +13,10 @@ import { css } from "@emotion/react";
 import TrendingCommunities from "../../features/search/TrendingCommunities";
 import SearchOptions from "../../features/search/SearchOptions";
 import { useTranslation } from "react-i18next";
+import { InsetIonItem, SettingLabel } from "../profile/ProfileFeedItemsPage";
+import { addCircleOutline, enterOutline, openOutline, trendingUp } from "ionicons/icons";
+import { Capacitor } from "@capacitor/core";
+import { Browser } from "@capacitor/browser";
 
 // eslint-disable-next-line no-undef -- I can't work out where to import this type from
 const searchBarRef = createRef<HTMLIonSearchbarElement>();
@@ -24,6 +30,14 @@ export default function SearchPage() {
   const [search, setSearch] = useState("");
   const router = useIonRouter();
   const { t,i18n } = useTranslation();
+
+  const openLink = () => {
+    console.log('open link')
+    Browser.open({
+      url: "https://jmaa.ma/create_community", 
+      presentationStyle: "popover"
+    })
+  }
 
   return (
     <IonPage className="grey-bg">
@@ -57,6 +71,12 @@ export default function SearchPage() {
         </IonToolbar>
       </IonHeader>
       <AppContent scrollY={!search}>
+        <IonList inset color="primary">
+          <InsetIonItem button={true} detail={true} detailIcon={openOutline} onClick={openLink}>
+            <IonIcon icon={addCircleOutline} color="primary" />
+            <SettingLabel>Start a Community</SettingLabel>
+          </InsetIonItem>
+        </IonList>
         {!search ? <TrendingCommunities /> : <SearchOptions search={search} />}
       </AppContent>
     </IonPage>
