@@ -209,7 +209,7 @@ export const login =
   };
 
 export const register =
-(baseUrl: string, username: string, password: string, repeatPassword: string, totp?: string) =>
+(baseUrl: string, username: string, password: string, repeatPassword: string, totp?: string, email?: string) =>
   async (dispatch: AppDispatch) => {
     const client = getClient(baseUrl);
 
@@ -217,7 +217,8 @@ export const register =
       username: username,
       password,
       password_verify: repeatPassword,
-      show_nsfw: true
+      show_nsfw: true,
+      email: email
     });
 
     if (!res.jwt) {

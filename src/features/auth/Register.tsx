@@ -61,9 +61,11 @@ export default function Register({
   const [customServer, setCustomServer] = useState("");
   const [serverConfirmed, setServerConfirmed] = useState(true);
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const usernameRef = useRef<IonInputCustomEvent<never>["target"]>(null);
+  const emailRef = useRef<IonInputCustomEvent<never>["target"]>(null);
   const [loading, setLoading] = useState(false);
   const pageRef = useRef();
   const [needsTotp, setNeedsTotp] = useState(false);
@@ -90,6 +92,7 @@ export default function Register({
     setTimeout(() => {
       // This hack is incredibly annoying
       usernameRef.current?.getInputElement().then((el) => el.focus());
+      emailRef.current?.getInputElement().then((el) => el.focus());
     }, 200);
   }, [serverConfirmed]);
 
@@ -161,7 +164,7 @@ export default function Register({
 
     try {
       await dispatch(
-        register(server ?? customServerHostname, username, password, repeatPassword, totp),
+        register(server ?? customServerHostname, username, password, repeatPassword, totp, email),
       );
     } catch (error) {
       if (error === "missing_totp_token") {
@@ -239,6 +242,18 @@ export default function Register({
         </IonHeader>
         <IonContent>
         <IonList inset>
+            <IonItem>
+              <IonInput
+              ref={emailRef}
+              label={t('email')}
+              type="email"
+              autocomplete="email"
+              inputMode="email"
+              value={email}
+              onIonInput={(e) => setEmail(e.target.value as string)}
+              disabled={loading}
+              />
+            </IonItem>
             <IonItem>
                 <IonInput
                 ref={usernameRef}

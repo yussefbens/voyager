@@ -345,7 +345,7 @@ export default function Login({
                     <IonItem>
                       <IonInput
                         ref={usernameRef}
-                        label={t('username')}
+                        label={t('usernameOrEmail')}
                         autocomplete="username"
                         inputMode="email"
                         value={username}
